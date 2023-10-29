@@ -1,0 +1,7 @@
+Usage:
+  generate [optional-params] 
+Options:
+  -h, --help                  print this cligen-erated help
+  --help-syntax               advanced: prepend,plurals,..
+  -i=, --input=   string  ""  set input
+  -o=, --output=  string  ""  set output

@@ -1,0 +1,3 @@
+proc foo() =
+  print("foo")
+

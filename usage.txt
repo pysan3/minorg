@@ -1,0 +1,11 @@
+Usage:
+  nim_norg {SUBCMD}  [sub-command options & parameters]
+where {SUBCMD} is one of:
+  help      print comprehensive or per-cmd help
+  parse     
+  generate  
+
+nim_norg {-h|--help} or with no args at all prints this message.
+nim_norg --help-syntax gives general cligen syntax help.
+Run "nim_norg {help SUBCMD|SUBCMD --help}" to see help for just SUBCMD.
+Run "nim_norg help" to get *comprehensive* help.
