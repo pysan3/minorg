@@ -1,0 +1,7 @@
+nimTitle	file_utils	src/file_utils.html	module src/file_utils		0
+nim	getSomeFile	src/file_utils.html#getSomeFile,string	proc getSomeFile(path: string): auto		10
+nim	getFileContent	src/file_utils.html#getFileContent,File	proc getFileContent(file: File): auto		15
+nim	getFileContent	src/file_utils.html#getFileContent,PPath	proc getFileContent(path: PPath): auto		18
+nim	getFileContent	src/file_utils.html#getFileContent,Option[PPath]	proc getFileContent(path: Option[PPath]): auto		25
+nim	isJson	src/file_utils.html#isJson,PPath	proc isJson(path: PPath): auto		30
+nimgrp	getfilecontent	src/file_utils.html#getFileContent-procs-all	proc		15

@@ -1,0 +1,13 @@
+nimTitle	utils	src/utils.html	module src/utils		0
+nim	mainExamples	src/utils.html#mainExamples.m,untyped	macro mainExamples(body: untyped): untyped		9
+nim	todo	src/utils.html#todo.t	template todo(): untyped		17
+nim	isAbstract	src/utils.html#isAbstract.t	template isAbstract(): untyped		20
+nim	unreachable	src/utils.html#unreachable.t,string	template unreachable(s: string): untyped		23
+nim	addUniq	src/utils.html#addUniq,seq[T],T	proc addUniq[T](a: var seq[T]; b: T)		26
+nim	addUniq	src/utils.html#addUniq,seq[T],seq[T]	proc addUniq[T](a: var seq[T]; b: seq[T])		29
+nim	deleteIf	src/utils.html#deleteIf,seq[T],int	proc deleteIf[T](a: var seq[T]; i: int)		31
+nim	argsWithDefault	src/utils.html#argsWithDefault,seq[T],int,T	proc argsWithDefault[T](args: seq[T]; index: int; default: T): T		35
+nim	findIf	src/utils.html#findIf,seq[T],	proc findIf[T](s: seq[T]; pred: (T {.noSideEffect.} -> bool)): Option[T]		40
+nim	findSubstr	src/utils.html#findSubstr,string,string,seq[int]	proc findSubstr(s: string; t: string; strFroms: seq[int]): bool		46
+nim	toSeq	src/utils.html#toSeq,Slice[T]	proc toSeq[T](s: Slice[T]): seq[T]		49
+nimgrp	adduniq	src/utils.html#addUniq-procs-all	proc		26

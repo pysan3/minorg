@@ -1,0 +1,2 @@
+nimTitle	str_utils	src/str_utils.html	module src/str_utils		0
+nim	joinSepLn	src/str_utils.html#joinSepLn,openArray[string],string	proc joinSepLn(arr: openArray[string]; sep = " "): auto		3
