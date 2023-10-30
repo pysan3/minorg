@@ -38,12 +38,6 @@ jobs:
           - target:
               os: linux
             builder: ubuntu-20.04
-          - target:
-              os: macosx
-            builder: macos-11
-          - target:
-              os: windows
-            builder: windows-2019
     defaults:
       run:
         shell: bash
@@ -64,11 +58,11 @@ jobs:
         run: |
           nimble setup
           nim musl -d:pcre -f:on nim_norg.nim
-      - name: Compress the Nim Language Server binaries
+      - name: Compress Generated binaries
         run: |
           tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
-      - name: Upload the Nim Language Server Binaries
-        uses: actions/upload-artifact@v2
+      - name: Upload Generated Binaries
+        uses: actions/upload-artifact@v3
         with:
           name: nim_norg-${{ matrix.target.name }}.tar.gz
           path: nim_norg-${{ matrix.target.name }}.tar.gz
@@ -87,9 +81,6 @@ jobs:
             triple: i686-w64-mingw32
             name: windows_x32
         include:
-          - target:
-              os: linux
-            builder: ubuntu-20.04
           - target:
               os: macosx
             builder: macos-11
@@ -110,12 +101,14 @@ jobs:
           yes: true
       - name: setup and build
         run: |
+          rm -rf nimble.lock
+          nimble lock
           nimble setup
           nimble build -f:on
-      - name: Compress the Nim Language Server binaries
+      - name: Compress Generated binaries
         run: |
           tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
-      - name: Upload the Nim Language Server Binaries
+      - name: Upload Generated Binaries
         uses: actions/upload-artifact@v2
         with:
           name: nim_norg-${{ matrix.target.name }}.tar.gz
@@ -129,8 +122,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Download artefacts
-        uses: actions/download-artifact@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
       - uses: ncipollo/release-action@v1
         with:
           name: Latest nim_norg Binaries
@@ -139,7 +132,7 @@ jobs:
           makeLatest: true
           prerelease: true
           tag: latest
-      - name: Delete artefacts
+      - name: Delete artifacts
         uses: geekyeggo/delete-artifact@v1
         with:
           failOnError: false
