@@ -101,7 +101,6 @@ jobs:
           yes: true
       - name: setup and build
         run: |
-          rm -rf nimble.lock
           nimble lock
           nimble setup
           nimble build -f:on
