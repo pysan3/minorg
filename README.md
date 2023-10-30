@@ -12,7 +12,6 @@ version:
 # Nim Norg
 
 
-![![CI status](https://github.com/alaviss/union/workflows/CI/badge.svg)](https://github.com/pysan3/nim_norg/actions?query=workflow%3ACI)
 ![Minimum supported Nim version](https://img.shields.io/badge/nim-2.0.0%2B-informational?style=flat&logo=nim)
 [![License](https://img.shields.io/github/license/pysan3/nim_norg?style=flat)](#license)
 
