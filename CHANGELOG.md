@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/pysan3/nim_norg/compare/v1.0.1...v1.1.0) (2023-10-30)
+
+
+### Features
+
+* **cli:** add `-o` flag to specify output file ([#6](https://github.com/pysan3/nim_norg/issues/6)) ([3741c76](https://github.com/pysan3/nim_norg/commit/3741c767d5362706d50b9dbd292ff08dbaad6725))
+
 ## [1.0.1](https://github.com/pysan3/nim_norg/compare/v1.0.0...v1.0.1) (2023-10-30)
 
 
