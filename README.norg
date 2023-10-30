@@ -4,17 +4,19 @@ description:
 authors: takuto
 categories:
 created: 2023-10-30T05:11:49+0900
-updated: 2023-10-30T06:01:09+0900
+updated: 2023-10-30T17:41:28+0900
 version: 1.1.1
 @end
 
 * Nim Norg
 
-  !https://github.com/pysan3/nim_norg/actions?query=workflow%3ACI}[!{https://github.com/alaviss/union/workflows/CI/badge.svg}[CI status]]
+  !{https://github.com/pysan3/nim_norg/actions?query=workflow%3ACI}[!{https://github.com/alaviss/union/workflows/CI/badge.svg}[CI status]]
   !{https://img.shields.io/badge/nim-2.0.0%2B-informational?style=flat&logo=nim}[Minimum supported Nim version]
   {/ LICENSE}[!{https://img.shields.io/github/license/pysan3/nim_norg?style=flat}[License]]
 
   `Pandoc json` -> `norg` converter written in the {https://nim-lang.org/}[Nim] language.
+
+  *This README is generated from {/ ./README.norg}.
 
 ** Get Started
    - Download: {https://github.com/pysan3/nim_norg/releases}
