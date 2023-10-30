@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: jiro4989/setup-nim-action@v1.4.3
         with:
-          nimversion: stable
+          nim-version: stable
           yes: true
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: jiro4989/setup-nim-action@v1.4.3
         with:
-          nimversion: stable
+          nim-version: stable
           yes: true
       - name: setup and build
         run: |
