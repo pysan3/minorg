@@ -1,14 +1,16 @@
 name: release-binaries
 on:
   workflow_run:
-    workflows: ["test-and-docs"]
+    workflows:
+      - test-and-docs
+      - release-please
     types:
       - complete
   push:
     tags:
       - 'v*'
-    branches:
-      - main
+    # branches:
+    #   - main
     paths-ignore: ['media/**', 'docs/**', '**/*.md']
     workflow_dispatch:
 
@@ -157,12 +159,8 @@ jobs:
         uses: actions/download-artifact@v3
       - uses: ncipollo/release-action@v1
         with:
-          name: Latest nim_norg Binaries
           artifacts: "*/*"
           allowUpdates: true
-          makeLatest: true
-          prerelease: true
-          tag: latest
       - name: Delete artifacts
         uses: geekyeggo/delete-artifact@v1
         with:
