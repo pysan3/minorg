@@ -30,9 +30,8 @@ version:
 
 ### Command
 
-- Usage: [./usage.txt](./usage.txt)
-    - Generate: [./usage.generate.txt](./usage.generate.txt)
-    - Parse:    **WIP**
+- Usage: [usage.txt](usage.txt)
+    - `nim_norg help`
 
 
 ### Example
@@ -87,6 +86,7 @@ This is a problem in `norganic` / `Norg.jl`.
 - [x] I will make a PR later.
     - [x] [https://github.com/Klafyvel/Norg.jl/issues/41](https://github.com/Klafyvel/Norg.jl/issues/41)
 - [ ] He says he needs some help [here](https://github.com/Klafyvel/Norg.jl/issues/41#issuecomment-1784814268).
+- [x] Auto convert `@code norg` -> `|example`
 
 
 ## Contribution
