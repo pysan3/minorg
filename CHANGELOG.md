@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/pysan3/nim_norg/compare/v1.1.0...v1.1.1) (2023-10-30)
+
+
+### Bug Fixes
+
+* **action:** update release-please to update nimble version ([832df95](https://github.com/pysan3/nim_norg/commit/832df95a8cccb496f26fd27931ca3663dbd6c031))
+
 ## [1.1.0](https://github.com/pysan3/nim_norg/compare/v1.0.1...v1.1.0) (2023-10-30)
 
 
