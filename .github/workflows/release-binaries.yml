@@ -16,11 +16,6 @@ permissions:
   contents: write
   pull-requests: write
 
-addons:
-  apt:
-    packages:
-      - musl-tools
-
 jobs:
   build-musl:
     strategy:
@@ -61,6 +56,10 @@ jobs:
         with:
           nimversion: ${{ matrix.nim-version }}
           yes: true
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: musl-tools
+          version: 1.0
       - name: setup and build
         run: |
           nimble setup
