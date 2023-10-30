@@ -131,9 +131,9 @@ jobs:
           yes: true
       - name: setup and build
         run: |
+          del nimble.lock
           nimble --verbose --noLockfile -y install https://github.com/pysan3/nim_pandoc
           nimble --verbose --noLockfile -y install cligen
-          nimble --verbose -y lock || true
           nimble --verbose -y build -f:on -d:release
       - name: Compress Generated binaries
         run: |
