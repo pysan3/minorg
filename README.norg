@@ -4,7 +4,7 @@ description:
 authors: takuto
 categories:
 created: 2023-10-30T05:11:49+0900
-updated: 2023-10-30T17:44:46+0900
+updated: 2023-10-30T18:44:20+0900
 version: 1.1.1
 @end
 
@@ -67,7 +67,9 @@ version: 1.1.1
 
 *** ( ) `|example` Is Not Restored Correctly
     This is a problem in `norganic` / `Norg.jl`.
-    - ( ) I will make a PR later.
+    - (x) I will make a PR later.
+    -- (x) {https://github.com/Klafyvel/Norg.jl/issues/41}
+    - ( ) He says he needs some help {https://github.com/Klafyvel/Norg.jl/issues/41#issuecomment-1784814268}[here].
 
 ** Contribution
    Any contribution is welcome!! And don't hesitate to send me an issue.

@@ -84,7 +84,9 @@ Modifier chars (i.e. **bold**, _italic_, ...) cannot be escaped when they are us
 ###  `|example` Is Not Restored Correctly
 
 This is a problem in `norganic` / `Norg.jl`.
-- [ ] I will make a PR later.
+- [x] I will make a PR later.
+    - [x] [https://github.com/Klafyvel/Norg.jl/issues/41](https://github.com/Klafyvel/Norg.jl/issues/41)
+- [ ] He says he needs some help [here](https://github.com/Klafyvel/Norg.jl/issues/41#issuecomment-1784814268).
 
 
 ## Contribution
