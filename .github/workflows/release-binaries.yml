@@ -56,7 +56,7 @@ jobs:
           version: 1.0
       - name: setup and build
         run: |
-          nimble setup
+          nimble setup -y
           nim musl -d:pcre -f:on nim_norg.nim
       - name: Compress Generated binaries
         run: |
@@ -101,9 +101,9 @@ jobs:
           yes: true
       - name: setup and build
         run: |
-          nimble lock
-          nimble setup
-          nimble build -f:on
+          nimble lock -y
+          nimble setup -y
+          nimble build -f:on -y
       - name: Compress Generated binaries
         run: |
           tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
