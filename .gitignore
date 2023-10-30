@@ -31,3 +31,14 @@ htmldocs/
 ### Nim ###
 nimcache/
 /nimble.paths
+nimble.develop
+
+*.tar.*
+/nim_norg
+
+### Build ###
+pcre-*
+pcre/
+lib-*
+lib/
+
