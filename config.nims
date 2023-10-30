@@ -16,7 +16,7 @@ else:
   from os import `/`, splitFile
 
 const
-  doOptimize = true
+  doOptimize = false
 
 let
   # pcre
