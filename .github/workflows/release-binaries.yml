@@ -56,7 +56,7 @@ jobs:
           version: 1.0
       - name: setup and build
         run: |
-          nimble setup -y
+          nimble --verbose -y setup
           nim musl -d:pcre -f:on nim_norg.nim
       - name: Compress Generated binaries
         run: |
@@ -92,8 +92,8 @@ jobs:
           yes: true
       - name: setup and build
         run: |
-          nimble setup -y
-          nimble build -f:on -y
+          nimble --verbose -y setup
+          nimble --verbose -y build -f:on -d:release
       - name: Compress Generated binaries
         run: |
           tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
@@ -131,9 +131,9 @@ jobs:
           yes: true
       - name: setup and build
         run: |
-          nimble install https://github.com/pysan3/nim_pandoc -y --noLockfile
-          nimble setup -y --noLockfile
-          nimble build -f:on -y
+          nimble --verbose --noLockfile -y install https://github.com/pysan3/nim_pandoc
+          nimble --verbose --noLockfile -y setup
+          nimble --verbose -y build -f:on -d:release
       - name: Compress Generated binaries
         run: |
           tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
