@@ -56,7 +56,6 @@ jobs:
           version: 1.0
       - name: setup and build
         run: |
-          nimble install https://github.com/pysan3/nim_pandoc -y
           nimble setup -y
           nim musl -d:pcre -f:on nim_norg.nim
       - name: Compress Generated binaries
@@ -67,7 +66,7 @@ jobs:
         with:
           name: nim_norg-${{ matrix.target.name }}.tar.gz
           path: nim_norg-${{ matrix.target.name }}.tar.gz
-  build:
+  build-mac:
     strategy:
       fail-fast: false
       matrix:
@@ -75,6 +74,39 @@ jobs:
           - os: macosx
             triple: x86_64-apple-darwin14
             name: apple_x64
+        include:
+          - target:
+              os: macosx
+            builder: macos-11
+    defaults:
+      run:
+        shell: bash
+    name: '${{ matrix.target.triple }}'
+    runs-on: ${{ matrix.builder }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: jiro4989/setup-nim-action@v1.4.3
+        with:
+          nim-version: stable
+          yes: true
+      - name: setup and build
+        run: |
+          nimble setup -y
+          nimble build -f:on -y
+      - name: Compress Generated binaries
+        run: |
+          tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
+      - name: Upload Generated Binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: nim_norg-${{ matrix.target.name }}.tar.gz
+          path: nim_norg-${{ matrix.target.name }}.tar.gz
+  build-win:
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
           - os: windows
             triple: x86_64-w64-mingw32
             name: windows_x64
@@ -82,9 +114,6 @@ jobs:
             triple: i686-w64-mingw32
             name: windows_x32
         include:
-          - target:
-              os: macosx
-            builder: macos-11
           - target:
               os: windows
             builder: windows-2019
@@ -102,8 +131,8 @@ jobs:
           yes: true
       - name: setup and build
         run: |
-          nimble install https://github.com/pysan3/nim_pandoc -y
-          nimble setup -y
+          nimble install https://github.com/pysan3/nim_pandoc -y --noLockfile
+          nimble setup -y --noLockfile
           nimble build -f:on -y
       - name: Compress Generated binaries
         run: |
@@ -117,7 +146,8 @@ jobs:
     name: Create Github Release
     needs:
       - build-musl
-      - build
+      - build-mac
+      - build-win
     runs-on: ubuntu-latest
     permissions:
       contents: write

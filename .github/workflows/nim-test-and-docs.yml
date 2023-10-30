@@ -21,10 +21,6 @@ jobs:
         with:
           nim-version: ${{ matrix.nim }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: setup and build
-        run: |
-          nimble install https://github.com/pysan3/nim_pandoc -y
-          nimble setup -y
       - name: Run tests
         run: nimble test -y
   pretty:
