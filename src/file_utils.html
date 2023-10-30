@@ -60,12 +60,17 @@
 <li><a class="reference" href="#getFileContent%2CPPath" title="getFileContent(path: PPath): auto">getFileContent(path: PPath): auto</a></li>
 
 </ul>
-<ul class="simple nested-toc-section">getSomeFile
-  <li><a class="reference" href="#getSomeFile%2Cstring" title="getSomeFile(path: string): auto">getSomeFile(path: string): auto</a></li>
+<ul class="simple nested-toc-section">getSomePath
+  <li><a class="reference" href="#getSomePath%2Cstring" title="getSomePath(path: string): auto">getSomePath(path: string): auto</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">isJson
   <li><a class="reference" href="#isJson%2CPPath" title="isJson(path: PPath): auto">isJson(path: PPath): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">prepareOutFile
+  <li><a class="reference" href="#prepareOutFile%2COption%5BPPath%5D%2Cbool" title="prepareOutFile(path: Option[PPath]; force: bool = false): auto">prepareOutFile(path: Option[PPath]; force: bool = false): auto</a></li>
+<li><a class="reference" href="#prepareOutFile%2CPPath%2Cbool" title="prepareOutFile(path: PPath; force: bool = false): auto">prepareOutFile(path: PPath; force: bool = false): auto</a></li>
 
 </ul>
 
@@ -77,7 +82,7 @@
 
   </div>
   <div class="nine columns" id="content">
-    <a href="https://github.com/pysan3/nim_norg/tree/c8a326228f170dd1147be0b2e522bca5cd6f1c03/src/file_utils.nim#L1" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L1" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
 <a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L1" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
     <div id="tocRoot"></div>
@@ -99,8 +104,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/nim_norg/tree/c8a326228f170dd1147be0b2e522bca5cd6f1c03/src/file_utils.nim#L15" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L15" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L29" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L29" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -110,8 +115,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/nim_norg/tree/c8a326228f170dd1147be0b2e522bca5cd6f1c03/src/file_utils.nim#L25" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L25" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L40" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L40" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -121,20 +126,20 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/nim_norg/tree/c8a326228f170dd1147be0b2e522bca5cd6f1c03/src/file_utils.nim#L18" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L18" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L33" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L33" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
 
 </div>
-<div id="getSomeFile-procs-all">
-  <div id="getSomeFile,string">
-  <dt><pre><span class="Keyword">proc</span> <a href="#getSomeFile%2Cstring"><span class="Identifier">getSomeFile</span></a><span class="Other">(</span><span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="getSomePath-procs-all">
+  <div id="getSomePath,string">
+  <dt><pre><span class="Keyword">proc</span> <a href="#getSomePath%2Cstring"><span class="Identifier">getSomePath</span></a><span class="Other">(</span><span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
-    <a href="https://github.com/pysan3/nim_norg/tree/c8a326228f170dd1147be0b2e522bca5cd6f1c03/src/file_utils.nim#L10" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L10" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
 <a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L10" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
@@ -147,8 +152,35 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/nim_norg/tree/c8a326228f170dd1147be0b2e522bca5cd6f1c03/src/file_utils.nim#L30" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L30" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L45" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L45" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="prepareOutFile-procs-all">
+  <div id="prepareOutFile,Option[PPath],bool">
+  <dt><pre><span class="Keyword">proc</span> <a href="#prepareOutFile%2COption%5BPPath%5D%2Cbool"><span class="Identifier">prepareOutFile</span></a><span class="Other">(</span><span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">PPath</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">force</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadDirEffect</span><span class="Other">,</span> <span class="Identifier">WriteDirEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L24" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L24" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+<div id="prepareOutFile,PPath,bool">
+  <dt><pre><span class="Keyword">proc</span> <a href="#prepareOutFile%2CPPath%2Cbool"><span class="Identifier">prepareOutFile</span></a><span class="Other">(</span><span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">PPath</span><span class="Other">;</span> <span class="Identifier">force</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadDirEffect</span><span class="Other">,</span> <span class="Identifier">WriteDirEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/nim_norg/tree/3741c767d5362706d50b9dbd292ff08dbaad6725/src/file_utils.nim#L15" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/nim_norg/edit/main/src/file_utils.nim#L15" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -164,7 +196,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-30 09:46:17 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-30 11:27:22 UTC</small>
       </div>
     </div>
   </div>

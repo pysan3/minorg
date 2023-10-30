@@ -21,7 +21,7 @@
   <div class="document" id="documentId">
     <div class="container">
       <h1 class="title">Index</h1>
-      Modules: <a href="nim_norg.html">nim_norg</a>, <a href="src/file_utils.html">src/file_utils</a>, <a href="src/pathlib.html">src/pathlib</a>, <a href="src/pd2norg.html">src/pd2norg</a>, <a href="src/str_utils.html">src/str_utils</a>, <a href="src/utils.html">src/utils</a>.<br/><p /><h2>API symbols</h2>
+      Modules: <a href="nim_norg.html">nim_norg</a>, <a href="src/file_utils.html">src/file_utils</a>, <a href="src/log_utils.html">src/log_utils</a>, <a href="src/pathlib.html">src/pathlib</a>, <a href="src/pd2norg.html">src/pd2norg</a>, <a href="src/str_utils.html">src/str_utils</a>, <a href="src/utils.html">src/utils</a>.<br/><p /><h2>API symbols</h2>
 <dl><dt><a name="%60%21%3D%60" href="#%60%21%3D%60"><span>`!=`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pathlib: proc `!=`(path1: PythonPath; path2: PythonPath): bool" href="src/pathlib.html#%21%3D%2CPythonPath%2CPythonPath">pathlib: proc `!=`(path1: PythonPath; path2: PythonPath): bool</a></li>
@@ -94,9 +94,9 @@
           <li><a class="reference external"
           data-doc-search-tag="file_utils: proc getFileContent(path: PPath): auto" href="src/file_utils.html#getFileContent%2CPPath">file_utils: proc getFileContent(path: PPath): auto</a></li>
           </ul></dd>
-<dt><a name="getSomeFile" href="#getSomeFile"><span>getSomeFile:</span></a></dt><dd><ul class="simple">
+<dt><a name="getSomePath" href="#getSomePath"><span>getSomePath:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="file_utils: proc getSomeFile(path: string): auto" href="src/file_utils.html#getSomeFile%2Cstring">file_utils: proc getSomeFile(path: string): auto</a></li>
+          data-doc-search-tag="file_utils: proc getSomePath(path: string): auto" href="src/file_utils.html#getSomePath%2Cstring">file_utils: proc getSomePath(path: string): auto</a></li>
           </ul></dd>
 <dt><a name="isAbstract" href="#isAbstract"><span>isAbstract:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -133,6 +133,22 @@
 <dt><a name="linkMaybeMergeable" href="#linkMaybeMergeable"><span>linkMaybeMergeable:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc linkMaybeMergeable(tag: string; target: string): (bool, string)" href="src/pd2norg.html#linkMaybeMergeable%2Cstring%2Cstring">pd2norg: proc linkMaybeMergeable(tag: string; target: string): (bool, string)</a></li>
+          </ul></dd>
+<dt><a name="logDebug" href="#logDebug"><span>logDebug:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="log_utils: proc logDebug(args: varargs[string, `$`])" href="src/log_utils.html#logDebug%2Cvarargs%5Bstring%2C%5D">log_utils: proc logDebug(args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><a name="logError" href="#logError"><span>logError:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="log_utils: proc logError(args: varargs[string, `$`])" href="src/log_utils.html#logError%2Cvarargs%5Bstring%2C%5D">log_utils: proc logError(args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><a name="logInfo" href="#logInfo"><span>logInfo:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="log_utils: proc logInfo(args: varargs[string, `$`])" href="src/log_utils.html#logInfo%2Cvarargs%5Bstring%2C%5D">log_utils: proc logInfo(args: varargs[string, `$`])</a></li>
+          </ul></dd>
+<dt><a name="logWarn" href="#logWarn"><span>logWarn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="log_utils: proc logWarn(args: varargs[string, `$`])" href="src/log_utils.html#logWarn%2Cvarargs%5Bstring%2C%5D">log_utils: proc logWarn(args: varargs[string, `$`])</a></li>
           </ul></dd>
 <dt><a name="mainExamples" href="#mainExamples"><span>mainExamples:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -173,6 +189,12 @@
 <dt><a name="PosixPath" href="#PosixPath"><span>PosixPath:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pathlib: proc PosixPath(p: string): PythonPath" href="src/pathlib.html#PosixPath%2Cstring">pathlib: proc PosixPath(p: string): PythonPath</a></li>
+          </ul></dd>
+<dt><a name="prepareOutFile" href="#prepareOutFile"><span>prepareOutFile:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="file_utils: proc prepareOutFile(path: Option[PPath]; force: bool = false): auto" href="src/file_utils.html#prepareOutFile%2COption%5BPPath%5D%2Cbool">file_utils: proc prepareOutFile(path: Option[PPath]; force: bool = false): auto</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="file_utils: proc prepareOutFile(path: PPath; force: bool = false): auto" href="src/file_utils.html#prepareOutFile%2CPPath%2Cbool">file_utils: proc prepareOutFile(path: PPath; force: bool = false): auto</a></li>
           </ul></dd>
 <dt><a name="PurePath" href="#PurePath"><span>PurePath:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -219,6 +241,10 @@
 <dt><a name="root" href="#root"><span>root:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pathlib: proc root(path: PythonPath): string" href="src/pathlib.html#root%2CPythonPath">pathlib: proc root(path: PythonPath): string</a></li>
+          </ul></dd>
+<dt><a name="setLogger" href="#setLogger"><span>setLogger:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="log_utils: proc setLogger(lvl: Level; file: File = stderr)" href="src/log_utils.html#setLogger%2CLevel%2CFile">log_utils: proc setLogger(lvl: Level; file: File = stderr)</a></li>
           </ul></dd>
 <dt><a name="stat" href="#stat"><span>stat:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -324,7 +350,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-30 09:46:17 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-30 11:27:23 UTC</small>
       </div>
     </div>
   </div>
