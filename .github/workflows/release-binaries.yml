@@ -101,6 +101,7 @@ jobs:
           yes: true
       - name: setup and build
         run: |
+          nimble install https://github.com/pysan3/nim_pandoc -y
           nimble lock -y
           nimble setup -y
           nimble build -f:on -y
