@@ -16,9 +16,6 @@ permissions:
   contents: write
   pull-requests: write
 
-language: c
-sudo: required
-
 addons:
   apt:
     packages:
