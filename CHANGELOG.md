@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/pysan3/nim_norg/compare/v1.0.0...v1.0.1) (2023-10-30)
+
+
+### Bug Fixes
+
+* **ci:** hope this makes binary releases with release please ([#4](https://github.com/pysan3/nim_norg/issues/4)) ([b603b9f](https://github.com/pysan3/nim_norg/commit/b603b9f6d99b47ebabdff524fd33c1d669fd2e53))
+
 ## 1.0.0 (2023-10-30)
 
 
