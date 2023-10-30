@@ -6,7 +6,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  build:
+  build-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,7 +24,7 @@ jobs:
       - name: Run tests
         run: nimble test -y
   pretty:
-    needs: build
+    needs: build-test
     runs-on: ubuntu-latest
     name: Nim pretty
     steps:
@@ -34,7 +34,7 @@ jobs:
         with:
           maxLineLen: 120
   deploy:
-    needs: build
+    needs: build-test
     runs-on: ubuntu-latest
     strategy:
       matrix:

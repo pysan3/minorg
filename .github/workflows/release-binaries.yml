@@ -54,7 +54,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: jiro4989/setup-nim-action@v1.4.3
         with:
-          nimversion: ${{ matrix.nim-version }}
+          nimversion: stable
           yes: true
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
@@ -66,7 +66,6 @@ jobs:
           nim musl -d:pcre -f:on nim_norg.nim
       - name: Compress the Nim Language Server binaries
         run: |
-          cd src
           tar -c -z -v -f ../nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
       - name: Upload the Nim Language Server Binaries
         uses: actions/upload-artifact@v2
@@ -107,7 +106,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: jiro4989/setup-nim-action@v1.4.3
         with:
-          nimversion: ${{ matrix.nim-version }}
+          nimversion: stable
           yes: true
       - name: setup and build
         run: |
@@ -115,7 +114,6 @@ jobs:
           nimble build -f:on
       - name: Compress the Nim Language Server binaries
         run: |
-          cd src
           tar -c -z -v -f ../nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
       - name: Upload the Nim Language Server Binaries
         uses: actions/upload-artifact@v2
