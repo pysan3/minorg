@@ -1,14 +1,13 @@
-import std/sequtils
-import std/syncio
-import std/strutils
-import std/strformat
 import std/tables
 import std/re
-import std/logging
+import std/sequtils
+import std/tables
+import std/strutils
+import std/strformat
 
 import nim_pandoc
-
 import str_utils
+import log_utils
 import utils
 
 const symbols = {
@@ -22,10 +21,9 @@ const symbols = {
   "NullModifier": "%",
 }.toTable()
 
-var logger = newFileLogger(stderr, lvlAll)
-
 proc toStr*(self: PDInline): string
 proc toStr*(self: PDBlock, indent: int = 0): string
+
 proc toStr*(self: seq[PDBlock], indent: int = 0): seq[string] =
   self.mapIt(it.toStr(indent))
 
@@ -94,7 +92,7 @@ proc toStr*(self: PDInlineLink): string =
       if not skipTag and tag.len() > 0:
         result &= &"[{tag}]"
     of "Image":
-      logger.log(lvlWarn, "I'm sure this is NOT the correct image syntax... Please help!!")
+      logWarn("I'm sure this is NOT the correct image syntax... Please help!!")
       return [&"Alt text: {tag}", &".image {target}", ""].join("\n")
     else:
       unreachable(&"PDInlineLink: {self.t=}")
@@ -117,7 +115,7 @@ proc parseHTML*(s: string): string =
   if s.match(re"</?([a-z!\-\s]+)>", matches) and html2symbols.hasKey(matches[0]):
     return symbols[html2symbols[matches[0]]]
   elif s.startsWith("<!--"):
-    logger.log(lvlWarn, &"Could not parse {s}. Possibly a comment.")
+    logWarn(&"Could not parse {s}. Possibly a comment.")
     return s
   unreachable(&"parseHTML: {s=}")
 
@@ -135,7 +133,7 @@ proc toStr*(self: PDInlineQuoted): string =
   quote & inlines.toStr() & quote
 
 proc toStr*(self: PDCitation): string =
-  logger.log(lvlWarn, "Cite is not fully implemented yet: ", self)
+  logWarn("Cite is not fully implemented yet: ", self)
   &"[{self.citationId}]"
 
 proc toStr*(self: PDInlineCite): string =
@@ -150,7 +148,7 @@ proc toStr*(self: PDInlineMath, indent: int = 0): string =
   let (mathType, text) = self.c
   case mathType.t:
     of "DisplayMath":
-      logger.log(lvlError, "Do we have norg syntax for math block??")
+      logError("Do we have norg syntax for math block??")
       unreachable(&"PDBlockMath: math block unparsable. {mathType.t}: {text=}")
     of "InlineMath":
       return &"${text}$"
@@ -229,7 +227,11 @@ proc toStr*(self: PDBlockPlain, indent: int = 0): string =
 proc toStr*(self: PDBlockCodeBlock, indent: int = 0): string =
   let (attr, code) = self.c
   let lang = if attr.classes.len > 0: attr.classes[0] else: ""
-  [&"\n@code {lang}", code, "@end\n"].join("\n")
+  defer: result = &"\n{result}\n"
+  if lang == "norg":
+    return ["|example", code, "|end"].join("\n")
+  else:
+    return [&"@code {lang}", code, "@end"].join("\n")
 
 proc toStr*(self: PDBlockHorizontalRule, indent: int = 0): string =
   "\n___"

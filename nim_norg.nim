@@ -10,32 +10,36 @@ import src/utils
 import src/file_utils
 import src/pathlib
 import src/pd2norg
+import src/log_utils
 
-var logger = newFileLogger(stderr, lvlAll)
-
-proc parse(input: string = "", output: string = ""): int =
+proc parse(input: string = "", output: string = "", verbose: bool = false, force: bool = false): int =
   todo()
 
-proc generate(input: string = "", output: string = ""): int =
+proc generate(input: string = "", output: string = "", verbose: bool = false, force: bool = false): int =
   let
-    inFile = getSomeFile(input)
-    outFile = getSomeFile(output)
-  logger.log(lvlInfo, "Output to: " & (if outFile.isSome(): $outFile.get() else: "stdout"))
-  logger.log(lvlInfo, "Reading from: " & (if inFile.isSome(): $inFile.get() else: "stdin"))
-  if inFile.isSome() and not inFile.get().isJson():
-    raise newException(IOError, &"{inFile.get()} is not json.")
-  let jobj = inFile.getFileContent().parseJson()
+    inPath = getSomePath(input)
+    outPath = getSomePath(output)
+  setLogger(if verbose: lvlDebug else: lvlInfo)
+  info("Output to: " & (if outPath.isSome(): $outPath.get() else: "stdout"))
+  info("Reading from: " & (if inPath.isSome(): $inPath.get() else: "stdin"))
+  if inPath.isSome() and not inPath.get().isJson():
+    raise newException(IOError, &"{inPath.get()} is not json.")
+  let jobj = inPath.getFileContent().parseJson()
   let blocks = jsonTo(jobj["blocks"], seq[PDBlock])
+  let outFile = outPath.prepareOutFile()
+  defer: outFile.close()
   for blk in blocks:
-    logger.log(lvlDebug, blk)
-    echo blk.toStr()
+    debug(blk)
+    outFile.writeLine(blk.toStr())
   return 0
 
 when isMainModule:
   import cligen
   const help = {
     "input": "Input file. Leave it blank to use stdin.",
-    "output": "Output file. Leave it blank to use stdout."
+    "output": "Output file. Leave it blank to use stdout.",
+    "verbose": "Outputs debug info to stderr.",
+    "force": "Overwrite files and create parent folders if needed.",
   }
   dispatchMulti(
     [parse, help = help],

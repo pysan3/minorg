@@ -1,11 +1,18 @@
-Usage:
-  nim_norg {SUBCMD}  [sub-command options & parameters]
-where {SUBCMD} is one of:
-  help      print comprehensive or per-cmd help
-  parse     
-  generate  
+This is a multiple-dispatch command.  -h/--help/--help-syntax is available
+for top-level/all subcommands.  Usage is like:
+    nim_norg {SUBCMD} [subcommand-opts & args]
+where subcommand syntaxes are as follows:
 
-nim_norg {-h|--help} or with no args at all prints this message.
-nim_norg --help-syntax gives general cligen syntax help.
-Run "nim_norg {help SUBCMD|SUBCMD --help}" to see help for just SUBCMD.
-Run "nim_norg help" to get *comprehensive* help.
+  parse [optional-params] 
+  Options:
+      -i=, --input=   string  ""     set input
+      -o=, --output=  string  ""     set output
+      -v, --verbose   bool    false  set verbose
+      -f, --force     bool    false  set force
+
+  generate [optional-params] 
+  Options:
+      -i=, --input=   string  ""     set input
+      -o=, --output=  string  ""     set output
+      -v, --verbose   bool    false  set verbose
+      -f, --force     bool    false  set force

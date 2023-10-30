@@ -4,7 +4,7 @@ description:
 authors: takuto
 categories:
 created: 2023-10-30T05:11:49+0900
-updated: 2023-10-30T18:44:20+0900
+updated: 2023-10-30T20:22:54+0900
 version: 1.1.1
 @end
 
@@ -23,9 +23,8 @@ version: 1.1.1
 
 ** Usage
 *** Command
-    - Usage: {./usage.txt}
-    -- Generate: {./usage.generate.txt}
-    -- Parse:    *WIP*
+    - Usage: {usage.txt}
+    -- `nim_norg help`
 
 *** Example
     - Use `-i`, `-o` flags (`--input`, `--output`)
@@ -70,6 +69,7 @@ version: 1.1.1
     - (x) I will make a PR later.
     -- (x) {https://github.com/Klafyvel/Norg.jl/issues/41}
     - ( ) He says he needs some help {https://github.com/Klafyvel/Norg.jl/issues/41#issuecomment-1784814268}[here].
+    - (x) Auto convert `@code norg` -> `|example`
 
 ** Contribution
    Any contribution is welcome!! And don't hesitate to send me an issue.
