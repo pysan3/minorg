@@ -56,6 +56,7 @@ jobs:
           version: 1.0
       - name: setup and build
         run: |
+          nimble install https://github.com/pysan3/nim_pandoc -y
           nimble setup -y
           nim musl -d:pcre -f:on nim_norg.nim
       - name: Compress Generated binaries
@@ -102,7 +103,6 @@ jobs:
       - name: setup and build
         run: |
           nimble install https://github.com/pysan3/nim_pandoc -y
-          nimble lock -y
           nimble setup -y
           nimble build -f:on -y
       - name: Compress Generated binaries
