@@ -9,21 +9,23 @@ version:
 ---
 
 
-# Nim Norg
+# minorg
 
 
 ![Minimum supported Nim version](https://img.shields.io/badge/nim-2.0.0%2B-informational?style=flat&logo=nim)
-[![License](https://img.shields.io/github/license/pysan3/nim_norg?style=flat)](#license)
+[![License](https://img.shields.io/github/license/pysan3/minorg?style=flat)](#license)
 
-`Pandoc json` -> `norg` converter written in the [Nim](https://nim-lang.org/) language.
+> MyNorg: Convert all _my_ notes into [`norg`](https://github.com/nvim-neorg/neorg/) format.
+
+`Pandoc json` -> `norg` converter written in [Nim](https://nim-lang.org/) language.
 
 *This README is generated from [./README.norg](#readmenorg).
 
 
 ## Get Started
 
-- Download: [https://github.com/pysan3/nim_norg/releases](https://github.com/pysan3/nim_norg/releases)
-- API documentation: [https://pysan3.github.io/nim_norg/](https://pysan3.github.io/nim_norg/)
+- Download: [https://github.com/pysan3/minorg/releases](https://github.com/pysan3/minorg/releases)
+- API documentation: [https://pysan3.github.io/minorg/](https://pysan3.github.io/minorg/)
 
 
 ## Usage
@@ -31,7 +33,7 @@ version:
 ### Command
 
 - Usage: [usage.txt](usage.txt)
-    - `nim_norg help`
+    - `minorg help`
 
 
 ### Example
@@ -40,13 +42,13 @@ version:
 ```bash
 $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
 $ norganic json --input ./1.0-specifications.norg --output ./parsed.json
-$ nim_norg generate -i ./parsed.json -o out.norg
+$ minorg generate -i ./parsed.json -o out.norg
 $ nvim out.norg
 ```
 - Use `stdin`, `stdout`
 ```bash
 $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
-$ norganic json --input ./1.0-specifications.norg | nim_norg generate > out.norg
+$ norganic json --input ./1.0-specifications.norg | minorg generate > out.norg
 $ nvim out.norg
 ```
 
@@ -78,8 +80,9 @@ It is very hard to distinguish what link pattern should be used.
 ### `|example` Is Not Restored Correctly
 
 This is a problem in `norganic` / `Norg.jl`.
+
 - [x] I will make a PR later.
-    - [x] [https://github.com/Klafyvel/Norg.jl/issues/41](https://github.com/Klafyvel/Norg.jl/issues/41)
+    - [https://github.com/Klafyvel/Norg.jl/issues/41](https://github.com/Klafyvel/Norg.jl/issues/41)
 - [ ] He says he needs some help [here](https://github.com/Klafyvel/Norg.jl/issues/41#issuecomment-1784814268).
 - [x] Auto convert `@code norg` -> `|example`
 
