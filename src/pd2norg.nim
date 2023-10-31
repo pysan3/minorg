@@ -3,12 +3,15 @@ import std/sequtils
 import std/tables
 import std/strutils
 import std/strformat
+import std/pegs
+import std/macros
 
 import regex
 
 import nim_pandoc
 import str_utils
 import log_utils
+import config_utils
 import utils
 
 const symbols = {
@@ -224,12 +227,37 @@ proc compileDefinition*(item: (seq[PDInline], seq[seq[PDBlock]]), indent: int = 
 proc toStr*(self: PDBlockDefinitionList, indent: int = 0): string =
   self.c.mapIt(it.compileDefinition(indent)).join("\n")
 
+func chainReplace*(s: string, replaces: openArray[tuple[src, dst: string]]): auto =
+  unpackVarargs(s.parallelReplace, replaces.mapIt((pattern: it.src.peg, repl: it.dst)))
+
+proc mergeObsidianTags*(strBlock: var string): seq[string] =
+  var match: RegexMatch2
+  while strBlock.find(re2"#label [^\n]+\n#label ([^\n]+)", match):
+    let slice = match.group(0)
+    let label = strBlock[slice].strip().replace(" ", """\ """)
+    const ignore = "\n#label ".len()
+    result.add(label)
+    strBlock = &"{strBlock[0 ..< slice.a - ignore]} {label} {strBlock.substr(slice.b + 1)}"
+
+proc detectObsidianTags*(strBlock: var string): seq[string] =
+  let tagMatches = strBlock.findAll(re2"#([a-zA-Z][\w\-_/]+)[\n\s]")
+  if tagMatches.len() == 0:
+    return
+  strBlock = strBlock.chainReplace(tagMatches.mapIt(
+    (src: &" '#{strBlock[it.group(0)]}' ", dst: "\n#label " & strBlock[it.group(0)])))
+  result = strBlock.mergeObsidianTags()
+  for match in strBlock.findAll(re2"\n(#+) "):
+    strBlock[match.group(0)] = '*'.repeat(match.group(0).len())
 
 proc toStr*(self: PDBlockPlain, indent: int = 0): string =
-  result = self.c.map(toStr).join("")
+  result = self.c.map(toStr).join("") & " "
   if self.t == "Plain":
     discard
   elif self.t == "Para":
+    if getConfig().isObsidian:
+      let tagDetected = result.detectObsidianTags()
+      if tagDetected.len() > 0:
+        logInfo(&"Obsidian tag detected: {tagDetected}")
     if indent == 0:
       result = "\n" & result & "\n"
   else:
