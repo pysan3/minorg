@@ -20,6 +20,28 @@
       "checksums": {
         "sha1": "69330c86da69969dde7d23669e87503bbd17f459"
       }
+    },
+    "unicodedb": {
+      "version": "0.12.0",
+      "vcsRevision": "b055310c08db8f879057b4fec15c8301ee93bb2a",
+      "url": "https://github.com/nitely/nim-unicodedb",
+      "downloadMethod": "git",
+      "dependencies": [],
+      "checksums": {
+        "sha1": "4452416471e2fe8726eb6070ed6ea7368171cc09"
+      }
+    },
+    "regex": {
+      "version": "0.23.0",
+      "vcsRevision": "577c4ec3b235c5fd2653a9c86cbc4a576cfc0869",
+      "url": "https://github.com/nitely/nim-regex",
+      "downloadMethod": "git",
+      "dependencies": [
+        "unicodedb"
+      ],
+      "checksums": {
+        "sha1": "89466caa353b571cdcd8271f2c797ba2c15a89f2"
+      }
     }
   },
   "tasks": {}
