@@ -54,12 +54,24 @@
   <details open>
     <summary><a class="reference reference-toplevel" href="#12" id="62">Procs</a></summary>
     <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">compileDefinition
+      <ul class="simple nested-toc-section">chainReplace
+  <li><a class="reference" href="#chainReplace%2Cstring%2CopenArray%5Btuple%5Bstring%2Cstring%5D%5D" title="chainReplace(s: string; replaces: openArray[tuple[src, dst: string]]): auto">chainReplace(s: string; replaces: openArray[tuple[src, dst: string]]): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">compileDefinition
   <li><a class="reference" href="#compileDefinition%2C%2Cint" title="compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string">compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">detectObsidianTags
+  <li><a class="reference" href="#detectObsidianTags%2Cstring" title="detectObsidianTags(strBlock: var string): seq[string]">detectObsidianTags(strBlock: var string): seq[string]</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">linkMaybeMergeable
   <li><a class="reference" href="#linkMaybeMergeable%2Cstring%2Cstring" title="linkMaybeMergeable(tag: string; target: string): (bool, string)">linkMaybeMergeable(tag: string; target: string): (bool, string)</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">mergeObsidianTags
+  <li><a class="reference" href="#mergeObsidianTags%2Cstring" title="mergeObsidianTags(strBlock: var string): seq[string]">mergeObsidianTags(strBlock: var string): seq[string]</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">parseHTML
@@ -107,7 +119,7 @@
 
   </div>
   <div class="nine columns" id="content">
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L1" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L1" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
 <a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L1" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
     <div id="tocRoot"></div>
@@ -116,21 +128,51 @@
     <div class="section" id="6">
   <h1><a class="toc-backref" href="#6">Imports</a></h1>
   <dl class="item">
-    <a class="reference external" href="str_utils.html">str_utils</a>, <a class="reference external" href="log_utils.html">log_utils</a>, <a class="reference external" href="utils.html">utils</a>
+    <a class="reference external" href="str_utils.html">str_utils</a>, <a class="reference external" href="log_utils.html">log_utils</a>, <a class="reference external" href="config_utils.html">config_utils</a>, <a class="reference external" href="utils.html">utils</a>
   </dl>
 </div>
 <div class="section" id="12">
   <h1><a class="toc-backref" href="#12">Procs</a></h1>
   <dl class="item">
-    <div id="compileDefinition-procs-all">
+    <div id="chainReplace-procs-all">
+  <div id="chainReplace,string,openArray[tuple[string,string]]">
+  <dt><pre><span class="Keyword">func</span> <a href="#chainReplace%2Cstring%2CopenArray%5Btuple%5Bstring%2Cstring%5D%5D"><span class="Identifier">chainReplace</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">replaces</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">src</span><span class="Other">,</span> <span class="Identifier">dst</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">EInvalidPeg</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L230" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L230" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="compileDefinition-procs-all">
   <div id="compileDefinition,,int">
   <dt><pre><span class="Keyword">proc</span> <a href="#compileDefinition%2C%2Cint"><span class="Identifier">compileDefinition</span></a><span class="Other">(</span><span class="Identifier">item</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">PDInline</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">PDBlock</span><span class="Other">]</span><span class="Other">]</span><span class="Other">)</span><span class="Other">;</span> <span class="Identifier">indent</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L214" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L214" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L217" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L217" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="detectObsidianTags-procs-all">
+  <div id="detectObsidianTags,string">
+  <dt><pre><span class="Keyword">proc</span> <a href="#detectObsidianTags%2Cstring"><span class="Identifier">detectObsidianTags</span></a><span class="Other">(</span><span class="Identifier">strBlock</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">EInvalidPeg</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L242" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L242" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -143,8 +185,22 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L57" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L57" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L60" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L60" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="mergeObsidianTags-procs-all">
+  <div id="mergeObsidianTags,string">
+  <dt><pre><span class="Keyword">proc</span> <a href="#mergeObsidianTags%2Cstring"><span class="Identifier">mergeObsidianTags</span></a><span class="Other">(</span><span class="Identifier">strBlock</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L233" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L233" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -157,8 +213,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L118" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L118" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L121" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L121" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -167,13 +223,13 @@
 <div id="toStr-procs-all">
   <div id="toStr,PDBlock,int">
   <dt><pre><span class="Keyword">proc</span> <a href="#toStr%2CPDBlock%2Cint"><span class="Identifier">toStr</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PDBlock</span><span class="Other">;</span> <span class="Identifier">indent</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CatchableError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CatchableError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">EInvalidPeg</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L26" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L26" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L29" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L29" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -183,8 +239,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L253" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L253" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L281" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L281" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -194,8 +250,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L201" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L201" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L204" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L204" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -205,8 +261,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L238" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L238" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L266" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L266" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -216,8 +272,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L224" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L224" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L227" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L227" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -227,8 +283,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L262" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L262" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L290" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L290" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -239,8 +295,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L266" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L266" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L294" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L294" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -251,8 +307,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L194" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L194" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L197" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L197" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -262,8 +318,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L247" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L247" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L275" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L275" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -274,8 +330,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L250" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L250" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L278" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L278" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -285,20 +341,20 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L207" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L207" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L210" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L210" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
 <div id="toStr,PDBlockPlain,int">
   <dt><pre><span class="Keyword">proc</span> <a href="#toStr%2CPDBlockPlain%2Cint"><span class="Identifier">toStr</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PDBlockPlain</span><span class="Other">;</span> <span class="Identifier">indent</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CatchableError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CatchableError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">EInvalidPeg</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L228" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L228" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L252" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L252" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -308,8 +364,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L259" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L259" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L287" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L287" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -320,8 +376,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L269" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L269" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L297" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L297" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -331,8 +387,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L146" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L146" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L149" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L149" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -342,8 +398,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L25" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L25" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L28" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L28" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -353,8 +409,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L150" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L150" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L153" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L153" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -364,8 +420,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L107" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L107" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L110" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L110" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -375,8 +431,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L111" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L111" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L114" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L114" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -387,8 +443,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L91" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L91" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L94" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L94" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -399,8 +455,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L158" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L158" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L161" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L161" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -410,8 +466,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L141" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L141" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L144" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L144" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -422,8 +478,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L133" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L133" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L136" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L136" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -433,8 +489,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L46" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L46" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L49" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L49" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -444,8 +500,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L154" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L154" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L157" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L157" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -454,8 +510,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L39" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L39" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L42" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L42" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -464,8 +520,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L36" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L36" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L39" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L39" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -475,8 +531,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L28" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L28" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L31" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L31" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -486,8 +542,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/fdebe12e837d265379e1ac6b62a57855e7401d24/src/pd2norg.nim#L31" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L31" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/25fd9189879b29072e2818ec276cfe05a21fcfb0/src/pd2norg.nim#L34" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L34" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -503,7 +559,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-31 11:16:06 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-31 14:24:18 UTC</small>
       </div>
     </div>
   </div>

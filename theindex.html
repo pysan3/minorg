@@ -21,7 +21,7 @@
   <div class="document" id="documentId">
     <div class="container">
       <h1 class="title">Index</h1>
-      Modules: <a href="minorg.html">minorg</a>, <a href="src/file_utils.html">src/file_utils</a>, <a href="src/log_utils.html">src/log_utils</a>, <a href="src/pd2norg.html">src/pd2norg</a>, <a href="src/str_utils.html">src/str_utils</a>, <a href="src/utils.html">src/utils</a>.<br/><p /><h2>API symbols</h2>
+      Modules: <a href="minorg.html">minorg</a>, <a href="src/config_utils.html">src/config_utils</a>, <a href="src/file_utils.html">src/file_utils</a>, <a href="src/log_utils.html">src/log_utils</a>, <a href="src/pd2norg.html">src/pd2norg</a>, <a href="src/str_utils.html">src/str_utils</a>, <a href="src/utils.html">src/utils</a>.<br/><p /><h2>API symbols</h2>
 <dl><dt><a name="%60%24%60" href="#%60%24%60"><span>`$`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="file_utils: proc `$`(path: Path): auto" href="src/file_utils.html#%24%2CPath">file_utils: proc `$`(path: Path): auto</a></li>
@@ -36,13 +36,25 @@
 <li><a class="reference external"
           data-doc-search-tag="utils: proc argsWithDefault[T](args: seq[T]; index: int; default: T): T" href="src/utils.html#argsWithDefault%2Cseq%5BT%5D%2Cint%2CT">utils: proc argsWithDefault[T](args: seq[T]; index: int; default: T): T</a></li>
           </ul></dd>
+<dt><a name="chainReplace" href="#chainReplace"><span>chainReplace:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc chainReplace(s: string; replaces: openArray[tuple[src, dst: string]]): auto" href="src/pd2norg.html#chainReplace%2Cstring%2CopenArray%5Btuple%5Bstring%2Cstring%5D%5D">pd2norg: proc chainReplace(s: string; replaces: openArray[tuple[src, dst: string]]): auto</a></li>
+          </ul></dd>
 <dt><a name="compileDefinition" href="#compileDefinition"><span>compileDefinition:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string" href="src/pd2norg.html#compileDefinition%2C%2Cint">pd2norg: proc compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string</a></li>
           </ul></dd>
+<dt><a name="Config" href="#Config"><span>Config:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="config_utils: type Config" href="src/config_utils.html#Config">config_utils: type Config</a></li>
+          </ul></dd>
 <dt><a name="deleteIf" href="#deleteIf"><span>deleteIf:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="utils: proc deleteIf[T](a: var seq[T]; i: int)" href="src/utils.html#deleteIf%2Cseq%5BT%5D%2Cint">utils: proc deleteIf[T](a: var seq[T]; i: int)</a></li>
+          </ul></dd>
+<dt><a name="detectObsidianTags" href="#detectObsidianTags"><span>detectObsidianTags:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc detectObsidianTags(strBlock: var string): seq[string]" href="src/pd2norg.html#detectObsidianTags%2Cstring">pd2norg: proc detectObsidianTags(strBlock: var string): seq[string]</a></li>
           </ul></dd>
 <dt><a name="f" href="#f"><span>f:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -55,6 +67,10 @@
 <dt><a name="findSubstr" href="#findSubstr"><span>findSubstr:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="utils: proc findSubstr(s: string; t: string; strFroms: seq[int]): bool" href="src/utils.html#findSubstr%2Cstring%2Cstring%2Cseq%5Bint%5D">utils: proc findSubstr(s: string; t: string; strFroms: seq[int]): bool</a></li>
+          </ul></dd>
+<dt><a name="getConfig" href="#getConfig"><span>getConfig:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="config_utils: proc getConfig(): auto" href="src/config_utils.html#getConfig">config_utils: proc getConfig(): auto</a></li>
           </ul></dd>
 <dt><a name="getFileContent" href="#getFileContent"><span>getFileContent:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -104,6 +120,10 @@
 <li><a class="reference external"
           data-doc-search-tag="utils: macro mainExamples(body: untyped): untyped" href="src/utils.html#mainExamples.m%2Cuntyped">utils: macro mainExamples(body: untyped): untyped</a></li>
           </ul></dd>
+<dt><a name="mergeObsidianTags" href="#mergeObsidianTags"><span>mergeObsidianTags:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc mergeObsidianTags(strBlock: var string): seq[string]" href="src/pd2norg.html#mergeObsidianTags%2Cstring">pd2norg: proc mergeObsidianTags(strBlock: var string): seq[string]</a></li>
+          </ul></dd>
 <dt><a name="parseHTML" href="#parseHTML"><span>parseHTML:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc parseHTML(s: string): string" href="src/pd2norg.html#parseHTML%2Cstring">pd2norg: proc parseHTML(s: string): string</a></li>
@@ -113,6 +133,10 @@
           data-doc-search-tag="file_utils: proc prepareOutFile(path: Option[Path]; force: bool = false): auto" href="src/file_utils.html#prepareOutFile%2COption%5BPath%5D%2Cbool">file_utils: proc prepareOutFile(path: Option[Path]; force: bool = false): auto</a></li>
           <li><a class="reference external"
           data-doc-search-tag="file_utils: proc prepareOutFile(path: Path; force: bool = false): auto" href="src/file_utils.html#prepareOutFile%2CPath%2Cbool">file_utils: proc prepareOutFile(path: Path; force: bool = false): auto</a></li>
+          </ul></dd>
+<dt><a name="setConfig" href="#setConfig"><span>setConfig:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="config_utils: proc setConfig(new: Config)" href="src/config_utils.html#setConfig%2CConfig">config_utils: proc setConfig(new: Config)</a></li>
           </ul></dd>
 <dt><a name="setLogger" href="#setLogger"><span>setLogger:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -194,7 +218,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-31 11:16:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-31 14:24:19 UTC</small>
       </div>
     </div>
   </div>
