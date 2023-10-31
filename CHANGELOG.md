@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/pysan3/minorg/compare/v2.1.0...v2.1.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* **cligen:** upgrade cligen to display correct version number ([8ad4001](https://github.com/pysan3/minorg/commit/8ad40016383875d7fc1f5c498fa27c80a17bd174))
+
 ## [2.1.0](https://github.com/pysan3/minorg/compare/v2.0.2...v2.1.0) (2023-10-31)
 
 
