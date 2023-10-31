@@ -62,7 +62,7 @@ jobs:
           nim musl -d:pcre -f:on minorg.nim
       - name: Compress Generated binaries
         run: |
-          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
+          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls minorg{,.exe} 2>/dev/null || true`
       - name: Upload Generated Binaries
         uses: actions/upload-artifact@v3
         with:
@@ -98,7 +98,7 @@ jobs:
           nimble --verbose -y build -f:on -d:release
       - name: Compress Generated binaries
         run: |
-          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
+          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls minorg{,.exe} 2>/dev/null || true`
       - name: Upload Generated Binaries
         uses: actions/upload-artifact@v2
         with:
@@ -139,7 +139,7 @@ jobs:
           nimble --verbose -y build -f:on -d:release
       - name: Compress Generated binaries
         run: |
-          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
+          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls minorg{,.exe} 2>/dev/null || true`
       - name: Upload Generated Binaries
         uses: actions/upload-artifact@v2
         with:
