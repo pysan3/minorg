@@ -41,7 +41,7 @@ proc toStr*(self: PDInlineSpace): string =
     of "Space":
       result = " "
     of "SoftBreak":
-      result = ""
+      result = "\n"
     of "LineBreak":
       result = "\n\n"
     else:
@@ -102,7 +102,11 @@ proc toStr*(self: PDInlineCode): string =
   &"`{text}`"
 
 proc toStr*(self: PDInlineEmph): string =
-  symbols[self.t] & self.c.toStr() & symbols[self.t]
+  let symbol = symbols[self.t]
+  defer: result = &"{symbol}{result}{symbol}"
+  result = self.c.toStr()
+  if result[^1] == '\n':
+    return result[0 ..< ^1]
 
 proc parseHTML*(s: string): string =
   const html2symbols = {
