@@ -251,8 +251,10 @@ proc toStr*(self: PDBlockLineBlock, indent: int = 0): string =
   unreachable(&"LineBlock: {self.t=}, {self.c=}")
 
 proc toStr*(self: PDBlockBlockQuote, indent: int = 0): string =
-  unreachable(&"BlockQuote: {self.t=}, {self.c=}")
-  "BlockQuote"
+  defer:
+    if indent == 0:
+      result &= "\n"
+  self.c.mapIt(it.toStr(indent + 1)).mapIt(it.join("")).mapIt("\n" & ">".repeat(indent + 1) & &" {it}").join("")
 
 proc toStr*(self: PDBlockRawBlock, indent: int = 0): string =
   unreachable(&"RawBlock: {self.t=}, {self.c=}")
