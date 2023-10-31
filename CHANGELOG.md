@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/pysan3/minorg/compare/v2.0.2...v2.1.0) (2023-10-31)
+
+
+### Features
+
+* **pd2norg:** add option to parse obsidian files ([#18](https://github.com/pysan3/minorg/issues/18)) ([25fd918](https://github.com/pysan3/minorg/commit/25fd9189879b29072e2818ec276cfe05a21fcfb0))
+
 ## [2.0.2](https://github.com/pysan3/minorg/compare/v2.0.1...v2.0.2) (2023-10-31)
 
 
