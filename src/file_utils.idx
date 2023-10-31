@@ -1,10 +1,12 @@
 nimTitle	file_utils	src/file_utils.html	module src/file_utils		0
-nim	getSomePath	src/file_utils.html#getSomePath,string	proc getSomePath(path: string): auto		10
-nim	prepareOutFile	src/file_utils.html#prepareOutFile,PPath,bool	proc prepareOutFile(path: PPath; force: bool = false): auto		15
-nim	prepareOutFile	src/file_utils.html#prepareOutFile,Option[PPath],bool	proc prepareOutFile(path: Option[PPath]; force: bool = false): auto		24
-nim	getFileContent	src/file_utils.html#getFileContent,File	proc getFileContent(file: File): auto		29
-nim	getFileContent	src/file_utils.html#getFileContent,PPath	proc getFileContent(path: PPath): auto		33
-nim	getFileContent	src/file_utils.html#getFileContent,Option[PPath]	proc getFileContent(path: Option[PPath]): auto		40
-nim	isJson	src/file_utils.html#isJson,PPath	proc isJson(path: PPath): auto		45
-nimgrp	prepareoutfile	src/file_utils.html#prepareOutFile-procs-all	proc		15
-nimgrp	getfilecontent	src/file_utils.html#getFileContent-procs-all	proc		29
+nim	f	src/file_utils.html#f.t,Path	template f(path: Path): auto		8
+nim	`$`	src/file_utils.html#$,Path	proc `$`(path: Path): auto		11
+nim	getSomePath	src/file_utils.html#getSomePath,string	proc getSomePath(path: string): auto		14
+nim	prepareOutFile	src/file_utils.html#prepareOutFile,Path,bool	proc prepareOutFile(path: Path; force: bool = false): auto		19
+nim	prepareOutFile	src/file_utils.html#prepareOutFile,Option[Path],bool	proc prepareOutFile(path: Option[Path]; force: bool = false): auto		28
+nim	getFileContent	src/file_utils.html#getFileContent,File	proc getFileContent(file: File): auto		33
+nim	getFileContent	src/file_utils.html#getFileContent,Path	proc getFileContent(path: Path): auto		37
+nim	getFileContent	src/file_utils.html#getFileContent,Option[Path]	proc getFileContent(path: Option[Path]): auto		42
+nim	isJson	src/file_utils.html#isJson,Path	proc isJson(path: Path): auto		47
+nimgrp	prepareoutfile	src/file_utils.html#prepareOutFile-procs-all	proc		19
+nimgrp	getfilecontent	src/file_utils.html#getFileContent-procs-all	proc		33

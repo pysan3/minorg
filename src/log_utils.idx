@@ -1,6 +1,6 @@
 nimTitle	log_utils	src/log_utils.html	module src/log_utils		0
 nim	setLogger	src/log_utils.html#setLogger,Level,File	proc setLogger(lvl: Level; file: File = stderr)		6
-nim	logDebug	src/log_utils.html#logDebug,varargs[string,]	proc logDebug(args: varargs[string, `$`])		9
-nim	logInfo	src/log_utils.html#logInfo,varargs[string,]	proc logInfo(args: varargs[string, `$`])		12
-nim	logWarn	src/log_utils.html#logWarn,varargs[string,]	proc logWarn(args: varargs[string, `$`])		15
-nim	logError	src/log_utils.html#logError,varargs[string,]	proc logError(args: varargs[string, `$`])		18
+nim	logDebug	src/log_utils.html#logDebug.t,varargs[string,]	template logDebug(args: varargs[string, `$`])		9
+nim	logInfo	src/log_utils.html#logInfo.t,varargs[string,]	template logInfo(args: varargs[string, `$`])		12
+nim	logWarn	src/log_utils.html#logWarn.t,varargs[string,]	template logWarn(args: varargs[string, `$`])		15
+nim	logError	src/log_utils.html#logError.t,varargs[string,]	template logError(args: varargs[string, `$`])		18
