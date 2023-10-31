@@ -1,27 +1,31 @@
 import std/options
 import std/syncio
 import std/strformat
+import std/paths
+import std/dirs
+import std/files
 
-import src/pathlib
+template f*(path: Path): auto =
+  string(path)
 
-type
-  PPath = PythonPath
+func `$`*(path: Path): auto =
+  path.f
 
-proc getSomePath*(path: string): auto =
+func getSomePath*(path: string): auto =
   if path.len() == 0:
-    return none(PPath)
+    return none(Path)
   some(Path(path))
 
-proc prepareOutFile*(path: PPath, force: bool = false): auto =
-  if force or not path.exists():
-    if not force and not (path.parent.exists() and path.parent.isDir()):
-      raise newException(OSError, &"{path.parent} does not exist or is a file. Use `-f` flag to force creatation.")
-    path.parent.mkdir()
+proc prepareOutFile*(path: Path, force: bool = false): auto =
+  if force or not path.fileExists():
+    if not force and (path.parentDir.fileExists() or not path.parentDir.dirExists()):
+      raise newException(OSError, &"{path.parentDir} does not exist or is a file. Use `-f` flag to force creatation.")
+    path.parentDir.createDir()
   else:
     raise newException(OSError, &"{path} already exists. Use `-f` flag to overwrite.")
-  path.open("w")
+  path.f.open(fmWrite)
 
-proc prepareOutFile*(path: Option[PPath], force: bool = false): auto =
+proc prepareOutFile*(path: Option[Path], force: bool = false): auto =
   if path.isNone():
     return stdout
   path.get().prepareOutFile(force)
@@ -30,17 +34,15 @@ proc getFileContent*(file: File): auto =
   defer: file.close()
   file.readAll()
 
-proc getFileContent*(path: PPath): auto =
-  if not path.exists():
-    raise newException(IOError, &"{path} does not exist.")
-  elif not path.isFile():
-    raise newException(IOError, &"{path} is not a file.")
-  path.open("r").getFileContent()
+proc getFileContent*(path: Path): auto =
+  if not path.fileExists():
+    raise newException(IOError, &"{path} does not exist or is not a file.")
+  path.f.open(fmRead).getFileContent()
 
-proc getFileContent*(path: Option[PPath]): auto =
+proc getFileContent*(path: Option[Path]): auto =
   if path.isNone():
     return stdin.getFileContent()
   path.get().getFileContent()
 
-proc isJson*(path: PPath): auto =
-  path.suffix() == ".json"
+proc isJson*(path: Path): auto =
+  path.splitFile().ext == ".json"
