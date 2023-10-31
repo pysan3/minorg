@@ -23,4 +23,4 @@ jobs:
           release-type: node
           package-name: release-please-action
           extra-files: |
-            nim_norg.nimble
+            minorg.nimble

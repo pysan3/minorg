@@ -1,6 +1,6 @@
 This is a multiple-dispatch command.  -h/--help/--help-syntax is available
 for top-level/all subcommands.  Usage is like:
-    nim_norg {SUBCMD} [subcommand-opts & args]
+    minorg {SUBCMD} [subcommand-opts & args]
 where subcommand syntaxes are as follows:
 
   parse [optional-params] 

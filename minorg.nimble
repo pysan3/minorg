@@ -6,7 +6,7 @@ description = "Norg Pandoc Bridge written in Nim"
 license = "GPL-3.0-or-later"
 srcDir = "."
 skipDirs = @["tests", "tmp"]
-bin = @["nim_norg"]
+bin = @["minorg"]
 
 # Dependencies
 

@@ -34,10 +34,11 @@ nimcache/
 nimble.develop
 
 *.tar.*
-/nim_norg
+/minorg
 
 ### Build ###
 pcre-*
 pcre/
 lib-*
 lib/
+
