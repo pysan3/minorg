@@ -8,7 +8,6 @@ import std/strformat
 import nim_pandoc
 import src/utils
 import src/file_utils
-import src/pathlib
 import src/pd2norg
 import src/log_utils
 
@@ -20,8 +19,8 @@ proc generate(input: string = "", output: string = "", verbose: bool = false, fo
     inPath = getSomePath(input)
     outPath = getSomePath(output)
   setLogger(if verbose: lvlDebug else: lvlInfo)
-  info("Output to: " & (if outPath.isSome(): $outPath.get() else: "stdout"))
-  info("Reading from: " & (if inPath.isSome(): $inPath.get() else: "stdin"))
+  logInfo("Output to: " & (if outPath.isSome(): $outPath.get() else: "stdout"))
+  logInfo("Reading from: " & (if inPath.isSome(): $inPath.get() else: "stdin"))
   if inPath.isSome() and not inPath.get().isJson():
     raise newException(IOError, &"{inPath.get()} is not json.")
   let jobj = inPath.getFileContent().parseJson()
@@ -29,7 +28,7 @@ proc generate(input: string = "", output: string = "", verbose: bool = false, fo
   let outFile = outPath.prepareOutFile(force)
   defer: outFile.close()
   for blk in blocks:
-    debug(blk)
+    logDebug(blk)
     outFile.writeLine(blk.toStr())
   return 0
 

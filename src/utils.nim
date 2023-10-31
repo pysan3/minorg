@@ -15,13 +15,13 @@ macro mainExamples*(body: untyped): untyped =
         `body`
 
 template todo*(): untyped =
-  assert(false, "Not implemented")
+  raise newException(CatchableError, "Not Implemented")
 
 template isAbstract*(): untyped =
-  assert(false, "Abstract method called")
+  raise newException(CatchableError, "Abstract Method Called")
 
 template unreachable*(s: string): untyped =
-  assert(false, "Unreachable code: " & s)
+  raise newException(CatchableError, "Unreachable Code: " & s)
 
 func addUniq*[T](a: var seq[T], b: T) =
   if b notin a: a.add(b)

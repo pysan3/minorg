@@ -1,9 +1,10 @@
 import std/tables
-import std/re
 import std/sequtils
 import std/tables
 import std/strutils
 import std/strformat
+
+import regex
 
 import nim_pandoc
 import str_utils
@@ -30,7 +31,7 @@ proc toStr*(self: seq[PDBlock], indent: int = 0): seq[string] =
 proc toStr*(self: seq[PDInline]): string =
   result = self.map(toStr).join("")
   if result.startsWith("- ["):
-    return result.replace(re"- [(.)]", "- ($1)")
+    return result.replace(re2"- [(.)]", "- ($1)")
 
 proc toStr*(self: PDTarget): string =
   self.url
@@ -68,7 +69,7 @@ func linkMaybeMergeable*(tag: string, target: string): (bool, string) =
       return (false, "")
     elif tag.toLower() == noDashes.substr(1).toLower():
       return (true, &"# {tag}")
-    elif noDashes.startsWith(re"#h[1-6] ") and noDashes[2].isDigit():
+    elif noDashes.startsWith(re2"#h[1-6] ") and noDashes[2].isDigit():
       let headings = '*'.repeat(noDashes[2..<3].parseInt()) & " "
       if noDashes.substr(4).toLower() == tag.toLower():
         return (true, headings & tag)
@@ -121,9 +122,9 @@ proc parseHTML*(s: string): string =
     "u": "Underline",
     "!-- null modifier --": "NullModifier",
   }.toTable()
-  var matches: array[1, string]
-  if s.match(re"</?([a-z!\-\s]+)>", matches) and html2symbols.hasKey(matches[0]):
-    return symbols[html2symbols[matches[0]]]
+  var matches: RegexMatch2
+  if s.match(re2"</?([a-z!\-\s]+)>", matches) and html2symbols.hasKey(s[matches.group(0)]):
+    return symbols[html2symbols[s[matches.group(0)]]]
   elif s.startsWith("<!--"):
     logWarn(&"Could not parse {s}. Possibly a comment.")
     return s
@@ -248,15 +249,15 @@ proc toStr*(self: PDBlockHorizontalRule, indent: int = 0): string =
 
 proc toStr*(self: PDBlockLineBlock, indent: int = 0): string =
   unreachable(&"LineBlock: {self.t=}, {self.c=}")
-  "LineBlock"
 
 proc toStr*(self: PDBlockBlockQuote, indent: int = 0): string =
-  unreachable(&"BlockQuote: {self.t=}, {self.c=}")
-  "BlockQuote"
+  defer:
+    if indent == 0:
+      result &= "\n"
+  self.c.mapIt(it.toStr(indent + 1)).mapIt(it.join("")).mapIt("\n" & ">".repeat(indent + 1) & &" {it}").join("")
 
 proc toStr*(self: PDBlockRawBlock, indent: int = 0): string =
   unreachable(&"RawBlock: {self.t=}, {self.c=}")
-  "RawBlock"
 
 proc toStr*(self: PDBlockDiv, indent: int = 0): string =
   let (attr, blocks) = self.c
@@ -264,11 +265,9 @@ proc toStr*(self: PDBlockDiv, indent: int = 0): string =
 
 proc toStr*(self: PDBlockFigure, indent: int = 0): string =
   unreachable(&"Figure: {self.t=}, {self.c=}")
-  "Figure"
 
 proc toStr*(self: PDBlockTable, indent: int = 0): string =
   unreachable(&"Table: {self.t=}, {self.c=}")
-  "Table"
 
 proc toStr*(self: PDBlock, indent: int = 0): string =
   case self.t:
