@@ -55,7 +55,7 @@ $ nvim out.norg
 
 
 
-###  File Linking
+### File Linking
 
 It is very hard to distinguish what link pattern should be used.
 
@@ -75,18 +75,31 @@ It is very hard to distinguish what link pattern should be used.
 - [ ] Line numbers: [4](foo/bar.md#4)
 
 
-###  Espace Modifiers
-
-Modifier chars (i.e. **bold**, _italic_, ...) cannot be escaped when they are used as a real symbol.
-
-
-###  `|example` Is Not Restored Correctly
+### `|example` Is Not Restored Correctly
 
 This is a problem in `norganic` / `Norg.jl`.
 - [x] I will make a PR later.
     - [x] [https://github.com/Klafyvel/Norg.jl/issues/41](https://github.com/Klafyvel/Norg.jl/issues/41)
 - [ ] He says he needs some help [here](https://github.com/Klafyvel/Norg.jl/issues/41#issuecomment-1784814268).
 - [x] Auto convert `@code norg` -> `|example`
+
+
+### Softbreak Not Preserved
+
+When the original note (especially markdown) had softbreaks (single new
+line to format the document but does not mean a new paragraph), that new line does not
+get transferred to the generated file.
+
+- [x] fix softbreak
+- [x] Modifier chars (i.e. **bold**, _italic_, ...) cannot be escaped when they are used as a real symbol.
+
+
+### Markdown TODO Not Working
+
+According to `pandoc -f markdown -t json`, bullet list with todo (`- [ \]`) is treated as a simple
+`["-", " ", "[", " ", "]"]` which cannot be converted to norg style (`- ( \)`).
+
+- [x] Fix markdown style todo items
 
 
 ## Contribution
