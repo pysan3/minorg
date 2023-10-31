@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/pysan3/minorg/compare/v2.0.1...v2.0.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* **pathlib:** remove deprecated functions and use nim-regex ([#16](https://github.com/pysan3/minorg/issues/16)) ([8886a2c](https://github.com/pysan3/minorg/commit/8886a2c9664915351eb9ea98b3a856460b0a5d58))
+
 ## [2.0.1](https://github.com/pysan3/minorg/compare/v2.0.0...v2.0.1) (2023-10-31)
 
 
