@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/pysan3/nim_norg/compare/v1.1.1...v1.1.2) (2023-10-31)
+
+
+### Bug Fixes
+
+* **pd2norg:** improve softbreak bug in norg parser ([#9](https://github.com/pysan3/nim_norg/issues/9)) ([6f4d484](https://github.com/pysan3/nim_norg/commit/6f4d484a21473d0748779f86f3b45d1da932f894))
+
 ## [1.1.1](https://github.com/pysan3/nim_norg/compare/v1.1.0...v1.1.1) (2023-10-30)
 
 
