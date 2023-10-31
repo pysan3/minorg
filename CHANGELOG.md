@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/pysan3/minorg/compare/v1.2.0...v2.0.0) (2023-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **minorg:** rename to minorg ([#13](https://github.com/pysan3/minorg/issues/13))
+
+### Features
+
+* **minorg:** rename to minorg ([#13](https://github.com/pysan3/minorg/issues/13)) ([03bfd90](https://github.com/pysan3/minorg/commit/03bfd9033f2fe958d1d651f71fe628d975e93274))
+
 ## [1.2.0](https://github.com/pysan3/nim_norg/compare/v1.1.2...v1.2.0) (2023-10-31)
 
 
