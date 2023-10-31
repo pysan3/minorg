@@ -22,6 +22,18 @@ version:
 *This README is generated from [./README.norg](#readmenorg).
 
 
+## Table of Contents
+
+- [Get Started](#get-started)
+- [Usage](#usage)
+    - [Command](#command)
+    - [Example](#example)
+- [Known Issues](#known-issues)
+- [Compile From Source](#compile-from-source)
+- [Contribution](#contribution)
+- [License](#license)
+
+
 ## Get Started
 
 - Download: [https://github.com/pysan3/minorg/releases](https://github.com/pysan3/minorg/releases)
@@ -51,6 +63,12 @@ $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specific
 $ norganic json --input ./1.0-specifications.norg | minorg generate > out.norg
 $ nvim out.norg
 ```
+
+If you want to convert from Obsidian, checkout this repo as well: [https://github.com/jonboh/obsidian2neorg](https://github.com/jonboh/obsidian2neorg).
+
+This parser also takes some amount of care of obsidian specific format, but requires pandoc to be able to
+parse the document anyways.
+Please use the `--isObsidian` flag and read [Obsidian Style Tags Are Not Working](#obsidian-style-tags-are-not-working) section for more information.
 
 
 ## Known Issues
@@ -115,14 +133,59 @@ but rather a paragraph.
 ```
 
 - [x] Convert them to tags in `norg` format
-    - Use the `--isObsidian` flag to enable this parse mode.
+    - ❗ Use the `--isObsidian` flag to enable this parse mode.
+
+
+## Compile From Source
+
+This project is written in [nim](https://nim-lang.org/) language.
+You will need the nim compiler and the package manager `nimble`.
+
+
+#### Install `choosenim` and `nim` Compiler
+
+If you don't have nim installed yet, I strongly suggest using [choosenim](https://github.com/dom96/choosenim)
+to install the required toolkit.
+Please read [Choosenim Installation](https://github.com/dom96/choosenim#installation).
+Below is the instruction for unix systems.
+```bash
+$ curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+$ export PATH="$HOME/.nimble/bin:$PATH"
+$ choosenim stable
+# install stable version of nim and nimble
+# ... this may take a while
+$ nim -v
+# ! check nim version >= 2.0.0
+```
+
+
+#### Setup `nimble` and Compile
+
+`nimble` is the packages manager for nim (should be installed into `$HOME/.nimble/bin` by choosenim).
+Setup for this repo is very easy.
+```bash
+$ git clone https://github.com/pysan3/minorg.git
+$ cd minorg/
+$ nimble sync
+# ... Downloads dependencies
+$ nim r ./minorg.nim help
+# Compiles and runs ./minorg.nim. Passes `help` as an argument to the generated binary.
+```
 
 
 ## Contribution
 
-Any contribution is welcome!! And don't hesitate to send me an issue.
+Any contribution is welcome! And don't hesitate to send me an issue.
 
-TODO: Write how to build nim project. 2023-10-31, pysan3
+
+#### Fix Code and Recompile
+
+```bash
+$ pandoc -f markdown -t json -o parsed.json your-test-markdown-file.md
+$ nim r ./minorg.nim generate -i parsed.json -v
+```
+
+Run `nim r ./minorg.nim help` for more options.
 
 
 ## License
