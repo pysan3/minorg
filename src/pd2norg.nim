@@ -28,13 +28,19 @@ proc toStr*(self: seq[PDBlock], indent: int = 0): seq[string] =
   self.mapIt(it.toStr(indent))
 
 proc toStr*(self: seq[PDInline]): string =
-  self.map(toStr).join("")
+  result = self.map(toStr).join("")
+  if result.startsWith("- ["):
+    return result.replace(re"- [(.)]", "- ($1)")
 
 proc toStr*(self: PDTarget): string =
   self.url
 
 proc toStr*(self: PDInlineStr): string =
-  self.c
+  result = self.c
+  if result == "[x]" or result == "☒": # markdown style todo
+    return "(x)"
+  elif result == "☐": # markdown style todo
+    return "( )"
 
 proc toStr*(self: PDInlineSpace): string =
   case self.t:
@@ -92,7 +98,7 @@ proc toStr*(self: PDInlineLink): string =
       if not skipTag and tag.len() > 0:
         result &= &"[{tag}]"
     of "Image":
-      logWarn("I'm sure this is NOT the correct image syntax... Please help!!")
+      logWarn(&"I'm sure this is NOT the correct image syntax... Please help: {target}")
       return [&"Alt text: {tag}", &".image {target}", ""].join("\n")
     else:
       unreachable(&"PDInlineLink: {self.t=}")
