@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/pysan3/minorg/compare/v2.0.0...v2.0.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* **action:** migration from `nim_norg` ([d6cd11f](https://github.com/pysan3/minorg/commit/d6cd11fbb63870917f9762adeeb6e6159dc1db8b))
+
 ## [2.0.0](https://github.com/pysan3/minorg/compare/v1.2.0...v2.0.0) (2023-10-31)
 
 
