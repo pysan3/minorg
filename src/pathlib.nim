@@ -3,6 +3,7 @@
 
 # Written by Adam Chesak.
 # Released under the MIT open source license.
+# Modified by: pysan3 2023-10-31 and onwards
 
 
 ## pythonpathlib is a Nim module that provides an interface for working with paths that
@@ -39,9 +40,9 @@
 ##    var path : PythonPath = Path("code/example.nim")
 ##    echo(path.name) # "example.nim"
 ##    echo(path.suffix) # ".nim"
-##    path = path.with_name("newfile.nim")
+##    path = path.withName("newfile.nim")
 ##    echo(path) # "code/newfile.nim"
-##    path = path.with_suffix(".py")
+##    path = path.withSuffix(".py")
 ##    echo(path) # "code/newfile.py"
 ##
 ## .. code-block:: nimrod
@@ -49,9 +50,9 @@
 ##    # Create a path, check whether the path exists, and then see whether it is a file, directory, or symlink.
 ##    var path : PythonPath = Path("/home/adam")
 ##    echo(path.exists()) # true
-##    echo(path.is_file()) # false
-##    echo(path.is_dir()) # true
-##    echo(path.is_symlink()) # false
+##    echo(path.isFile()) # false
+##    echo(path.isDir()) # true
+##    echo(path.isSymlink()) # false
 ##
 ## .. code-block:: nimrod
 ##
@@ -66,16 +67,16 @@
 ##
 ##    # Create a path and get its representation as a file URI.
 ##    var path : PythonPath = Path("/home/adam/nim/code.nim")
-##    var fileURI : string = path.as_uri()
+##    var fileURI : string = path.asUri()
 ##    echo(fileURI) # "file:///home/adam/nim/code.nim"
 ##
 ## .. code-block:: nimrod
 ##
 ##    # Create a path and compute a version of this path relative to another.
 ##    var path : PythonPath = Path("/home/adam/nim/code.nim")
-##    echo(path.relative_to("home")) # "adam/nim/code.nim"
-##    echo(path.relative_to("nim")) # "code.nim"
-##    echo(path.relative_to("usr")) # can't do, not on path
+##    echo(path.relativeTo("home")) # "adam/nim/code.nim"
+##    echo(path.relativeTo("nim")) # "code.nim"
+##    echo(path.relativeTo("usr")) # can't do, not on path
 
 
 import os
@@ -275,7 +276,7 @@ proc stem*(path: PythonPath): string =
   return splitFile(path.p)[1]
 
 
-proc as_posix*(path: PythonPath): string =
+proc asPosix*(path: PythonPath): string =
   ## Returns a string representation of the path with forward slashes (/).
 
   if not defined(windows):
@@ -284,15 +285,15 @@ proc as_posix*(path: PythonPath): string =
   return path.p.replace("\\", "/") # not perfect...
 
 
-proc as_uri*(path: PythonPath): string =
+proc asUri*(path: PythonPath): string =
   ## Returns the path as a file URI. Will fail if the path is not absolute.
 
-  doAssert(path.p.isAbsolute(), "as_uri(): path must be absolute")
+  doAssert(path.p.isAbsolute(), "asUri(): path must be absolute")
 
   return "file://" & path.p
 
 
-proc is_reserved*(path: PythonPath): bool =
+proc isReserved*(path: PythonPath): bool =
   ## Returns true if the path is considered reserved under Windows, and false otherwise.
 
   return false
@@ -312,7 +313,7 @@ proc joinpath*(paths: varargs[PythonPath]): PythonPath =
   return Path(newPath)
 
 
-proc relative_to*(path: PythonPath, other: string): PythonPath =
+proc relativeTo*(path: PythonPath, other: string): PythonPath =
   ## Returns a new path of this path relative to the path represented by other.
 
   var
@@ -323,7 +324,7 @@ proc relative_to*(path: PythonPath, other: string): PythonPath =
       pIndex = i
       break
 
-  doAssert(pIndex != -1, "relative_to(): no relative path")
+  doAssert(pIndex != -1, "relativeTo(): no relative path")
 
   var pStr: string = ""
   for i in pIndex..high(parents):
@@ -332,13 +333,13 @@ proc relative_to*(path: PythonPath, other: string): PythonPath =
   return Path(pStr)
 
 
-proc relative_to*(path: PythonPath, other: PythonPath): PythonPath =
+proc relativeTo*(path: PythonPath, other: PythonPath): PythonPath =
   ## Returns a new path of this path relative to the path represented by other.
 
-  return path.relative_to(other.p)
+  return path.relativeTo(other.p)
 
 
-proc with_name*(path: PythonPath, newName: string): PythonPath =
+proc withName*(path: PythonPath, newName: string): PythonPath =
   ## Returns a new path with the name changed.
 
   var
@@ -346,7 +347,7 @@ proc with_name*(path: PythonPath, newName: string): PythonPath =
     dir = splitPath[0]
     name = splitPath[1]
 
-  doAssert(name != "", "with_name(): no name to change")
+  doAssert(name != "", "withName(): no name to change")
 
   var n: string = ""
   if dir != "":
@@ -355,7 +356,7 @@ proc with_name*(path: PythonPath, newName: string): PythonPath =
   return Path(n & newName)
 
 
-proc with_suffix*(path: PythonPath, newSuffix: string): PythonPath =
+proc withSuffix*(path: PythonPath, newSuffix: string): PythonPath =
   ## Returns a new path with the suffix changed.
 
   var
@@ -367,7 +368,7 @@ proc with_suffix*(path: PythonPath, newSuffix: string): PythonPath =
   if dir != "":
     n &= dir & "/"
 
-  doAssert(name != "", "with_suffix(): no name")
+  doAssert(name != "", "withSuffix(): no name")
 
   return Path(n & name & newSuffix)
 
@@ -384,28 +385,28 @@ proc chmod*(path: PythonPath, mode: set[FilePermission]) {.noreturn.} =
   path.p.setFilePermissions(mode)
 
 
+proc isDir*(path: PythonPath): bool =
+  ## Returns true if the path points to an existing directory, and false otherwise.
+
+  return path.p.dirExists()
+
+
+proc isFile*(path: PythonPath): bool =
+  ## Returns true if the path points to an existing file, and false otherwise.
+
+  return path.p.fileExists()
+
+
+proc isSymlink*(path: PythonPath): bool =
+  ## Returns true if the path points to an existing symlink, and false otherwise.
+
+  return path.p.symlinkExists()
+
+
 proc exists*(path: PythonPath): bool =
   ## Returns true if the path points to an existing directory or file, and false otherwise.
 
-  return existsFile(path.p) or existsDir(path.p)
-
-
-proc is_dir*(path: PythonPath): bool =
-  ## Returns true if the path points to an existing directory, and false otherwise.
-
-  return existsDir(path.p)
-
-
-proc is_file*(path: PythonPath): bool =
-  ## Returns true if the path points to an existing file, and false otherwise.
-
-  return existsFile(path.p)
-
-
-proc is_symlink*(path: PythonPath): bool =
-  ## Returns true if the path points to an existing symlink, and false otherwise.
-
-  return symlinkExists(path.p)
+  return path.isFile() or path.isDir()
 
 
 proc open*(path: PythonPath, mode: string = "r", buffering: int = -1): File =
