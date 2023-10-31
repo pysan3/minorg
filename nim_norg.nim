@@ -26,7 +26,7 @@ proc generate(input: string = "", output: string = "", verbose: bool = false, fo
     raise newException(IOError, &"{inPath.get()} is not json.")
   let jobj = inPath.getFileContent().parseJson()
   let blocks = jsonTo(jobj["blocks"], seq[PDBlock])
-  let outFile = outPath.prepareOutFile()
+  let outFile = outPath.prepareOutFile(force)
   defer: outFile.close()
   for blk in blocks:
     debug(blk)
