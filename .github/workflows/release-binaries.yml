@@ -59,7 +59,7 @@ jobs:
       - name: setup and build
         run: |
           nimble --verbose -y setup
-          nim musl -d:pcre -f:on minorg.nim
+          nim musl -d:pcre -f:on -d:release minorg.nim
       - name: Compress Generated binaries
         run: |
           tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls minorg{,.exe} 2>/dev/null || true`
