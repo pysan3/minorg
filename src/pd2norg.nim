@@ -249,7 +249,6 @@ proc toStr*(self: PDBlockHorizontalRule, indent: int = 0): string =
 
 proc toStr*(self: PDBlockLineBlock, indent: int = 0): string =
   unreachable(&"LineBlock: {self.t=}, {self.c=}")
-  "LineBlock"
 
 proc toStr*(self: PDBlockBlockQuote, indent: int = 0): string =
   unreachable(&"BlockQuote: {self.t=}, {self.c=}")
@@ -257,7 +256,6 @@ proc toStr*(self: PDBlockBlockQuote, indent: int = 0): string =
 
 proc toStr*(self: PDBlockRawBlock, indent: int = 0): string =
   unreachable(&"RawBlock: {self.t=}, {self.c=}")
-  "RawBlock"
 
 proc toStr*(self: PDBlockDiv, indent: int = 0): string =
   let (attr, blocks) = self.c
@@ -265,11 +263,9 @@ proc toStr*(self: PDBlockDiv, indent: int = 0): string =
 
 proc toStr*(self: PDBlockFigure, indent: int = 0): string =
   unreachable(&"Figure: {self.t=}, {self.c=}")
-  "Figure"
 
 proc toStr*(self: PDBlockTable, indent: int = 0): string =
   unreachable(&"Table: {self.t=}, {self.c=}")
-  "Table"
 
 proc toStr*(self: PDBlock, indent: int = 0): string =
   case self.t:
