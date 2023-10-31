@@ -6,14 +6,14 @@ var logger: FileLogger
 proc setLogger*(lvl: Level, file: File = stderr) =
   logger = newFileLogger(file, lvl)
 
-proc logDebug*(args: varargs[string, `$`]) {.inline.} =
+template logDebug*(args: varargs[string, `$`]) =
   logger.log(lvlDebug, args)
 
-proc logInfo*(args: varargs[string, `$`]) {.inline.} =
+template logInfo*(args: varargs[string, `$`]) =
   logger.log(lvlInfo, args)
 
-proc logWarn*(args: varargs[string, `$`]) {.inline.} =
+template logWarn*(args: varargs[string, `$`]) =
   logger.log(lvlWarn, args)
 
-proc logError*(args: varargs[string, `$`]) {.inline.} =
+template logError*(args: varargs[string, `$`]) =
   logger.log(lvlError, args)
