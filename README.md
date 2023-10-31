@@ -105,15 +105,24 @@ According to `pandoc -f markdown -t json`, bullet list with todo (`- [ \]`) is t
 - [x] Fix markdown style todo items
 
 
+### Obsidian Style Tags Are Not Working
+
+It seems that when the line above a header is not empty, pandoc does not recognize it as a header
+but rather a paragraph.
+```markdown
+#obsidiantag1 #obsidiantag2
+# A Header
+```
+
+- [x] Convert them to tags in `norg` format
+    - Use the `--isObsidian` flag to enable this parse mode.
+
+
 ## Contribution
 
 Any contribution is welcome!! And don't hesitate to send me an issue.
 
-
-## TODOs
-
-This was created for a proof of concept. Everything is duct-taped together.
-I really need to clean the code.
+TODO: Write how to build nim project. 2023-10-31, pysan3
 
 
 ## License

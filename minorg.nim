@@ -4,21 +4,26 @@ import std/logging
 import std/jsonutils
 import std/options
 import std/strformat
+import std/tables
 
 import nim_pandoc
 import src/utils
 import src/file_utils
 import src/pd2norg
 import src/log_utils
+import src/config_utils
 
 proc parse(input: string = "", output: string = "", verbose: bool = false, force: bool = false): int =
   todo()
 
-proc generate(input: string = "", output: string = "", verbose: bool = false, force: bool = false): int =
+proc generate(input: string = "", output: string = "", verbose: bool = false, force: bool = false,
+              isObsidian: bool = false): int =
   let
     inPath = getSomePath(input)
     outPath = getSomePath(output)
-  setLogger(if verbose: lvlDebug else: lvlInfo)
+  var newConfig = Config(verbose: verbose, isObsidian: isObsidian)
+  setConfig(newConfig)
+  setLogger(if getConfig().verbose: lvlDebug else: lvlInfo)
   logInfo("Output to: " & (if outPath.isSome(): $outPath.get() else: "stdout"))
   logInfo("Reading from: " & (if inPath.isSome(): $inPath.get() else: "stdin"))
   if inPath.isSome() and not inPath.get().isJson():
@@ -39,7 +44,7 @@ when isMainModule:
     "output": "Output file. Leave it blank to use stdout.",
     "verbose": "Outputs debug info to stderr.",
     "force": "Overwrite files and create parent folders if needed.",
-  }
+  }.toTable()
   dispatchMulti(
     [parse, help = help],
     [generate, help = help],
