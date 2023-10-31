@@ -59,15 +59,15 @@ jobs:
       - name: setup and build
         run: |
           nimble --verbose -y setup
-          nim musl -d:pcre -f:on nim_norg.nim
+          nim musl -d:pcre -f:on minorg.nim
       - name: Compress Generated binaries
         run: |
-          tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
+          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
       - name: Upload Generated Binaries
         uses: actions/upload-artifact@v3
         with:
-          name: nim_norg-${{ matrix.target.name }}.tar.gz
-          path: nim_norg-${{ matrix.target.name }}.tar.gz
+          name: minorg-${{ matrix.target.name }}.tar.gz
+          path: minorg-${{ matrix.target.name }}.tar.gz
   build-mac:
     strategy:
       fail-fast: false
@@ -98,12 +98,12 @@ jobs:
           nimble --verbose -y build -f:on -d:release
       - name: Compress Generated binaries
         run: |
-          tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
+          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
       - name: Upload Generated Binaries
         uses: actions/upload-artifact@v2
         with:
-          name: nim_norg-${{ matrix.target.name }}.tar.gz
-          path: nim_norg-${{ matrix.target.name }}.tar.gz
+          name: minorg-${{ matrix.target.name }}.tar.gz
+          path: minorg-${{ matrix.target.name }}.tar.gz
   build-win:
     strategy:
       fail-fast: false
@@ -139,12 +139,12 @@ jobs:
           nimble --verbose -y build -f:on -d:release
       - name: Compress Generated binaries
         run: |
-          tar -c -z -v -f ./nim_norg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
+          tar -c -z -v -f ./minorg-${{ matrix.target.name }}.tar.gz `ls nim_norg{,.exe} 2>/dev/null || true`
       - name: Upload Generated Binaries
         uses: actions/upload-artifact@v2
         with:
-          name: nim_norg-${{ matrix.target.name }}.tar.gz
-          path: nim_norg-${{ matrix.target.name }}.tar.gz
+          name: minorg-${{ matrix.target.name }}.tar.gz
+          path: minorg-${{ matrix.target.name }}.tar.gz
   create-github-release:
     name: Create Github Release
     needs:
@@ -165,4 +165,4 @@ jobs:
         uses: geekyeggo/delete-artifact@v1
         with:
           failOnError: false
-          name: "nim_norg-*"
+          name: "minorg-*"
