@@ -11,16 +11,6 @@
         "sha1": "1f302a01ce3218f3542d44c9f4734bb2fa07e10b"
       }
     },
-    "cligen": {
-      "version": "1.6.15",
-      "vcsRevision": "e607467c4e6a6c54f02b555135bce35eafa714c5",
-      "url": "https://github.com/c-blake/cligen.git",
-      "downloadMethod": "git",
-      "dependencies": [],
-      "checksums": {
-        "sha1": "69330c86da69969dde7d23669e87503bbd17f459"
-      }
-    },
     "unicodedb": {
       "version": "0.12.0",
       "vcsRevision": "b055310c08db8f879057b4fec15c8301ee93bb2a",
@@ -41,6 +31,16 @@
       ],
       "checksums": {
         "sha1": "89466caa353b571cdcd8271f2c797ba2c15a89f2"
+      }
+    },
+    "cligen": {
+      "version": "1.6.16",
+      "vcsRevision": "d9c10ef7aa54b6d9423a585eeebd36fd4ccd0f7c",
+      "url": "https://github.com/c-blake/cligen.git",
+      "downloadMethod": "git",
+      "dependencies": [],
+      "checksums": {
+        "sha1": "087127d5fdadcfc931b98e4a0006360d1dc6d5d4"
       }
     }
   },
