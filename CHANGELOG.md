@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/pysan3/nim_norg/compare/v1.1.2...v1.2.0) (2023-10-31)
+
+
+### Features
+
+* **pd2norg:** improve todo item detection from markdown ([#11](https://github.com/pysan3/nim_norg/issues/11)) ([a730d70](https://github.com/pysan3/nim_norg/commit/a730d700e47f119784d6ae04a5b14777efb1a07e))
+
 ## [1.1.2](https://github.com/pysan3/nim_norg/compare/v1.1.1...v1.1.2) (2023-10-31)
 
 
