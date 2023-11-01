@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/pysan3/minorg/compare/v2.1.1...v2.2.0) (2023-11-01)
+
+
+### Features
+
+* **obsidian:** add support for obsidian wikilink format ([#21](https://github.com/pysan3/minorg/issues/21)) ([6a191d3](https://github.com/pysan3/minorg/commit/6a191d3a5096a6fcf9cd5c2fe8bb9c03ce66886c))
+
 ## [2.1.1](https://github.com/pysan3/minorg/compare/v2.1.0...v2.1.1) (2023-10-31)
 
 
