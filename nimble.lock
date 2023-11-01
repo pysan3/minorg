@@ -2,13 +2,13 @@
   "version": 2,
   "packages": {
     "nim_pandoc": {
-      "version": "3.0.0",
-      "vcsRevision": "599f88e3a98cde44a11615c4fccdd2919f2af80f",
+      "version": "3.0.2",
+      "vcsRevision": "8392b35b608215168a6f0477a159fb316143b5ff",
       "url": "https://github.com/pysan3/nim_pandoc",
       "downloadMethod": "git",
       "dependencies": [],
       "checksums": {
-        "sha1": "1f302a01ce3218f3542d44c9f4734bb2fa07e10b"
+        "sha1": "d301797da2041fff8de3e98c8b0cf95ba30ca05d"
       }
     },
     "unicodedb": {

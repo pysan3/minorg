@@ -123,7 +123,9 @@ According to `pandoc -f markdown -t json`, bullet list with todo (`- [ \]`) is t
 - [x] Fix markdown style todo items
 
 
-### Obsidian Style Tags Are Not Working
+### Obsidian
+
+#### Obsidian Style Tags Are Not Working
 
 It seems that when the line above a header is not empty, pandoc does not recognize it as a header
 but rather a paragraph.
@@ -134,6 +136,31 @@ but rather a paragraph.
 
 - [x] Convert them to tags in `norg` format
     - ❗ Use the `--isObsidian` flag to enable this parse mode.
+    - Also pass `--workRootDir=/path/to/workspace` to link with other files (Required).
+
+
+#### Wikilinks Are Not Working
+
+Obsidian uses its own format to link to other files in the directory.
+Obviously this is not an official markdown syntax, and pandoc cannot parse it.
+```markdown
+[[file name]] -> `./somewhere/in/the/directory/file\ name.md`
+![[file name]] -> `./somewhere/in/the/directory/file\ name.png` # Image support
+```
+
+- [x] Implement a workaround
+    - See [Obsidian Style Tags Are Not Working](#obsidian-style-tags-are-not-working) for the fix.
+        - `--isObsidian` and `--workRootDir` required.
+    - TODOs
+        - [x] `[[file name]]` -> `{:$/somewhere/in/workspace/file name:}` (norg file)
+        - [x] `[[file name.txt]]` -> `{/ $/somewhere/in/workspace/file name.txt}` (normal file)
+        - [x] `![[file name.png]]` -> `.image $/somewhere/in/workspace/file name.png` (image file)
+        - [x] `[[file name#header]]` -> `{:$/somewhere/in/workspace/file name:# head1}` (norg file with any level heading)
+        - [x] `[[file name#head1#head2]]` -> `[head2]($/somewhere/in/workspace/file%20name.mdhead1#head2)` (norg file with chained headings)
+        - [x] `[[file name|display name]]` -> `{:$/somewhere/in/workspace/file name:}[display name]` (norg file with display name)
+        - [x] `[[file name.txt|display name]]` -> `{/ $/somewhere/in/workspace/file name.txt}[display name]` (normal file with display name)
+        - [x] `![[file name.png|display name]]` -> `.alt display namen.image $/somewhere/in/workspace/file name.png` (image file with alt text)
+        - [x] `[[unknown]]` -> `[[unknown]]` (file not found: do nothing)
 
 
 ## Compile From Source

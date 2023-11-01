@@ -5,8 +5,10 @@ import std/jsonutils
 import std/options
 import std/strformat
 import std/tables
+import std/paths
 
-import nim_pandoc
+import nim_pandoc/pd_block_h
+import nim_pandoc/pd_block
 import src/utils
 import src/file_utils
 import src/pd2norg
@@ -17,11 +19,17 @@ proc parse(input: string = "", output: string = "", verbose: bool = false, force
   todo()
 
 proc generate(input: string = "", output: string = "", verbose: bool = false, force: bool = false,
-              isObsidian: bool = false): int =
+              isObsidian: bool = false, workRootDir: string = ""): int =
   let
     inPath = getSomePath(input)
     outPath = getSomePath(output)
-  var newConfig = Config(verbose: verbose, isObsidian: isObsidian)
+  if isObsidian and workRootDir.len() == 0:
+    raise newException(CatchableError, "Flag `--workRootDir` is required with `--isObsidian`.")
+  var newConfig = Config(
+    verbose: verbose,
+    isObsidian: isObsidian,
+    workRootDir: Path(workRootDir),
+  )
   setConfig(newConfig)
   setLogger(if getConfig().verbose: lvlDebug else: lvlInfo)
   logInfo("Output to: " & (if outPath.isSome(): $outPath.get() else: "stdout"))

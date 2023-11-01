@@ -1,17 +1,27 @@
 import std/tables
+import std/options
 import std/sequtils
 import std/tables
 import std/strutils
 import std/strformat
-import std/pegs
 import std/macros
+import std/paths
 
 import regex
+import nim_pandoc/pd_attr_h
+import nim_pandoc/pd_inline_h
+import nim_pandoc/pd_citation_h
+import nim_pandoc/pd_target_h
+import nim_pandoc/pd_types_h
+import nim_pandoc/pd_caption_h
+import nim_pandoc/pd_block_h
+import nim_pandoc/pd_inline
+import nim_pandoc/pd_block
 
-import nim_pandoc
 import str_utils
 import log_utils
 import config_utils
+import file_utils
 import utils
 
 const symbols = {
@@ -24,6 +34,22 @@ const symbols = {
   "SmallCaps": "/",
   "NullModifier": "%",
 }.toTable()
+
+type
+  ReplacePair = tuple
+    src: string
+    dst: string
+  ObsLinkItem = tuple
+    mdPath: Option[Path]
+    rawPath: Option[Path]
+    display: Option[string]
+    items: seq[string]
+
+func chainReplace*(s: string, replaces: openArray[ReplacePair]): auto =
+  unpackVarargs(s.multiReplace, replaces.mapIt((it.src, it.dst)))
+
+func escapeSpaces*(s: string): auto =
+  s.replace(" ", "\\ ")
 
 proc toStr*(self: PDInline): string
 proc toStr*(self: PDBlock, indent: int = 0): string
@@ -91,6 +117,11 @@ func linkMaybeMergeable*(tag: string, target: string): (bool, string) =
   #   return (true, &"/ {maybePath}")
   (false, &"{target}")
 
+proc generateImageTag(tag: string, url: string): string =
+  result = &".image {url}\n"
+  if tag.len() > 0:
+    result = &".alt {tag}\n{result}"
+
 proc toStr*(self: PDInlineLink): string =
   let (attr, inlines, target) = self.c
   let tag = inlines.toStr()
@@ -103,7 +134,7 @@ proc toStr*(self: PDInlineLink): string =
         result &= &"[{tag}]"
     of "Image":
       logWarn(&"I'm sure this is NOT the correct image syntax... Please help: {target}")
-      return [&"Alt text: {tag}", &".image {target}", ""].join("\n")
+      return generateImageTag(tag, target.url)
     else:
       unreachable(&"PDInlineLink: {self.t=}")
 
@@ -227,14 +258,11 @@ proc compileDefinition*(item: (seq[PDInline], seq[seq[PDBlock]]), indent: int = 
 proc toStr*(self: PDBlockDefinitionList, indent: int = 0): string =
   self.c.mapIt(it.compileDefinition(indent)).join("\n")
 
-func chainReplace*(s: string, replaces: openArray[tuple[src, dst: string]]): auto =
-  unpackVarargs(s.parallelReplace, replaces.mapIt((pattern: it.src.peg, repl: it.dst)))
-
 proc mergeObsidianTags*(strBlock: var string): seq[string] =
   var match: RegexMatch2
   while strBlock.find(re2"#label [^\n]+\n#label ([^\n]+)", match):
     let slice = match.group(0)
-    let label = strBlock[slice].strip().replace(" ", """\ """)
+    let label = strBlock[slice].strip().escapeSpaces()
     const ignore = "\n#label ".len()
     result.add(label)
     strBlock = &"{strBlock[0 ..< slice.a - ignore]} {label} {strBlock.substr(slice.b + 1)}"
@@ -243,18 +271,65 @@ proc detectObsidianTags*(strBlock: var string): seq[string] =
   let tagMatches = strBlock.findAll(re2"#([a-zA-Z][\w\-_/]+)[\n\s]")
   if tagMatches.len() == 0:
     return
-  strBlock = strBlock.chainReplace(tagMatches.mapIt(
-    (src: &" '#{strBlock[it.group(0)]}' ", dst: "\n#label " & strBlock[it.group(0)])))
+  let matches = tagMatches.mapIt(strBlock[it.group(0)])
+  strBlock = strBlock.chainReplace(matches.mapIt((src: "#" & it, dst: "\n#label " & it)))
   result = strBlock.mergeObsidianTags()
   for match in strBlock.findAll(re2"\n(#+) "):
     strBlock[match.group(0)] = '*'.repeat(match.group(0).len())
 
+proc parseObsidianLink*(link: string, workRootDir: Path): ObsLinkItem =
+  var vertBar = link.find('|')
+  if vertBar < 0:
+    vertBar = link.len()
+  else:
+    result.display = some(link.substr(vertBar + 1))
+  let items = link[0 ..< vertBar].split('#')
+  if items.len() > 1:
+    result.items.add(items[1 .. ^1].filterIt(not it.startsWith('^')))
+  result.rawPath = workRootDir.bfsFileTree(items[0], some(""))
+  if result.rawPath.isNone():
+    result.mdPath = workRootDir.bfsFileTree(items[0], some(".md"))
+
+proc detectObsidianLinks*(strBlock: var string): seq[string] =
+  var replaces = newSeq[ReplacePair]()
+  let workRootDir = getConfig().workRootDir
+  for match in strBlock.findAll(re2"""\[\[([^\n]+)\]\]"""):
+    let s = strBlock[match.group(0)]
+    logDebug(s)
+    let item = s.parseObsidianLink(workRootDir)
+    let display = if item.display.isSome(): &"[{item.display.get()}]" else: ""
+    if item.rawPath.isSome():
+      let relative = item.rawPath.get().relativePath(workRootDir).string
+      result.add(s)
+      if match.group(0).a >= 3 and strBlock[match.group(0).a - 3] == '!': # Image
+        let imgTagString = generateImageTag(item.display.get(""), escapeSpaces(&"$/{relative}"))
+        replaces.add((src: &"""![[{s}]]""", dst: "\n" & imgTagString))
+      else:
+        replaces.add((src: &"""[[{s}]]""", dst: &"""{{/ $/{relative}}}{display}"""))
+    elif item.mdPath.isSome():
+      let relative = item.mdPath.get().relativePath(workRootDir).changeFileExt("").string
+      var headers: string
+      if item.items.len() == 1:
+        headers = &"# {item.items[0]}"
+      else:
+        headers = item.items.zip(toSeq(1 .. item.items.len())).mapIt('*'.repeat(it[1]) & &" {it[0]}").join(" : ")
+      result.add(s)
+      replaces.add((src: &"""[[{s}]]""", dst: &"""{{:$/{relative}:{headers}}}{display}"""))
+    else:
+      logWarn(&"Found tag: '{s}' but reference not found in {workRootDir=}.")
+  strBlock = strBlock.chainReplace(replaces)
+
 proc toStr*(self: PDBlockPlain, indent: int = 0): string =
   result = self.c.map(toStr).join("") & " "
+  let isObsidian = getConfig().isObsidian
+  if isObsidian:
+    let linkDetected = result.detectObsidianLinks()
+    if linkDetected.len() > 0:
+      logInfo(&"Obsidian link detected: {linkDetected}")
   if self.t == "Plain":
     discard
   elif self.t == "Para":
-    if getConfig().isObsidian:
+    if isObsidian:
       let tagDetected = result.detectObsidianTags()
       if tagDetected.len() > 0:
         logInfo(&"Obsidian tag detected: {tagDetected}")
@@ -291,8 +366,16 @@ proc toStr*(self: PDBlockDiv, indent: int = 0): string =
   let (attr, blocks) = self.c
   blocks.toStr().join("")
 
+proc toStr*(self: PDCaption, indent: int = 0): string =
+  self[1].toStr().join("")
+
 proc toStr*(self: PDBlockFigure, indent: int = 0): string =
-  unreachable(&"Figure: {self.t=}, {self.c=}")
+  let (_, caption, blocks) = self.c
+  let captionString = caption.toStr(indent)
+  result = blocks.toStr().join("")
+  if not result.contains(captionString):
+    logWarn(&"Add caption: `{captionString}` to image. I don't know the syntax tho...")
+    return ["@caption " & captionString, result.strip(), "@end"].join("\n")
 
 proc toStr*(self: PDBlockTable, indent: int = 0): string =
   unreachable(&"Table: {self.t=}, {self.c=}")
