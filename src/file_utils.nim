@@ -11,6 +11,15 @@ template f*(path: Path): auto =
 func `$`*(path: Path): auto =
   path.f
 
+proc bfsFileTree*(rootDir: Path, filename: string, suffix: Option[string] = none(string)): Option[Path] =
+  for path in rootDir.walkDirRec({pcFile, pcLinkToFile}, {pcDir, pcLinkToDir}):
+    let (dir, basename, ext) = path.splitFile()
+    if basename.f == filename and ext == suffix.get(ext):
+      return some(path)
+    elif suffix.get("-").len() == 0 and (basename.f & ext) == filename:
+      return some(path)
+  none(Path)
+
 func getSomePath*(path: string): auto =
   if path.len() == 0:
     return none(Path)
