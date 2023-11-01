@@ -36,9 +36,15 @@
 <li><a class="reference external"
           data-doc-search-tag="utils: proc argsWithDefault[T](args: seq[T]; index: int; default: T): T" href="src/utils.html#argsWithDefault%2Cseq%5BT%5D%2Cint%2CT">utils: proc argsWithDefault[T](args: seq[T]; index: int; default: T): T</a></li>
           </ul></dd>
+<dt><a name="bfsFileTree" href="#bfsFileTree"><span>bfsFileTree:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="file_utils: proc bfsFileTree(rootDir: Path; filename: string;
+            suffix: Option[string] = none(string)): Option[Path]" href="src/file_utils.html#bfsFileTree%2CPath%2Cstring%2COption%5Bstring%5D">file_utils: proc bfsFileTree(rootDir: Path; filename: string;
+            suffix: Option[string] = none(string)): Option[Path]</a></li>
+          </ul></dd>
 <dt><a name="chainReplace" href="#chainReplace"><span>chainReplace:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="pd2norg: proc chainReplace(s: string; replaces: openArray[tuple[src, dst: string]]): auto" href="src/pd2norg.html#chainReplace%2Cstring%2CopenArray%5Btuple%5Bstring%2Cstring%5D%5D">pd2norg: proc chainReplace(s: string; replaces: openArray[tuple[src, dst: string]]): auto</a></li>
+          data-doc-search-tag="pd2norg: proc chainReplace(s: string; replaces: openArray[ReplacePair]): auto" href="src/pd2norg.html#chainReplace%2Cstring%2CopenArray%5BReplacePair%5D">pd2norg: proc chainReplace(s: string; replaces: openArray[ReplacePair]): auto</a></li>
           </ul></dd>
 <dt><a name="compileDefinition" href="#compileDefinition"><span>compileDefinition:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -52,9 +58,17 @@
 <li><a class="reference external"
           data-doc-search-tag="utils: proc deleteIf[T](a: var seq[T]; i: int)" href="src/utils.html#deleteIf%2Cseq%5BT%5D%2Cint">utils: proc deleteIf[T](a: var seq[T]; i: int)</a></li>
           </ul></dd>
+<dt><a name="detectObsidianLinks" href="#detectObsidianLinks"><span>detectObsidianLinks:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc detectObsidianLinks(strBlock: var string): seq[string]" href="src/pd2norg.html#detectObsidianLinks%2Cstring">pd2norg: proc detectObsidianLinks(strBlock: var string): seq[string]</a></li>
+          </ul></dd>
 <dt><a name="detectObsidianTags" href="#detectObsidianTags"><span>detectObsidianTags:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc detectObsidianTags(strBlock: var string): seq[string]" href="src/pd2norg.html#detectObsidianTags%2Cstring">pd2norg: proc detectObsidianTags(strBlock: var string): seq[string]</a></li>
+          </ul></dd>
+<dt><a name="escapeSpaces" href="#escapeSpaces"><span>escapeSpaces:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc escapeSpaces(s: string): auto" href="src/pd2norg.html#escapeSpaces%2Cstring">pd2norg: proc escapeSpaces(s: string): auto</a></li>
           </ul></dd>
 <dt><a name="f" href="#f"><span>f:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -128,6 +142,10 @@
 <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc parseHTML(s: string): string" href="src/pd2norg.html#parseHTML%2Cstring">pd2norg: proc parseHTML(s: string): string</a></li>
           </ul></dd>
+<dt><a name="parseObsidianLink" href="#parseObsidianLink"><span>parseObsidianLink:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem" href="src/pd2norg.html#parseObsidianLink%2Cstring%2CPath">pd2norg: proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem</a></li>
+          </ul></dd>
 <dt><a name="prepareOutFile" href="#prepareOutFile"><span>prepareOutFile:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="file_utils: proc prepareOutFile(path: Option[Path]; force: bool = false): auto" href="src/file_utils.html#prepareOutFile%2COption%5BPath%5D%2Cbool">file_utils: proc prepareOutFile(path: Option[Path]; force: bool = false): auto</a></li>
@@ -180,6 +198,8 @@
           <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc toStr(self: PDBlockTable; indent: int = 0): string" href="src/pd2norg.html#toStr%2CPDBlockTable%2Cint">pd2norg: proc toStr(self: PDBlockTable; indent: int = 0): string</a></li>
           <li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc toStr(self: PDCaption; indent: int = 0): string" href="src/pd2norg.html#toStr%2CPDCaption%2Cint">pd2norg: proc toStr(self: PDCaption; indent: int = 0): string</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc toStr(self: PDCitation): string" href="src/pd2norg.html#toStr%2CPDCitation">pd2norg: proc toStr(self: PDCitation): string</a></li>
           <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc toStr(self: PDInline): string" href="src/pd2norg.html#toStr%2CPDInline">pd2norg: proc toStr(self: PDInline): string</a></li>
@@ -218,7 +238,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-10-31 18:22:58 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-11-01 06:50:11 UTC</small>
       </div>
     </div>
   </div>

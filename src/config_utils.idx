@@ -1,4 +1,4 @@
 nimTitle	config_utils	src/config_utils.html	module src/config_utils		0
-nim	Config	src/config_utils.html#Config	type Config		2
-nim	setConfig	src/config_utils.html#setConfig,Config	proc setConfig(new: Config)		8
-nim	getConfig	src/config_utils.html#getConfig	proc getConfig(): auto		11
+nim	Config	src/config_utils.html#Config	type Config		4
+nim	setConfig	src/config_utils.html#setConfig,Config	proc setConfig(new: Config)		11
+nim	getConfig	src/config_utils.html#getConfig	proc getConfig(): auto		14
