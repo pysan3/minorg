@@ -4,7 +4,7 @@ description:
 authors: takuto
 categories:
 created: 2023-10-30T05:11:49+0900
-updated: 2023-10-30T20:22:54+0900
+updated: 2023-11-02T19:44:34+0900
 version: 1.1.1
 @end
 
@@ -25,6 +25,7 @@ version: 1.1.1
    -- {*** Command}
    -- {*** Example}
    - {** Known Issues}
+   -- {# Obsidian}
    - {** Compile From Source}
    - {** Contribution}
    - {** License}
@@ -39,25 +40,42 @@ version: 1.1.1
     -- `minorg help`
 
 *** Example
-    - Use `-i`, `-o` flags (`--input`, `--output`)
-    @code bash
-    $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
-    $ norganic json --input ./1.0-specifications.norg --output ./parsed.json
-    $ minorg generate -i ./parsed.json -o out.norg
-    $ nvim out.norg
-    @end
-    - Use `stdin`, `stdout`
-    @code bash
-    $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
-    $ norganic json --input ./1.0-specifications.norg | minorg generate > out.norg
-    $ nvim out.norg
-    @end
+**** Basic Usage
+     - Use `-i`, `-o` flags (`--input`, `--output`)
+     @code bash
+     $ pandoc -f markdown -t json -o parsed.json ./your/markdown/file.md
+     $ minorg generate -i parsed.json -o output.norg
+     @end
+     - Use `stdin`, `stdout`
+     @code bash
+     $ pandoc -f markdown -t json ./your/markdown/file.md | minorg generate > output.norg
+     @end
 
-    If you want to convert from Obsidian, checkout this repo as well: {https://github.com/jonboh/obsidian2neorg}.
+**** Other Useful Flags
+     - `-v`, `--verbose`
+     -- Please use this flag to report issues.
+     - `-f`, `--force`
+     -- Force overwrite output file if exists.
+     -- Also automatically creates parent directories if not exists.
 
-    This parser also takes some amount of care of obsidian specific format, but requires pandoc to be able to
-    parse the document anyways.
-    Please use the `--isObsidian` flag and read {# Obsidian Style Tags Are Not Working} section for more information.
+**** Recursive Directory of Markdown
+     @code bash
+     command find . -type f -name '*.md' | while read f; do
+       pandoc -f markdown -t json "$f" | minorg generate -o "${f}.norg"
+     done
+     @end
+
+**** Recursive Directory of Obsidian Notes
+     This parser also takes some amount of care of obsidian specific format.
+     Please use the `--isObsidian` flag and read {# Obsidian Style Tags Are Not Working} section for more information.
+
+**** Test It's Capability Against Norg Specification File
+     @code bash
+     $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
+     $ norganic json --input ./1.0-specifications.norg --output ./parsed.json
+     $ minorg generate -i ./parsed.json -o out.norg
+     $ nvim out.norg
+     @end
 
 ** Known Issues
 

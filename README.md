@@ -29,6 +29,7 @@ version:
     - [Command](#command)
     - [Example](#example)
 - [Known Issues](#known-issues)
+    - [Obsidian](#obsidian)
 - [Compile From Source](#compile-from-source)
 - [Contribution](#contribution)
 - [License](#license)
@@ -50,25 +51,51 @@ version:
 
 ### Example
 
+#### Basic Usage
+
 - Use `-i`, `-o` flags (`--input`, `--output`)
+```bash
+$ pandoc -f markdown -t json -o parsed.json ./your/markdown/file.md
+$ minorg generate -i parsed.json -o output.norg
+```
+- Use `stdin`, `stdout`
+```bash
+$ pandoc -f markdown -t json ./your/markdown/file.md | minorg generate > output.norg
+```
+
+
+#### Other Useful Flags
+
+- `-v`, `--verbose`
+    - Please use this flag to report issues.
+- `-f`, `--force`
+    - Force overwrite output file if exists.
+    - Also automatically creates parent directories if not exists.
+
+
+#### Recursive Directory of Markdown
+
+```bash
+command find . -type f -name '*.md' | while read f; do
+  pandoc -f markdown -t json "$f" | minorg generate -o "${f}.norg"
+done
+```
+
+
+#### Recursive Directory of Obsidian Notes
+
+This parser also takes some amount of care of obsidian specific format.
+Please use the `--isObsidian` flag and read [Obsidian Style Tags Are Not Working](#obsidian-style-tags-are-not-working) section for more information.
+
+
+#### Test It's Capability Against Norg Specification File
+
 ```bash
 $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
 $ norganic json --input ./1.0-specifications.norg --output ./parsed.json
 $ minorg generate -i ./parsed.json -o out.norg
 $ nvim out.norg
 ```
-- Use `stdin`, `stdout`
-```bash
-$ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
-$ norganic json --input ./1.0-specifications.norg | minorg generate > out.norg
-$ nvim out.norg
-```
-
-If you want to convert from Obsidian, checkout this repo as well: [https://github.com/jonboh/obsidian2neorg](https://github.com/jonboh/obsidian2neorg).
-
-This parser also takes some amount of care of obsidian specific format, but requires pandoc to be able to
-parse the document anyways.
-Please use the `--isObsidian` flag and read [Obsidian Style Tags Are Not Working](#obsidian-style-tags-are-not-working) section for more information.
 
 
 ## Known Issues
