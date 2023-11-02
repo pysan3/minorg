@@ -3,39 +3,40 @@ nim	chainReplace	src/pd2norg.html#chainReplace,string,openArray[ReplacePair]	pro
 nim	escapeSpaces	src/pd2norg.html#escapeSpaces,string	proc escapeSpaces(s: string): auto		51
 nim	toStr	src/pd2norg.html#toStr,PDInline	proc toStr(self: PDInline): string		54
 nim	toStr	src/pd2norg.html#toStr,PDBlock,int	proc toStr(self: PDBlock; indent: int = 0): string		55
-nim	toStr	src/pd2norg.html#toStr,seq[PDBlock],int	proc toStr(self: seq[PDBlock]; indent: int = 0): seq[string]		57
-nim	toStr	src/pd2norg.html#toStr,seq[PDInline]	proc toStr(self: seq[PDInline]): string		60
-nim	toStr	src/pd2norg.html#toStr,PDTarget	proc toStr(self: PDTarget): string		65
-nim	toStr	src/pd2norg.html#toStr,PDInlineStr	proc toStr(self: PDInlineStr): string		68
-nim	toStr	src/pd2norg.html#toStr,PDInlineSpace	proc toStr(self: PDInlineSpace): string		75
-nim	linkMaybeMergeable	src/pd2norg.html#linkMaybeMergeable,string,string	proc linkMaybeMergeable(tag: string; target: string): (bool, string)		86
-nim	toStr	src/pd2norg.html#toStr,PDInlineLink	proc toStr(self: PDInlineLink): string		125
-nim	toStr	src/pd2norg.html#toStr,PDInlineCode	proc toStr(self: PDInlineCode): string		141
-nim	toStr	src/pd2norg.html#toStr,PDInlineEmph	proc toStr(self: PDInlineEmph): string		145
-nim	parseHTML	src/pd2norg.html#parseHTML,string	proc parseHTML(s: string): string		152
-nim	toStr	src/pd2norg.html#toStr,PDInlineRawInline	proc toStr(self: PDInlineRawInline): string		167
-nim	toStr	src/pd2norg.html#toStr,PDInlineQuoted	proc toStr(self: PDInlineQuoted): string		175
-nim	toStr	src/pd2norg.html#toStr,PDCitation	proc toStr(self: PDCitation): string		180
-nim	toStr	src/pd2norg.html#toStr,PDInlineCite	proc toStr(self: PDInlineCite): string		184
-nim	toStr	src/pd2norg.html#toStr,PDInlineSpan	proc toStr(self: PDInlineSpan): string		188
-nim	toStr	src/pd2norg.html#toStr,PDInlineMath,int	proc toStr(self: PDInlineMath; indent: int = 0): string		192
-nim	toStr	src/pd2norg.html#toStr,PDBlockHeader,int	proc toStr(self: PDBlockHeader; indent: int = 0): string		228
-nim	toStr	src/pd2norg.html#toStr,PDBlockBulletList,int	proc toStr(self: PDBlockBulletList; indent: int = 0): string		235
-nim	toStr	src/pd2norg.html#toStr,PDBlockOrderedList,int	proc toStr(self: PDBlockOrderedList; indent: int = 0): string		241
-nim	compileDefinition	src/pd2norg.html#compileDefinition,,int	proc compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string		248
-nim	toStr	src/pd2norg.html#toStr,PDBlockDefinitionList,int	proc toStr(self: PDBlockDefinitionList; indent: int = 0): string		258
-nim	mergeObsidianTags	src/pd2norg.html#mergeObsidianTags,string	proc mergeObsidianTags(strBlock: var string): seq[string]		261
-nim	detectObsidianTags	src/pd2norg.html#detectObsidianTags,string	proc detectObsidianTags(strBlock: var string): seq[string]		270
-nim	parseObsidianLink	src/pd2norg.html#parseObsidianLink,string,Path	proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem		280
-nim	detectObsidianLinks	src/pd2norg.html#detectObsidianLinks,string	proc detectObsidianLinks(strBlock: var string): seq[string]		293
-nim	toStr	src/pd2norg.html#toStr,PDBlockPlain,int	proc toStr(self: PDBlockPlain; indent: int = 0): string		322
-nim	toStr	src/pd2norg.html#toStr,PDBlockCodeBlock,int	proc toStr(self: PDBlockCodeBlock; indent: int = 0): string		341
-nim	toStr	src/pd2norg.html#toStr,PDBlockHorizontalRule,int	proc toStr(self: PDBlockHorizontalRule; indent: int = 0): string		350
-nim	toStr	src/pd2norg.html#toStr,PDBlockLineBlock,int	proc toStr(self: PDBlockLineBlock; indent: int = 0): string		353
-nim	toStr	src/pd2norg.html#toStr,PDBlockBlockQuote,int	proc toStr(self: PDBlockBlockQuote; indent: int = 0): string		356
-nim	toStr	src/pd2norg.html#toStr,PDBlockRawBlock,int	proc toStr(self: PDBlockRawBlock; indent: int = 0): string		362
-nim	toStr	src/pd2norg.html#toStr,PDBlockDiv,int	proc toStr(self: PDBlockDiv; indent: int = 0): string		365
-nim	toStr	src/pd2norg.html#toStr,PDCaption,int	proc toStr(self: PDCaption; indent: int = 0): string		369
-nim	toStr	src/pd2norg.html#toStr,PDBlockFigure,int	proc toStr(self: PDBlockFigure; indent: int = 0): string		372
-nim	toStr	src/pd2norg.html#toStr,PDBlockTable,int	proc toStr(self: PDBlockTable; indent: int = 0): string		380
+nim	attachAttr	src/pd2norg.html#attachAttr,string,PDAttr	proc attachAttr(s: string; attr: PDAttr): string		57
+nim	toStr	src/pd2norg.html#toStr,seq[PDBlock],int	proc toStr(self: seq[PDBlock]; indent: int = 0): seq[string]		66
+nim	toStr	src/pd2norg.html#toStr,seq[PDInline]	proc toStr(self: seq[PDInline]): string		69
+nim	toStr	src/pd2norg.html#toStr,PDTarget	proc toStr(self: PDTarget): string		74
+nim	toStr	src/pd2norg.html#toStr,PDCaption,int	proc toStr(self: PDCaption; indent: int = 0): string		77
+nim	toStr	src/pd2norg.html#toStr,PDInlineStr	proc toStr(self: PDInlineStr): string		80
+nim	toStr	src/pd2norg.html#toStr,PDInlineSpace	proc toStr(self: PDInlineSpace): string		87
+nim	linkMaybeMergeable	src/pd2norg.html#linkMaybeMergeable,string,string	proc linkMaybeMergeable(tag: string; target: string): (bool, string)		98
+nim	toStr	src/pd2norg.html#toStr,PDInlineLink	proc toStr(self: PDInlineLink): string		137
+nim	toStr	src/pd2norg.html#toStr,PDInlineCode	proc toStr(self: PDInlineCode): string		154
+nim	toStr	src/pd2norg.html#toStr,PDInlineEmph	proc toStr(self: PDInlineEmph): string		158
+nim	parseHTML	src/pd2norg.html#parseHTML,string	proc parseHTML(s: string): string		165
+nim	toStr	src/pd2norg.html#toStr,PDInlineRawInline	proc toStr(self: PDInlineRawInline): string		180
+nim	toStr	src/pd2norg.html#toStr,PDInlineQuoted	proc toStr(self: PDInlineQuoted): string		188
+nim	toStr	src/pd2norg.html#toStr,PDCitation	proc toStr(self: PDCitation): string		193
+nim	toStr	src/pd2norg.html#toStr,PDInlineCite	proc toStr(self: PDInlineCite): string		197
+nim	toStr	src/pd2norg.html#toStr,PDInlineSpan	proc toStr(self: PDInlineSpan): string		201
+nim	toStr	src/pd2norg.html#toStr,PDInlineMath,int	proc toStr(self: PDInlineMath; indent: int = 0): string		205
+nim	toStr	src/pd2norg.html#toStr,PDBlockHeader,int	proc toStr(self: PDBlockHeader; indent: int = 0): string		240
+nim	toStr	src/pd2norg.html#toStr,PDBlockBulletList,int	proc toStr(self: PDBlockBulletList; indent: int = 0): string		247
+nim	toStr	src/pd2norg.html#toStr,PDBlockOrderedList,int	proc toStr(self: PDBlockOrderedList; indent: int = 0): string		253
+nim	compileDefinition	src/pd2norg.html#compileDefinition,,int	proc compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string		260
+nim	toStr	src/pd2norg.html#toStr,PDBlockDefinitionList,int	proc toStr(self: PDBlockDefinitionList; indent: int = 0): string		270
+nim	mergeObsidianTags	src/pd2norg.html#mergeObsidianTags,string	proc mergeObsidianTags(strBlock: var string): seq[string]		273
+nim	detectObsidianTags	src/pd2norg.html#detectObsidianTags,string	proc detectObsidianTags(strBlock: var string): seq[string]		282
+nim	parseObsidianLink	src/pd2norg.html#parseObsidianLink,string,Path	proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem		292
+nim	detectObsidianLinks	src/pd2norg.html#detectObsidianLinks,string	proc detectObsidianLinks(strBlock: var string): seq[string]		305
+nim	toStr	src/pd2norg.html#toStr,PDBlockPlain,int	proc toStr(self: PDBlockPlain; indent: int = 0): string		334
+nim	toStr	src/pd2norg.html#toStr,PDBlockCodeBlock,int	proc toStr(self: PDBlockCodeBlock; indent: int = 0): string		353
+nim	toStr	src/pd2norg.html#toStr,PDBlockHorizontalRule,int	proc toStr(self: PDBlockHorizontalRule; indent: int = 0): string		363
+nim	toStr	src/pd2norg.html#toStr,PDBlockLineBlock,int	proc toStr(self: PDBlockLineBlock; indent: int = 0): string		366
+nim	toStr	src/pd2norg.html#toStr,PDBlockBlockQuote,int	proc toStr(self: PDBlockBlockQuote; indent: int = 0): string		370
+nim	toStr	src/pd2norg.html#toStr,PDBlockFigure,int	proc toStr(self: PDBlockFigure; indent: int = 0): string		376
+nim	toStr	src/pd2norg.html#toStr,PDBlockRawBlock,int	proc toStr(self: PDBlockRawBlock; indent: int = 0): string		385
+nim	toStr	src/pd2norg.html#toStr,PDBlockDiv,int	proc toStr(self: PDBlockDiv; indent: int = 0): string		393
+nim	toStr	src/pd2norg.html#toStr,PDBlockTable,int	proc toStr(self: PDBlockTable; indent: int = 0): string		397
 nimgrp	tostr	src/pd2norg.html#toStr-procs-all	proc		54
