@@ -74,6 +74,9 @@ proc toStr*(self: seq[PDInline]): string =
 proc toStr*(self: PDTarget): string =
   self.url
 
+proc toStr*(self: PDCaption, indent: int = 0): string =
+  self[1].toStr().join("")
+
 proc toStr*(self: PDInlineStr): string =
   result = self.c
   if result == "[x]" or result == "☒": # markdown style todo
@@ -150,7 +153,7 @@ proc toStr*(self: PDInlineLink): string =
 
 proc toStr*(self: PDInlineCode): string =
   let (attr, text) = self.c
-  &"`{text}`".attachAttr(attr)
+  attachAttr(&"`{text}`", attr)
 
 proc toStr*(self: PDInlineEmph): string =
   let symbol = symbols[self.t]
@@ -197,7 +200,7 @@ proc toStr*(self: PDInlineCite): string =
 
 proc toStr*(self: PDInlineSpan): string =
   let (attr, inlines) = self.c
-  &"<{inlines.toStr()}>".attachAttr(attr)
+  attachAttr(&"<{inlines.toStr()}>", attr)
 
 proc toStr*(self: PDInlineMath, indent: int = 0): string =
   let (mathType, text) = self.c
@@ -350,7 +353,7 @@ proc toStr*(self: PDBlockPlain, indent: int = 0): string =
 proc toStr*(self: PDBlockCodeBlock, indent: int = 0): string =
   let (attr, code) = self.c
   defer: result = &"\n{result}\n"
-  defer: result.attachAttr()
+  defer: result = result.attachAttr(attr)
   let lang = if attr.classes.len > 0: attr.classes[0] else: ""
   if lang == "norg":
     return ["|example", code, "|end"].join("\n")
@@ -390,17 +393,6 @@ proc toStr*(self: PDBlockRawBlock, indent: int = 0): string =
 proc toStr*(self: PDBlockDiv, indent: int = 0): string =
   let (attr, blocks) = self.c
   blocks.toStr().join("").attachAttr(attr)
-
-proc toStr*(self: PDCaption, indent: int = 0): string =
-  self[1].toStr().join("")
-
-proc toStr*(self: PDBlockFigure, indent: int = 0): string =
-  let (_, caption, blocks) = self.c
-  let captionString = caption.toStr(indent)
-  result = blocks.toStr().join("")
-  if not result.contains(captionString):
-    logWarn(&"Add caption: `{captionString}` to image. I don't know the syntax tho...")
-    return ["@caption " & captionString, result.strip(), "@end"].join("\n")
 
 proc toStr*(self: PDBlockTable, indent: int = 0): string =
   unreachable(&"Table: {self.t=}, {self.c=}")
