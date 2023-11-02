@@ -54,6 +54,15 @@ func escapeSpaces*(s: string): auto =
 proc toStr*(self: PDInline): string
 proc toStr*(self: PDBlock, indent: int = 0): string
 
+proc attachAttr*(s: string, attr: PDAttr): string =
+  result = s
+  if attr.identifier.len() > 0:
+    defer: result = &"#id {attr.identifier}\n" & result.strip(leading = true, trailing = false)
+  if attr.classes.len() > 0:
+    defer: result = "#class " & attr.classes.mapIt(it.strip().escapeSpaces()).join(" ") & "\n" & result
+  if attr.pairs.len() > 0:
+    defer: result = attr.pairs.mapIt(&"#{it.key.strip()} {it.value.strip().escapeSpaces()}").join("\n") & "\n" & result
+
 proc toStr*(self: seq[PDBlock], indent: int = 0): seq[string] =
   self.mapIt(it.toStr(indent))
 
@@ -64,6 +73,9 @@ proc toStr*(self: seq[PDInline]): string =
 
 proc toStr*(self: PDTarget): string =
   self.url
+
+proc toStr*(self: PDCaption, indent: int = 0): string =
+  self[1].toStr().join("")
 
 proc toStr*(self: PDInlineStr): string =
   result = self.c
@@ -124,6 +136,7 @@ proc generateImageTag(tag: string, url: string): string =
 
 proc toStr*(self: PDInlineLink): string =
   let (attr, inlines, target) = self.c
+  defer: result = result.attachAttr(attr)
   let tag = inlines.toStr()
   case self.t:
     of "Link":
@@ -140,7 +153,7 @@ proc toStr*(self: PDInlineLink): string =
 
 proc toStr*(self: PDInlineCode): string =
   let (attr, text) = self.c
-  &"`{text}`"
+  attachAttr(&"`{text}`", attr)
 
 proc toStr*(self: PDInlineEmph): string =
   let symbol = symbols[self.t]
@@ -187,14 +200,13 @@ proc toStr*(self: PDInlineCite): string =
 
 proc toStr*(self: PDInlineSpan): string =
   let (attr, inlines) = self.c
-  &"<{inlines.toStr()}>"
+  attachAttr(&"<{inlines.toStr()}>", attr)
 
 proc toStr*(self: PDInlineMath, indent: int = 0): string =
   let (mathType, text) = self.c
   case mathType.t:
     of "DisplayMath":
-      logError("Do we have norg syntax for math block??")
-      unreachable(&"PDBlockMath: math block unparsable. {mathType.t}: {text=}")
+      return ["", "@math", text, "@end", ""].join("\n")
     of "InlineMath":
       return &"${text}$"
     else:
@@ -340,8 +352,9 @@ proc toStr*(self: PDBlockPlain, indent: int = 0): string =
 
 proc toStr*(self: PDBlockCodeBlock, indent: int = 0): string =
   let (attr, code) = self.c
-  let lang = if attr.classes.len > 0: attr.classes[0] else: ""
   defer: result = &"\n{result}\n"
+  defer: result = result.attachAttr(attr)
+  let lang = if attr.classes.len > 0: attr.classes[0] else: ""
   if lang == "norg":
     return ["|example", code, "|end"].join("\n")
   else:
@@ -351,7 +364,8 @@ proc toStr*(self: PDBlockHorizontalRule, indent: int = 0): string =
   "\n___"
 
 proc toStr*(self: PDBlockLineBlock, indent: int = 0): string =
-  unreachable(&"LineBlock: {self.t=}, {self.c=}")
+  logWarn(&"LineBlock is not supported in norg format for now. Using `chunk` tag.")
+  ["|chunk", self.c.map(toStr).join("\n"), "|end"].join("\n")
 
 proc toStr*(self: PDBlockBlockQuote, indent: int = 0): string =
   defer:
@@ -359,23 +373,26 @@ proc toStr*(self: PDBlockBlockQuote, indent: int = 0): string =
       result &= "\n"
   self.c.mapIt(it.toStr(indent + 1)).mapIt(it.join("")).mapIt("\n" & ">".repeat(indent + 1) & &" {it}").join("")
 
-proc toStr*(self: PDBlockRawBlock, indent: int = 0): string =
-  unreachable(&"RawBlock: {self.t=}, {self.c=}")
-
-proc toStr*(self: PDBlockDiv, indent: int = 0): string =
-  let (attr, blocks) = self.c
-  blocks.toStr().join("")
-
-proc toStr*(self: PDCaption, indent: int = 0): string =
-  self[1].toStr().join("")
-
 proc toStr*(self: PDBlockFigure, indent: int = 0): string =
-  let (_, caption, blocks) = self.c
+  let (attr, caption, blocks) = self.c
+  defer: result = result.attachAttr(attr)
   let captionString = caption.toStr(indent)
   result = blocks.toStr().join("")
   if not result.contains(captionString):
     logWarn(&"Add caption: `{captionString}` to image. I don't know the syntax tho...")
-    return ["@caption " & captionString, result.strip(), "@end"].join("\n")
+    return ["|caption " & captionString, result.strip(), "|end"].join("\n")
+
+proc toStr*(self: PDBlockRawBlock, indent: int = 0): string =
+  let (format, text) = self.c
+  case format:
+    of "html":
+      return text.parseHTML()
+    else:
+      unreachable(&"PDBlockRawBlock(UNKNOWN FORMAT): {format=}, {text=}. Please create an issue.")
+
+proc toStr*(self: PDBlockDiv, indent: int = 0): string =
+  let (attr, blocks) = self.c
+  blocks.toStr().join("").attachAttr(attr)
 
 proc toStr*(self: PDBlockTable, indent: int = 0): string =
   unreachable(&"Table: {self.t=}, {self.c=}")
