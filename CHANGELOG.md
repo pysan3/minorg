@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/pysan3/minorg/compare/v2.2.0...v2.3.0) (2023-11-02)
+
+
+### Features
+
+* **pd2norg:** implement remaining features except for tables ([#23](https://github.com/pysan3/minorg/issues/23)) ([0f4c78b](https://github.com/pysan3/minorg/commit/0f4c78b540b086621c8e7ab62ff98fc3ea677512))
+
 ## [2.2.0](https://github.com/pysan3/minorg/compare/v2.1.1...v2.2.0) (2023-11-01)
 
 
