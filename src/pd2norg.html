@@ -54,8 +54,32 @@
   <details open>
     <summary><a class="reference reference-toplevel" href="#12" id="62">Procs</a></summary>
     <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">attachAttr
-  <li><a class="reference" href="#attachAttr%2Cstring%2CPDAttr" title="attachAttr(s: string; attr: PDAttr): string">attachAttr(s: string; attr: PDAttr): string</a></li>
+      <ul class="simple nested-toc-section">+
+  <li><a class="reference" href="#%2B%2CCoord%2CCoord" title="`+`(self, o: Coord): auto">`+`(self, o: Coord): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">==
+  <li><a class="reference" href="#%3D%3D%2CCoord%2CCoord" title="`==`(self, o: Coord): auto">`==`(self, o: Coord): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">attachAttr
+  <li><a class="reference" href="#attachAttr%2Cstring%2CPDAttr%2Cbool" title="attachAttr(s: string; attr: PDAttr; global: bool = true): string">attachAttr(s: string; attr: PDAttr; global: bool = true): string</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">bootstrapCell
+  <li><a class="reference" href="#bootstrapCell%2CCell" title="bootstrapCell(self: Cell): string">bootstrapCell(self: Cell): string</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">c
+  <li><a class="reference" href="#c%2Cint%2Cint" title="c(row, col: int): Coord">c(row, col: int): Coord</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">calcTableCellName
+  <li><a class="reference" href="#calcTableCellName%2CCoord" title="calcTableCellName(coord: Coord): string">calcTableCellName(coord: Coord): string</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">calcTableColumnName
+  <li><a class="reference" href="#calcTableColumnName%2Cint" title="calcTableColumnName(num: int): string">calcTableColumnName(num: int): string</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">chainReplace
@@ -78,12 +102,40 @@
   <li><a class="reference" href="#escapeSpaces%2Cstring" title="escapeSpaces(s: string): auto">escapeSpaces(s: string): auto</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">fillTable
+  <li><a class="reference" href="#fillTable%2Cseq%5BPDRow%5D%2Cint%2Cint" title="fillTable(rows: seq[PDRow]; colCount: int; startRow: int = 0): seq[Cell]">fillTable(rows: seq[PDRow]; colCount: int; startRow: int = 0): seq[Cell]</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">filterJoin
+  <li><a class="reference" href="#filterJoin%2CopenArray%5Bstring%5D%2Cstring" title="filterJoin(self: openArray[string]; sep: string = &quot;\n&quot;): auto">filterJoin(self: openArray[string]; sep: string = &quot;\n&quot;): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">getFirstEmpty
+  <li><a class="reference" href="#getFirstEmpty%2CCellManager%2CCoord" title="getFirstEmpty(self: CellManager; coord: Coord): auto">getFirstEmpty(self: CellManager; coord: Coord): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">getValue
+  <li><a class="reference" href="#getValue%2CCellManager%2CCoord" title="getValue(self: CellManager; coord: Coord): auto">getValue(self: CellManager; coord: Coord): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">iterEnum
+  <li><a class="reference" href="#iterEnum%2CopenArray%5BT%5D" title="iterEnum[T](arr: openArray[T]): seq[(int, T)]">iterEnum[T](arr: openArray[T]): seq[(int, T)]</a></li>
+
+</ul>
 <ul class="simple nested-toc-section">linkMaybeMergeable
   <li><a class="reference" href="#linkMaybeMergeable%2Cstring%2Cstring" title="linkMaybeMergeable(tag: string; target: string): (bool, string)">linkMaybeMergeable(tag: string; target: string): (bool, string)</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">lstrip
+  <li><a class="reference" href="#lstrip%2Cstring" title="lstrip(s: string): auto">lstrip(s: string): auto</a></li>
+
+</ul>
 <ul class="simple nested-toc-section">mergeObsidianTags
   <li><a class="reference" href="#mergeObsidianTags%2Cstring" title="mergeObsidianTags(strBlock: var string): seq[string]">mergeObsidianTags(strBlock: var string): seq[string]</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">occupyCells
+  <li><a class="reference" href="#occupyCells%2CCellManager%2CCoord%2Cint%2Cint" title="occupyCells(self: CellManager; start: Coord; useRows, useCols: int)">occupyCells(self: CellManager; start: Coord; useRows, useCols: int)</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">parseHTML
@@ -92,6 +144,30 @@
 </ul>
 <ul class="simple nested-toc-section">parseObsidianLink
   <li><a class="reference" href="#parseObsidianLink%2Cstring%2CPath" title="parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem">parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">parseTableAlignment
+  <li><a class="reference" href="#parseTableAlignment%2CPDAlignment%2Cint%2Cbool" title="parseTableAlignment(alignment: PDAlignment; col: int = -1; global: bool = false): string">parseTableAlignment(alignment: PDAlignment; col: int = -1; global: bool = false): string</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">parseTableBody
+  <li><a class="reference" href="#parseTableBody%2CPDTableBody%2Cint%2Cint" title="parseTableBody(self: PDTableBody; colCount: int; startRow: int): string">parseTableBody(self: PDTableBody; colCount: int; startRow: int): string</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">parseTableCell
+  <li><a class="reference" href="#parseTableCell%2CPDCell%2CCoord" title="parseTableCell(self: PDCell; useCoord: Coord): (Cell, int, int)">parseTableCell(self: PDCell; useCoord: Coord): (Cell, int, int)</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">rstrip
+  <li><a class="reference" href="#rstrip%2Cstring" title="rstrip(s: string): auto">rstrip(s: string): auto</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">setValue
+  <li><a class="reference" href="#setValue%2CCellManager%2CCoord%2Cbool" title="setValue(self: CellManager; coord: Coord; value: bool)">setValue(self: CellManager; coord: Coord; value: bool)</a></li>
+
+</ul>
+<ul class="simple nested-toc-section">shiftSlice
+  <li><a class="reference" href="#shiftSlice%2CSlice%5BT%5D%2CT" title="shiftSlice[T](self: Slice[T]; shift: T): auto">shiftSlice[T](self: Slice[T]; shift: T): auto</a></li>
 
 </ul>
 <ul class="simple nested-toc-section">toStr
@@ -136,7 +212,7 @@
 
   </div>
   <div class="nine columns" id="content">
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L1" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L1" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
 <a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L1" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
     <div id="tocRoot"></div>
@@ -151,15 +227,94 @@
 <div class="section" id="12">
   <h1><a class="toc-backref" href="#12">Procs</a></h1>
   <dl class="item">
-    <div id="attachAttr-procs-all">
-  <div id="attachAttr,string,PDAttr">
-  <dt><pre><span class="Keyword">proc</span> <a href="#attachAttr%2Cstring%2CPDAttr"><span class="Identifier">attachAttr</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">attr</span><span class="Other">:</span> <span class="Identifier">PDAttr</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span>
+    <div id="+-procs-all">
+  <div id="+,Coord,Coord">
+  <dt><pre><span class="Keyword">func</span> <a href="#%2B%2CCoord%2CCoord"><span class="Identifier">`+`</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">o</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L87" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L87" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="==-procs-all">
+  <div id="==,Coord,Coord">
+  <dt><pre><span class="Keyword">func</span> <a href="#%3D%3D%2CCoord%2CCoord"><span class="Identifier">`==`</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">,</span> <span class="Identifier">o</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L90" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L90" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="attachAttr-procs-all">
+  <div id="attachAttr,string,PDAttr,bool">
+  <dt><pre><span class="Keyword">proc</span> <a href="#attachAttr%2Cstring%2CPDAttr%2Cbool"><span class="Identifier">attachAttr</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">attr</span><span class="Other">:</span> <span class="Identifier">PDAttr</span><span class="Other">;</span> <span class="Identifier">global</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L96" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L96" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="bootstrapCell-procs-all">
+  <div id="bootstrapCell,Cell">
+  <dt><pre><span class="Keyword">proc</span> <a href="#bootstrapCell%2CCell"><span class="Identifier">bootstrapCell</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Cell</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L57" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L57" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L467" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L467" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="c-procs-all">
+  <div id="c,int,int">
+  <dt><pre><span class="Keyword">func</span> <a href="#c%2Cint%2Cint"><span class="Identifier">c</span></a><span class="Other">(</span><span class="Identifier">row</span><span class="Other">,</span> <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Coord</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L84" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L84" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="calcTableCellName-procs-all">
+  <div id="calcTableCellName,Coord">
+  <dt><pre><span class="Keyword">proc</span> <a href="#calcTableCellName%2CCoord"><span class="Identifier">calcTableCellName</span></a><span class="Other">(</span><span class="Identifier">coord</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L449" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L449" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="calcTableColumnName-procs-all">
+  <div id="calcTableColumnName,int">
+  <dt><pre><span class="Keyword">proc</span> <a href="#calcTableColumnName%2Cint"><span class="Identifier">calcTableColumnName</span></a><span class="Other">(</span><span class="Identifier">num</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L441" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L441" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -172,8 +327,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L48" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L48" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L65" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L65" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -186,8 +341,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L260" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L260" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L304" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L304" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -201,8 +356,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L305" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L305" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L349" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L349" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -215,8 +370,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L282" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L282" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L326" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L326" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -228,8 +383,77 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L51" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L51" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L68" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L68" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="fillTable-procs-all">
+  <div id="fillTable,seq[PDRow],int,int">
+  <dt><pre><span class="Keyword">proc</span> <a href="#fillTable%2Cseq%5BPDRow%5D%2Cint%2Cint"><span class="Identifier">fillTable</span></a><span class="Other">(</span><span class="Identifier">rows</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">PDRow</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">colCount</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">startRow</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">Cell</span><span class="Other">]</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L512" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L512" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="filterJoin-procs-all">
+  <div id="filterJoin,openArray[string],string">
+  <dt><pre><span class="Keyword">func</span> <a href="#filterJoin%2CopenArray%5Bstring%5D%2Cstring"><span class="Identifier">filterJoin</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">sep</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;\n&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L93" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L93" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="getFirstEmpty-procs-all">
+  <div id="getFirstEmpty,CellManager,Coord">
+  <dt><pre><span class="Keyword">proc</span> <a href="#getFirstEmpty%2CCellManager%2CCoord"><span class="Identifier">getFirstEmpty</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CellManager</span><span class="Other">;</span> <span class="Identifier">coord</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L499" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L499" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="getValue-procs-all">
+  <div id="getValue,CellManager,Coord">
+  <dt><pre><span class="Keyword">proc</span> <a href="#getValue%2CCellManager%2CCoord"><span class="Identifier">getValue</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CellManager</span><span class="Other">;</span> <span class="Identifier">coord</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L492" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L492" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="iterEnum-procs-all">
+  <div id="iterEnum,openArray[T]">
+  <dt><pre><span class="Keyword">func</span> <a href="#iterEnum%2CopenArray%5BT%5D"><span class="Identifier">iterEnum</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">arr</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Other">(</span><span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">]</span></pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L77" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L77" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -242,8 +466,21 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L98" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L98" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L140" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L140" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="lstrip-procs-all">
+  <div id="lstrip,string">
+  <dt><pre><span class="Keyword">func</span> <a href="#lstrip%2Cstring"><span class="Identifier">lstrip</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L71" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L71" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -256,8 +493,22 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L273" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L273" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L317" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L317" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="occupyCells-procs-all">
+  <div id="occupyCells,CellManager,Coord,int,int">
+  <dt><pre><span class="Keyword">proc</span> <a href="#occupyCells%2CCellManager%2CCoord%2Cint%2Cint"><span class="Identifier">occupyCells</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CellManager</span><span class="Other">;</span> <span class="Identifier">start</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">;</span> <span class="Identifier">useRows</span><span class="Other">,</span> <span class="Identifier">useCols</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L504" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L504" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -270,8 +521,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L165" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L165" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L207" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L207" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -284,8 +535,91 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L292" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L292" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L336" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L336" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="parseTableAlignment-procs-all">
+  <div id="parseTableAlignment,PDAlignment,int,bool">
+  <dt><pre><span class="Keyword">proc</span> <a href="#parseTableAlignment%2CPDAlignment%2Cint%2Cbool"><span class="Identifier">parseTableAlignment</span></a><span class="Other">(</span><span class="Identifier">alignment</span><span class="Other">:</span> <span class="Identifier">PDAlignment</span><span class="Other">;</span> <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">-1</span><span class="Other">;</span>
+                         <span class="Identifier">global</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L452" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L452" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="parseTableBody-procs-all">
+  <div id="parseTableBody,PDTableBody,int,int">
+  <dt><pre><span class="Keyword">proc</span> <a href="#parseTableBody%2CPDTableBody%2Cint%2Cint"><span class="Identifier">parseTableBody</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PDTableBody</span><span class="Other">;</span> <span class="Identifier">colCount</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">startRow</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L527" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L527" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="parseTableCell-procs-all">
+  <div id="parseTableCell,PDCell,Coord">
+  <dt><pre><span class="Keyword">proc</span> <a href="#parseTableCell%2CPDCell%2CCoord"><span class="Identifier">parseTableCell</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PDCell</span><span class="Other">;</span> <span class="Identifier">useCoord</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><span class="Identifier">Cell</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">int</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L481" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L481" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="rstrip-procs-all">
+  <div id="rstrip,string">
+  <dt><pre><span class="Keyword">func</span> <a href="#rstrip%2Cstring"><span class="Identifier">rstrip</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L74" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L74" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="setValue-procs-all">
+  <div id="setValue,CellManager,Coord,bool">
+  <dt><pre><span class="Keyword">proc</span> <a href="#setValue%2CCellManager%2CCoord%2Cbool"><span class="Identifier">setValue</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">CellManager</span><span class="Other">;</span> <span class="Identifier">coord</span><span class="Other">:</span> <span class="Identifier">Coord</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L485" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L485" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+
+  </dd>
+</div>
+
+</div>
+<div id="shiftSlice-procs-all">
+  <div id="shiftSlice,Slice[T],T">
+  <dt><pre><span class="Keyword">func</span> <a href="#shiftSlice%2CSlice%5BT%5D%2CT"><span class="Identifier">shiftSlice</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">Slice</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">shift</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">auto</span></pre></dt>
+  <dd>
+    
+    
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L524" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L524" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -299,8 +633,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L55" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L55" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L82" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L82" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -310,8 +644,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L370" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L370" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L414" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L414" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -321,8 +655,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L247" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L247" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L291" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L291" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -332,8 +666,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L353" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L353" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L397" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L397" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -343,8 +677,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L270" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L270" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L314" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L314" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -354,8 +688,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L393" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L393" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L437" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L437" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -365,8 +699,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L376" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L376" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L420" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L420" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -377,8 +711,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L240" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L240" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L284" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L284" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -388,8 +722,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L363" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L363" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L407" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L407" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -399,8 +733,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L366" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L366" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L410" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L410" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -410,8 +744,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L253" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L253" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L297" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L297" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -422,8 +756,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L334" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L334" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L378" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L378" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -434,20 +768,19 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L385" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L385" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L429" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L429" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
 <div id="toStr,PDBlockTable,int">
   <dt><pre><span class="Keyword">proc</span> <a href="#toStr%2CPDBlockTable%2Cint"><span class="Identifier">toStr</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PDBlockTable</span><span class="Other">;</span> <span class="Identifier">indent</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CatchableError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L397" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L397" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L538" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L538" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -457,8 +790,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L77" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L77" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L119" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L119" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -468,8 +801,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L193" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L193" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L235" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L235" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -479,8 +812,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L54" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L54" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L81" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L81" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -490,8 +823,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L197" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L197" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L239" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L239" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -501,8 +834,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L154" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L154" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L196" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L196" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -512,8 +845,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L158" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L158" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L200" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L200" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -524,8 +857,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L137" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L137" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L179" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L179" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -535,8 +868,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L205" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L205" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L249" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L249" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -546,8 +879,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L188" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L188" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L230" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L230" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -558,8 +891,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L180" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L180" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L222" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L222" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -569,19 +902,19 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L87" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L87" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L129" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L129" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
 <div id="toStr,PDInlineSpan">
-  <dt><pre><span class="Keyword">proc</span> <a href="#toStr%2CPDInlineSpan"><span class="Identifier">toStr</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PDInlineSpan</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+  <dt><pre><span class="Keyword">proc</span> <a href="#toStr%2CPDInlineSpan"><span class="Identifier">toStr</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">PDInlineSpan</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L201" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L201" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L243" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L243" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -590,8 +923,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L80" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L80" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L122" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L122" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -600,8 +933,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L74" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L74" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L116" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L116" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -611,8 +944,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L66" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L66" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L108" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L108" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -622,8 +955,8 @@
   <dd>
     
     
-    <a href="https://github.com/pysan3/minorg/tree/c8eca257ce974db71209baf3c74f294e7b6247f6/src/pd2norg.nim#L69" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
-<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L69" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
+    <a href="https://github.com/pysan3/minorg/tree/d14b639a70b63e7c73297c152e1d0df7384a6a91/src/pd2norg.nim#L111" class="link-seesrc" target="_blank">Source</a>&nbsp;&nbsp;
+<a href="https://github.com/pysan3/minorg/edit/main/src/pd2norg.nim#L111" class="link-seesrc" target="_blank" >Edit</a>&nbsp;&nbsp;
 
   </dd>
 </div>
@@ -639,7 +972,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-11-02 13:55:43 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-11-03 20:10:51 UTC</small>
       </div>
     </div>
   </div>

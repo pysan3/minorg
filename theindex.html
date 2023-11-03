@@ -26,6 +26,14 @@
 <li><a class="reference external"
           data-doc-search-tag="file_utils: proc `$`(path: Path): auto" href="src/file_utils.html#%24%2CPath">file_utils: proc `$`(path: Path): auto</a></li>
           </ul></dd>
+<dt><a name="%60%2B%60" href="#%60%2B%60"><span>`+`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc `+`(self, o: Coord): auto" href="src/pd2norg.html#%2B%2CCoord%2CCoord">pd2norg: proc `+`(self, o: Coord): auto</a></li>
+          </ul></dd>
+<dt><a name="%60%3D%3D%60" href="#%60%3D%3D%60"><span>`==`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc `==`(self, o: Coord): auto" href="src/pd2norg.html#%3D%3D%2CCoord%2CCoord">pd2norg: proc `==`(self, o: Coord): auto</a></li>
+          </ul></dd>
 <dt><a name="addUniq" href="#addUniq"><span>addUniq:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="utils: proc addUniq[T](a: var seq[T]; b: seq[T])" href="src/utils.html#addUniq%2Cseq%5BT%5D%2Cseq%5BT%5D">utils: proc addUniq[T](a: var seq[T]; b: seq[T])</a></li>
@@ -38,13 +46,29 @@
           </ul></dd>
 <dt><a name="attachAttr" href="#attachAttr"><span>attachAttr:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="pd2norg: proc attachAttr(s: string; attr: PDAttr): string" href="src/pd2norg.html#attachAttr%2Cstring%2CPDAttr">pd2norg: proc attachAttr(s: string; attr: PDAttr): string</a></li>
+          data-doc-search-tag="pd2norg: proc attachAttr(s: string; attr: PDAttr; global: bool = true): string" href="src/pd2norg.html#attachAttr%2Cstring%2CPDAttr%2Cbool">pd2norg: proc attachAttr(s: string; attr: PDAttr; global: bool = true): string</a></li>
           </ul></dd>
 <dt><a name="bfsFileTree" href="#bfsFileTree"><span>bfsFileTree:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="file_utils: proc bfsFileTree(rootDir: Path; filename: string;
             suffix: Option[string] = none(string)): Option[Path]" href="src/file_utils.html#bfsFileTree%2CPath%2Cstring%2COption%5Bstring%5D">file_utils: proc bfsFileTree(rootDir: Path; filename: string;
             suffix: Option[string] = none(string)): Option[Path]</a></li>
+          </ul></dd>
+<dt><a name="bootstrapCell" href="#bootstrapCell"><span>bootstrapCell:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc bootstrapCell(self: Cell): string" href="src/pd2norg.html#bootstrapCell%2CCell">pd2norg: proc bootstrapCell(self: Cell): string</a></li>
+          </ul></dd>
+<dt><a name="c" href="#c"><span>c:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc c(row, col: int): Coord" href="src/pd2norg.html#c%2Cint%2Cint">pd2norg: proc c(row, col: int): Coord</a></li>
+          </ul></dd>
+<dt><a name="calcTableCellName" href="#calcTableCellName"><span>calcTableCellName:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc calcTableCellName(coord: Coord): string" href="src/pd2norg.html#calcTableCellName%2CCoord">pd2norg: proc calcTableCellName(coord: Coord): string</a></li>
+          </ul></dd>
+<dt><a name="calcTableColumnName" href="#calcTableColumnName"><span>calcTableColumnName:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc calcTableColumnName(num: int): string" href="src/pd2norg.html#calcTableColumnName%2Cint">pd2norg: proc calcTableColumnName(num: int): string</a></li>
           </ul></dd>
 <dt><a name="chainReplace" href="#chainReplace"><span>chainReplace:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -78,6 +102,16 @@
 <li><a class="reference external"
           data-doc-search-tag="file_utils: template f(path: Path): auto" href="src/file_utils.html#f.t%2CPath">file_utils: template f(path: Path): auto</a></li>
           </ul></dd>
+<dt><a name="fillTable" href="#fillTable"><span>fillTable:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc fillTable(rows: seq[PDRow]; colCount: int; startRow: int = 0): seq[Cell]" href="src/pd2norg.html#fillTable%2Cseq%5BPDRow%5D%2Cint%2Cint">pd2norg: proc fillTable(rows: seq[PDRow]; colCount: int; startRow: int = 0): seq[Cell]</a></li>
+          </ul></dd>
+<dt><a name="filterJoin" href="#filterJoin"><span>filterJoin:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc filterJoin(self: openArray[string]; sep: string = &quot;
+&quot;): auto" href="src/pd2norg.html#filterJoin%2CopenArray%5Bstring%5D%2Cstring">pd2norg: proc filterJoin(self: openArray[string]; sep: string = &quot;
+&quot;): auto</a></li>
+          </ul></dd>
 <dt><a name="findIf" href="#findIf"><span>findIf:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="utils: proc findIf[T](s: seq[T]; pred: (T {.noSideEffect.} -&gt; bool)): Option[T]" href="src/utils.html#findIf%2Cseq%5BT%5D%2C">utils: proc findIf[T](s: seq[T]; pred: (T {.noSideEffect.} -&gt; bool)): Option[T]</a></li>
@@ -98,9 +132,17 @@
           <li><a class="reference external"
           data-doc-search-tag="file_utils: proc getFileContent(path: Path): auto" href="src/file_utils.html#getFileContent%2CPath">file_utils: proc getFileContent(path: Path): auto</a></li>
           </ul></dd>
+<dt><a name="getFirstEmpty" href="#getFirstEmpty"><span>getFirstEmpty:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc getFirstEmpty(self: CellManager; coord: Coord): auto" href="src/pd2norg.html#getFirstEmpty%2CCellManager%2CCoord">pd2norg: proc getFirstEmpty(self: CellManager; coord: Coord): auto</a></li>
+          </ul></dd>
 <dt><a name="getSomePath" href="#getSomePath"><span>getSomePath:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="file_utils: proc getSomePath(path: string): auto" href="src/file_utils.html#getSomePath%2Cstring">file_utils: proc getSomePath(path: string): auto</a></li>
+          </ul></dd>
+<dt><a name="getValue" href="#getValue"><span>getValue:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc getValue(self: CellManager; coord: Coord): auto" href="src/pd2norg.html#getValue%2CCellManager%2CCoord">pd2norg: proc getValue(self: CellManager; coord: Coord): auto</a></li>
           </ul></dd>
 <dt><a name="isAbstract" href="#isAbstract"><span>isAbstract:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -109,6 +151,10 @@
 <dt><a name="isJson" href="#isJson"><span>isJson:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="file_utils: proc isJson(path: Path): auto" href="src/file_utils.html#isJson%2CPath">file_utils: proc isJson(path: Path): auto</a></li>
+          </ul></dd>
+<dt><a name="iterEnum" href="#iterEnum"><span>iterEnum:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc iterEnum[T](arr: openArray[T]): seq[(int, T)]" href="src/pd2norg.html#iterEnum%2CopenArray%5BT%5D">pd2norg: proc iterEnum[T](arr: openArray[T]): seq[(int, T)]</a></li>
           </ul></dd>
 <dt><a name="joinSepLn" href="#joinSepLn"><span>joinSepLn:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -134,6 +180,10 @@
 <li><a class="reference external"
           data-doc-search-tag="log_utils: template logWarn(args: varargs[string, `$`])" href="src/log_utils.html#logWarn.t%2Cvarargs%5Bstring%2C%5D">log_utils: template logWarn(args: varargs[string, `$`])</a></li>
           </ul></dd>
+<dt><a name="lstrip" href="#lstrip"><span>lstrip:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc lstrip(s: string): auto" href="src/pd2norg.html#lstrip%2Cstring">pd2norg: proc lstrip(s: string): auto</a></li>
+          </ul></dd>
 <dt><a name="mainExamples" href="#mainExamples"><span>mainExamples:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="utils: macro mainExamples(body: untyped): untyped" href="src/utils.html#mainExamples.m%2Cuntyped">utils: macro mainExamples(body: untyped): untyped</a></li>
@@ -141,6 +191,10 @@
 <dt><a name="mergeObsidianTags" href="#mergeObsidianTags"><span>mergeObsidianTags:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc mergeObsidianTags(strBlock: var string): seq[string]" href="src/pd2norg.html#mergeObsidianTags%2Cstring">pd2norg: proc mergeObsidianTags(strBlock: var string): seq[string]</a></li>
+          </ul></dd>
+<dt><a name="occupyCells" href="#occupyCells"><span>occupyCells:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc occupyCells(self: CellManager; start: Coord; useRows, useCols: int)" href="src/pd2norg.html#occupyCells%2CCellManager%2CCoord%2Cint%2Cint">pd2norg: proc occupyCells(self: CellManager; start: Coord; useRows, useCols: int)</a></li>
           </ul></dd>
 <dt><a name="parseHTML" href="#parseHTML"><span>parseHTML:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -150,11 +204,27 @@
 <li><a class="reference external"
           data-doc-search-tag="pd2norg: proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem" href="src/pd2norg.html#parseObsidianLink%2Cstring%2CPath">pd2norg: proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem</a></li>
           </ul></dd>
+<dt><a name="parseTableAlignment" href="#parseTableAlignment"><span>parseTableAlignment:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc parseTableAlignment(alignment: PDAlignment; col: int = -1; global: bool = false): string" href="src/pd2norg.html#parseTableAlignment%2CPDAlignment%2Cint%2Cbool">pd2norg: proc parseTableAlignment(alignment: PDAlignment; col: int = -1; global: bool = false): string</a></li>
+          </ul></dd>
+<dt><a name="parseTableBody" href="#parseTableBody"><span>parseTableBody:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc parseTableBody(self: PDTableBody; colCount: int; startRow: int): string" href="src/pd2norg.html#parseTableBody%2CPDTableBody%2Cint%2Cint">pd2norg: proc parseTableBody(self: PDTableBody; colCount: int; startRow: int): string</a></li>
+          </ul></dd>
+<dt><a name="parseTableCell" href="#parseTableCell"><span>parseTableCell:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc parseTableCell(self: PDCell; useCoord: Coord): (Cell, int, int)" href="src/pd2norg.html#parseTableCell%2CPDCell%2CCoord">pd2norg: proc parseTableCell(self: PDCell; useCoord: Coord): (Cell, int, int)</a></li>
+          </ul></dd>
 <dt><a name="prepareOutFile" href="#prepareOutFile"><span>prepareOutFile:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="file_utils: proc prepareOutFile(path: Option[Path]; force: bool = false): auto" href="src/file_utils.html#prepareOutFile%2COption%5BPath%5D%2Cbool">file_utils: proc prepareOutFile(path: Option[Path]; force: bool = false): auto</a></li>
           <li><a class="reference external"
           data-doc-search-tag="file_utils: proc prepareOutFile(path: Path; force: bool = false): auto" href="src/file_utils.html#prepareOutFile%2CPath%2Cbool">file_utils: proc prepareOutFile(path: Path; force: bool = false): auto</a></li>
+          </ul></dd>
+<dt><a name="rstrip" href="#rstrip"><span>rstrip:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc rstrip(s: string): auto" href="src/pd2norg.html#rstrip%2Cstring">pd2norg: proc rstrip(s: string): auto</a></li>
           </ul></dd>
 <dt><a name="setConfig" href="#setConfig"><span>setConfig:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -163,6 +233,14 @@
 <dt><a name="setLogger" href="#setLogger"><span>setLogger:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="log_utils: proc setLogger(lvl: Level; file: File = stderr)" href="src/log_utils.html#setLogger%2CLevel%2CFile">log_utils: proc setLogger(lvl: Level; file: File = stderr)</a></li>
+          </ul></dd>
+<dt><a name="setValue" href="#setValue"><span>setValue:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc setValue(self: CellManager; coord: Coord; value: bool)" href="src/pd2norg.html#setValue%2CCellManager%2CCoord%2Cbool">pd2norg: proc setValue(self: CellManager; coord: Coord; value: bool)</a></li>
+          </ul></dd>
+<dt><a name="shiftSlice" href="#shiftSlice"><span>shiftSlice:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="pd2norg: proc shiftSlice[T](self: Slice[T]; shift: T): auto" href="src/pd2norg.html#shiftSlice%2CSlice%5BT%5D%2CT">pd2norg: proc shiftSlice[T](self: Slice[T]; shift: T): auto</a></li>
           </ul></dd>
 <dt><a name="todo" href="#todo"><span>todo:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -242,7 +320,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-11-02 13:55:43 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-11-03 20:10:51 UTC</small>
       </div>
     </div>
   </div>
