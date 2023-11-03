@@ -6,15 +6,20 @@ import std/strutils
 import std/strformat
 import std/macros
 import std/paths
+import std/enumerate
 
 import regex
 import nim_pandoc/pd_attr_h
 import nim_pandoc/pd_inline_h
+import nim_pandoc/pd_caption_h
 import nim_pandoc/pd_citation_h
+import nim_pandoc/pd_format_h
+import nim_pandoc/pd_list_h
+import nim_pandoc/pd_table_h
 import nim_pandoc/pd_target_h
 import nim_pandoc/pd_types_h
-import nim_pandoc/pd_caption_h
 import nim_pandoc/pd_block_h
+import nim_pandoc/pd_caption_h
 import nim_pandoc/pd_inline
 import nim_pandoc/pd_block
 
@@ -44,6 +49,18 @@ type
     rawPath: Option[Path]
     display: Option[string]
     items: seq[string]
+  Coord = tuple
+    row: int
+    col: int
+  Cell = tuple
+    start: Coord
+    until: Coord
+    content: string
+    attr: PDAttr
+    align: PDAlignment
+  CellManager = ref object of RootObj
+    t: TableRef[int, seq[bool]]
+    colCount: int
 
 func chainReplace*(s: string, replaces: openArray[ReplacePair]): auto =
   unpackVarargs(s.multiReplace, replaces.mapIt((it.src, it.dst)))
@@ -51,17 +68,42 @@ func chainReplace*(s: string, replaces: openArray[ReplacePair]): auto =
 func escapeSpaces*(s: string): auto =
   s.replace(" ", "\\ ")
 
+func lstrip*(s: string): auto =
+  s.strip(leading = true, trailing = false)
+
+func rstrip*(s: string): auto =
+  s.strip(leading = false, trailing = true)
+
+func iterEnum*[T](arr: openArray[T]): seq[(int, T)] =
+  for (i, e) in enumerate(arr):
+    result.add((i, e))
+
 proc toStr*(self: PDInline): string
 proc toStr*(self: PDBlock, indent: int = 0): string
 
-proc attachAttr*(s: string, attr: PDAttr): string =
+func c*(row, col: int): Coord =
+  (row, col)
+
+func `+`*(self, o: Coord): auto =
+  c(self.row + o.row, self.col + o.col)
+
+func `==`*(self, o: Coord): auto =
+  self.row == o.row and self.col == o.col
+
+func filterJoin*(self: openArray[string], sep: string = "\n"): auto =
+  self.filterIt(it.len() > 0).join(sep)
+
+proc attachAttr*(s: string, attr: PDAttr, global: bool = true): string =
+  let tagChar = if global: "#" else: "+"
   result = s
   if attr.identifier.len() > 0:
-    defer: result = &"#id {attr.identifier}\n" & result.strip(leading = true, trailing = false)
+    defer: result = &"{tagChar}id {attr.identifier}\n" & result.lstrip()
   if attr.classes.len() > 0:
-    defer: result = "#class " & attr.classes.mapIt(it.strip().escapeSpaces()).join(" ") & "\n" & result
+    defer: result = tagChar & "class " & attr.classes.mapIt(it.strip().escapeSpaces()).join(" ") & "\n" & result.lstrip()
   if attr.pairs.len() > 0:
-    defer: result = attr.pairs.mapIt(&"#{it.key.strip()} {it.value.strip().escapeSpaces()}").join("\n") & "\n" & result
+    defer:
+      let pairs = attr.pairs.mapIt(&"{tagChar}{it.key.strip()} {it.value.strip().escapeSpaces()}").join("\n")
+      result = pairs & "\n" & result.lstrip()
 
 proc toStr*(self: seq[PDBlock], indent: int = 0): seq[string] =
   self.mapIt(it.toStr(indent))
@@ -111,7 +153,7 @@ func linkMaybeMergeable*(tag: string, target: string): (bool, string) =
     elif tag.toLower() == noDashes.substr(1).toLower():
       return (true, &"# {tag}")
     elif noDashes.startsWith(re2"#h[1-6] ") and noDashes[2].isDigit():
-      let headings = '*'.repeat(noDashes[2..<3].parseInt()) & " "
+      let headings = '*'.repeat(noDashes[2 ..< 3].parseInt()) & " "
       if noDashes.substr(4).toLower() == tag.toLower():
         return (true, headings & tag)
       else:
@@ -200,7 +242,9 @@ proc toStr*(self: PDInlineCite): string =
 
 proc toStr*(self: PDInlineSpan): string =
   let (attr, inlines) = self.c
-  attachAttr(&"<{inlines.toStr()}>", attr)
+  result = inlines.toStr()
+  if result.len() > 0:
+    return attachAttr(&"<{result}>", attr)
 
 proc toStr*(self: PDInlineMath, indent: int = 0): string =
   let (mathType, text) = self.c
@@ -394,8 +438,121 @@ proc toStr*(self: PDBlockDiv, indent: int = 0): string =
   let (attr, blocks) = self.c
   blocks.toStr().join("").attachAttr(attr)
 
+proc calcTableColumnName*(num: int): string =
+  if num < 0:
+    return ""
+  const
+    a = int('A')
+    n = UppercaseLetters.len()
+  return calcTableColumnName(num div n - 1) & char(num mod n + a)
+
+proc calcTableCellName*(coord: Coord): string =
+  calcTableColumnName(coord.col) & $(coord.row + 1)
+
+proc parseTableAlignment*(alignment: PDAlignment, col: int = -1, global: bool = false): string =
+  const tableAlignmentLookup = {
+    "AlignLeft": "left",
+    "AlignCenter": "center",
+    "AlignRight": "right",
+  }.toTable()
+  if not tableAlignmentLookup.hasKey(alignment.t):
+    return ""
+  let tagChar = if global: "#" else: "+"
+  let alignWhat = if col < 0: "align" else: "align.columns"
+  &"{tagChar}{alignWhat} {calcTableColumnName(col)} " & tableAlignmentLookup[alignment.t]
+
+proc tableShortColSpec(specs: seq[PDColSpec]): string =
+  specs.mapIt(it[0]).iterEnum().mapIt(it[1].parseTableAlignment(it[0], true)).join("\n")
+
+proc bootstrapCell*(self: Cell): string =
+  var cellCoord = self.start.calcTableCellName()
+  let content = self.content.strip()
+  if not (self.start == self.until):
+    cellCoord.add("-" & self.until.calcTableCellName())
+  if content.contains('\n'): # multi line cell
+    result = [":: " & cellCoord, content, "::"].join("\n")
+  else: # single line cell
+    result = &": {cellCoord} : {content}"
+  let alignText = self.align.parseTableAlignment()
+  if alignText.len() > 0:
+    result = alignText & "\n" & result
+  return result.attachAttr(self.attr)
+
+proc parseTableCell*(self: PDCell, useCoord: Coord): (Cell, int, int) =
+  let until = useCoord + c(self[2] - 1, self[3] - 1)
+  ((useCoord, until, self[4].toStr().join(""), self[0], self[1]), self[2], self[3])
+
+proc setValue*(self: CellManager, coord: Coord, value: bool) =
+  if coord.col >= self.colCount:
+    return
+  if not self.t.hasKey(coord.row):
+    self.t[coord.row] = newSeq[bool](self.colCount)
+  self.t[coord.row][coord.col] = value
+
+proc getValue*(self: CellManager, coord: Coord): auto =
+  if coord.col >= self.colCount:
+    return false
+  if not self.t.hasKey(coord.row):
+    self.t[coord.row] = newSeq[bool](self.colCount)
+  self.t[coord.row][coord.col]
+
+proc getFirstEmpty*(self: CellManager, coord: Coord): auto =
+  for i in coord.col ..< self.colCount:
+    if not self.getValue(c(coord.row, i)):
+      return i
+
+proc occupyCells*(self: CellManager, start: Coord, useRows, useCols: int) =
+  if useRows == 1 and useCols == 1:
+    self.setValue(start, true)
+    return
+  for i in 0 ..< useRows:
+    for j in 0 ..< useCols:
+      self.setValue(start + c(i, j), true)
+
+proc fillTable*(rows: seq[PDRow], colCount: int, startRow: int = 0): seq[Cell] =
+  var cellManager = CellManager(t: newTable[int, seq[bool]](), colCount: colCount)
+  let rowOffset = c(startRow, 0)
+  for (i, row) in enumerate(rows):
+    for (j, col) in enumerate(row[1]):
+      let rowNum = i + startRow
+      let coord = c(rowNum, cellManager.getFirstEmpty(c(rowNum, j)))
+      let (cell, useRows, useCols) = col.parseTableCell(coord)
+      cellManager.occupyCells(coord, useRows, useCols)
+      if cell.content.len() > 0:
+        result.add(cell)
+
+func shiftSlice*[T](self: Slice[T], shift: T): auto =
+  (self.a + shift) .. (self.b + shift)
+
+proc parseTableBody*(self: PDTableBody, colCount: int, startRow: int): string =
+  let bodySlice = (0 ..< self[3].len()).shiftSlice(startRow + self[2].len())
+  let head = fillTable(self[2], colCount, startRow).map(bootstrapCell).join("\n")
+  let body = fillTable(self[3], colCount, bodySlice.a).map(bootstrapCell).join("\n")
+  if body.len() > 0:
+    result.add(&"#headColumns {bodySlice.a + 1}")
+    if bodySlice.b > bodySlice.a:
+      result.add(&"-{bodySlice.b + 1}")
+    result.add(&" {self[1]}\n")
+  result.add([head, body].filterJoin("\n+hline\n"))
+
 proc toStr*(self: PDBlockTable, indent: int = 0): string =
-  unreachable(&"Table: {self.t=}, {self.c=}")
+  let (attr, caption, col, head, body, foot) = self.c
+  let captionString = caption.toStr(indent)
+  let colCount = col.len()
+  var rowCount = 0
+  defer:
+    if captionString.len() > 0:
+      result = ["|caption " & captionString, result.strip(), "|end"].join("\n")
+  var accumulator = newSeq[string]()
+  var headCounts = newSeq[int]()
+  result.add(tableShortColSpec(col))
+  accumulator.add(fillTable(head[1], colCount, rowCount).map(bootstrapCell).join("\n"))
+  rowCount += head[1].len()
+  for tbody in body:
+    accumulator.add(tbody.parseTableBody(colCount, rowCount))
+    rowCount += tbody[2].len() + tbody[3].len()
+  defer:
+    result = result & "\n" & accumulator.join("\n+hline2\n")
 
 proc toStr*(self: PDBlock, indent: int = 0): string =
   case self.t:
