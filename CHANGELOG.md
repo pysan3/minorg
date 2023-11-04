@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.2](https://github.com/pysan3/minorg/compare/v2.4.1...v2.4.2) (2023-11-04)
+
+
+### Bug Fixes
+
+* **PDTable:** support table with newlines to separate the block ([407a7f6](https://github.com/pysan3/minorg/commit/407a7f62d5aa3c169287d1e42b0e9400c2dfa110))
+
 ## [2.4.1](https://github.com/pysan3/minorg/compare/v2.4.0...v2.4.1) (2023-11-04)
 
 
