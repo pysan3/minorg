@@ -1,0 +1,15 @@
+\documentclass{article}
+\usepackage{booktabs}
+\begin{document}
+\begin{tabular}{|l|c|l|c|c|c|c|c|}
+  \hline 
+  Name of the faculty &\multicolumn{3}{c|}{Mr KASHYAP} & Department &\multicolumn{3}{c|}{ECE} \\
+  \cline{1-1} \cline{2-4} \cline{5-5} \cline{6-8}
+  Employee Code &---- &Scheme &KTU &Semester &Third &Batch &A \\ 
+  \hline 
+  Name of the Subject &\multicolumn{3}{c|}{Logic Circuit Design} &Subject Code &\multicolumn{3}{l|}{EC 207} \\
+  \cline{1-1} \cline{2-4} \cline{5-5} \cline{6-8} 
+  Department & \multicolumn{7}{l|}{ECE} \\
+  \hline
+\end{tabular}
+\end{document}

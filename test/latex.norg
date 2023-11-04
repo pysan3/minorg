@@ -1,0 +1,42 @@
+
+#align.columns A left
+#align.columns B center
+#align.columns C left
+#align.columns D center
+#align.columns E center
+#align.columns F center
+#align.columns G center
+#align.columns H center
+: A1 : Name of the faculty
++align  center
+: B1-D1 : Mr KASHYAP
+: E1 : Department
++align  center
+: F1-H1 : ECE
++hline2
+#headColumns 2-4 0
+:: A2
+<1-1>
+Employee Code
+::
+: B2 : —-
+: C2 : Scheme
+: D2 : KTU
+: E2 : Semester
+: F2 : Third
+: G2 : Batch
+: H2 : A
+: A3 : Name of the Subject
++align  center
+: B3-D3 : Logic Circuit Design
+: E3 : Subject Code
++align  left
+: F3-H3 : EC 207
+:: A4
+<1-1>
+Department
+::
++align  left
+: B4-H4 : ECE
+
+
