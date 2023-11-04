@@ -1,0 +1,69 @@
+name: Converter Issue Report / Filetype Support Request
+description: Report cases if you are not satisfied with the output.
+title: "FEATURE: or BUG: "
+labels: [generate]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before** reporting an issue, make sure to read [# Known Issues](https://github.com/pysan3/minorg#known-issues) and search [existing issues](https://github.com/pysan3/minorg/issues).
+  - type: checkboxes
+    attributes:
+      label: Did you check docs and existing issues?
+      description: Make sure you checked all of the below before submitting an issue
+      options:
+        - label: I have searched the existing issues.
+          required: true
+        - label: I have searched the existing discussions.
+          required: true
+  - type: input
+    attributes:
+      label: "Converter version (`minorg --version`)"
+      placeholder: "2.4.1"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Operating System / Version"
+      placeholder: "MacOS 11.5"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Input File Type (Please add _flavor_ if exists; obsidian markdown)"
+      placeholder: "markdown"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what the bug is. Please put example files in sections below.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Example Input file
+      description: Please put a minimal example file to reproduce the error. Backticks (`) will be nice.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected / Wanted Output
+      description: Please put the result norg format.
+    validations:
+      required: true
+    render: Text
+  - type: textarea
+    attributes:
+      label: Pandoc command
+      description: Please explain me how I should parse your file with pandoc to generate json.
+      placeholder: |
+        ## Installation
+        <!-- Ignore this section if the parser is builtin to pandoc. -->
+
+        ## Parser Commands
+        Suppose using `stdin` and `stdout`.
+
+        1. `pandoc -t json -f markdown`
+    validations:
+      required: true
