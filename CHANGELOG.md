@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/pysan3/minorg/compare/v2.4.0...v2.4.1) (2023-11-04)
+
+
+### Bug Fixes
+
+* **minorg:** extract version number from nimble file ([7bea1d5](https://github.com/pysan3/minorg/commit/7bea1d5d8bc0eb1e2cf744e9c41dc5c54d69f565))
+
 ## [2.4.0](https://github.com/pysan3/minorg/compare/v2.3.0...v2.4.0) (2023-11-03)
 
 
