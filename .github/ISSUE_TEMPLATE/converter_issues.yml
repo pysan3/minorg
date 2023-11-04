@@ -52,7 +52,6 @@ body:
       description: Please put the result norg format.
     validations:
       required: true
-    render: Text
   - type: textarea
     attributes:
       label: Pandoc command
