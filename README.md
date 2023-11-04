@@ -45,8 +45,31 @@ version:
 
 ### Command
 
-- Usage: [usage.txt](usage.txt)
-    - `minorg help`
+- `minorg help`
+```txt
+This is a multiple-dispatch command.  -h/--help/--help-syntax is available
+for top-level/all subcommands.  Usage is like:
+    minorg {SUBCMD} [subcommand-opts & args]
+where subcommand syntaxes are as follows:
+
+  parse [optional-params]
+  Options:
+      --version       bool    false  print version
+      -i=, --input=   string  ""     Input file. Leave it blank to use stdin.
+      -o=, --output=  string  ""     Output file. Leave it blank to use stdout.
+      -v, --verbose   bool    false  Outputs debug info to stderr.
+      -f, --force     bool    false  Overwrite files and create parent folders if needed.
+
+  generate [optional-params]
+  Options:
+      --version            bool    false  print version
+      -i=, --input=        string  ""     Input file. Leave it blank to use stdin.
+      -o=, --output=       string  ""     Output file. Leave it blank to use stdout.
+      -v, --verbose        bool    false  Outputs debug info to stderr.
+      -f, --force          bool    false  Overwrite files and create parent folders if needed.
+      --isObsidian         bool    false  set isObsidian
+      -w=, --workRootDir=  string  ""     set workRootDir
+```
 
 
 ### Example
@@ -73,6 +96,12 @@ $ pandoc -f markdown -t json ./your/markdown/file.md | minorg generate > output.
     - Also automatically creates parent directories if not exists.
 
 
+#### Recursive Directory of **Obsidian** Notes
+
+This parser also takes some amount of care of obsidian specific format.
+Please use the `--isObsidian` flag and read [Obsidian Style Tags Are Not Working](#obsidian-style-tags-are-not-working) section for more information.
+
+
 #### Recursive Directory of Markdown
 
 ```bash
@@ -80,12 +109,6 @@ command find . -type f -name '*.md' | while read f; do
   pandoc -f markdown -t json "$f" | minorg generate -o "${f}.norg"
 done
 ```
-
-
-#### Recursive Directory of Obsidian Notes
-
-This parser also takes some amount of care of obsidian specific format.
-Please use the `--isObsidian` flag and read [Obsidian Style Tags Are Not Working](#obsidian-style-tags-are-not-working) section for more information.
 
 
 #### Test It's Capability Against Norg Specification File
@@ -186,7 +209,7 @@ Obviously this is not an official markdown syntax, and pandoc cannot parse it.
         - [x] `[[file name#head1#head2]]` -> `[head2]($/somewhere/in/workspace/file%20name.mdhead1#head2)` (norg file with chained headings)
         - [x] `[[file name|display name]]` -> `{:$/somewhere/in/workspace/file name:}[display name]` (norg file with display name)
         - [x] `[[file name.txt|display name]]` -> `{/ $/somewhere/in/workspace/file name.txt}[display name]` (normal file with display name)
-        - [x] `![[file name.png|display name]]` -> `.alt display namen.image $/somewhere/in/workspace/file name.png` (image file with alt text)
+        - [x] `![[file name.png|display name]]` -> `.alt display name\\n.image $/somewhere/in/workspace/file name.png` (image file with alt text)
         - [x] `[[unknown]]` -> `[[unknown]]` (file not found: do nothing)
 
 
