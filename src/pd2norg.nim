@@ -542,9 +542,10 @@ proc toStr*(self: PDBlockTable, indent: int = 0): string =
   var rowCount = 0
   defer:
     if captionString.len() > 0:
-      result = ["|caption " & captionString, result.strip(), "|end"].join("\n")
+      result = &"\n|caption {captionString}\n{result.strip()}\n|end\n\n"
   var accumulator = newSeq[string]()
   var headCounts = newSeq[int]()
+  result.add("\n")
   result.add(tableShortColSpec(col))
   accumulator.add(fillTable(head[1], colCount, rowCount).map(bootstrapCell).join("\n"))
   rowCount += head[1].len()
@@ -552,7 +553,7 @@ proc toStr*(self: PDBlockTable, indent: int = 0): string =
     accumulator.add(tbody.parseTableBody(colCount, rowCount))
     rowCount += tbody[2].len() + tbody[3].len()
   defer:
-    result = result & "\n" & accumulator.join("\n+hline2\n")
+    result = result & "\n" & accumulator.join("\n+hline2\n") & "\n\n"
 
 proc toStr*(self: PDBlock, indent: int = 0): string =
   case self.t:
