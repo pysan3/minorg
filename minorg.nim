@@ -47,6 +47,9 @@ proc generate(input: string = "", output: string = "", verbose: bool = false, fo
 
 when isMainModule:
   import cligen
+  include cligen/mergeCfgEnv
+  const nimbleFile = staticRead("./minorg.nimble")
+  clCfg.version = nimbleFile.fromNimble("version")
   const help = {
     "input": "Input file. Leave it blank to use stdin.",
     "output": "Output file. Leave it blank to use stdout.",
