@@ -1,62 +1,63 @@
 nimTitle	pd2norg	src/pd2norg.html	module src/pd2norg		0
 nim	chainReplace	src/pd2norg.html#chainReplace,string,openArray[ReplacePair]	proc chainReplace(s: string; replaces: openArray[ReplacePair]): auto		53
 nim	escapeSpaces	src/pd2norg.html#escapeSpaces,string	proc escapeSpaces(s: string): auto		56
-nim	lstrip	src/pd2norg.html#lstrip,string,set[char]	proc lstrip(s: string; chars: set[char] = Whitespace): auto		59
-nim	rstrip	src/pd2norg.html#rstrip,string,set[char]	proc rstrip(s: string; chars: set[char] = Whitespace): auto		62
-nim	iterEnum	src/pd2norg.html#iterEnum,openArray[T]	proc iterEnum[T](arr: openArray[T]): seq[(int, T)]		65
-nim	toStr	src/pd2norg.html#toStr,PDInline	proc toStr(self: PDInline): string		69
-nim	toStr	src/pd2norg.html#toStr,PDBlock,int	proc toStr(self: PDBlock; indent: int = 0): string		70
-nim	c	src/pd2norg.html#c,int,int	proc c(row, col: int): Coord		72
-nim	`+`	src/pd2norg.html#+,Coord,Coord	proc `+`(self, o: Coord): auto		75
-nim	`==`	src/pd2norg.html#==,Coord,Coord	proc `==`(self, o: Coord): auto		78
-nim	filterJoin	src/pd2norg.html#filterJoin,openArray[string],string	proc filterJoin(self: openArray[string]; sep: string = "\n"): auto		81
-nim	attachAttr	src/pd2norg.html#attachAttr,string,PDAttr,bool	proc attachAttr(s: string; attr: PDAttr; global: bool = true): string		84
-nim	toStr	src/pd2norg.html#toStr,seq[PDBlock],int	proc toStr(self: seq[PDBlock]; indent: int = 0): seq[string]		96
-nim	toStr	src/pd2norg.html#toStr,seq[PDInline]	proc toStr(self: seq[PDInline]): string		99
-nim	toStr	src/pd2norg.html#toStr,PDTarget	proc toStr(self: PDTarget): string		104
-nim	toStr	src/pd2norg.html#toStr,PDCaption,int	proc toStr(self: PDCaption; indent: int = 0): string		107
-nim	toStr	src/pd2norg.html#toStr,PDInlineStr	proc toStr(self: PDInlineStr): string		110
-nim	toStr	src/pd2norg.html#toStr,PDInlineSpace	proc toStr(self: PDInlineSpace): string		117
-nim	linkMaybeMergeable	src/pd2norg.html#linkMaybeMergeable,string,string	proc linkMaybeMergeable(tag: string; target: string): (bool, string)		128
-nim	toStr	src/pd2norg.html#toStr,PDInlineLink	proc toStr(self: PDInlineLink): string		163
-nim	toStr	src/pd2norg.html#toStr,PDInlineCode	proc toStr(self: PDInlineCode): string		180
-nim	toStr	src/pd2norg.html#toStr,PDInlineEmph	proc toStr(self: PDInlineEmph): string		184
-nim	parseHTML	src/pd2norg.html#parseHTML,string	proc parseHTML(s: string): string		191
-nim	toStr	src/pd2norg.html#toStr,PDInlineQuoted	proc toStr(self: PDInlineQuoted): string		215
-nim	toStr	src/pd2norg.html#toStr,PDCitation	proc toStr(self: PDCitation): string		220
-nim	toStr	src/pd2norg.html#toStr,PDInlineCite	proc toStr(self: PDInlineCite): string		224
-nim	toStr	src/pd2norg.html#toStr,PDInlineSpan	proc toStr(self: PDInlineSpan): string		228
-nim	toStr	src/pd2norg.html#toStr,PDInlineMath	proc toStr(self: PDInlineMath): string		234
-nim	toStr	src/pd2norg.html#toStr,PDInlineRawInline	proc toStr(self: PDInlineRawInline): string		244
-nim	toStr	src/pd2norg.html#toStr,PDInlineNote	proc toStr(self: PDInlineNote): string		257
-nim	toStr	src/pd2norg.html#toStr,PDBlockHeader,int	proc toStr(self: PDBlockHeader; indent: int = 0): string		287
-nim	toStr	src/pd2norg.html#toStr,PDBlockBulletList,int	proc toStr(self: PDBlockBulletList; indent: int = 0): string		294
-nim	toStr	src/pd2norg.html#toStr,PDBlockOrderedList,int	proc toStr(self: PDBlockOrderedList; indent: int = 0): string		300
-nim	compileDefinition	src/pd2norg.html#compileDefinition,,int	proc compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string		307
-nim	toStr	src/pd2norg.html#toStr,PDBlockDefinitionList,int	proc toStr(self: PDBlockDefinitionList; indent: int = 0): string		317
-nim	mergeObsidianTags	src/pd2norg.html#mergeObsidianTags,string	proc mergeObsidianTags(strBlock: var string): seq[string]		320
-nim	detectObsidianTags	src/pd2norg.html#detectObsidianTags,string	proc detectObsidianTags(strBlock: var string): seq[string]		329
-nim	parseObsidianLink	src/pd2norg.html#parseObsidianLink,string,Path	proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem		339
-nim	detectObsidianLinks	src/pd2norg.html#detectObsidianLinks,string	proc detectObsidianLinks(strBlock: var string): seq[string]		352
-nim	toStr	src/pd2norg.html#toStr,PDBlockPlain,int	proc toStr(self: PDBlockPlain; indent: int = 0): string		381
-nim	toStr	src/pd2norg.html#toStr,PDBlockCodeBlock,int	proc toStr(self: PDBlockCodeBlock; indent: int = 0): string		400
-nim	toStr	src/pd2norg.html#toStr,PDBlockHorizontalRule,int	proc toStr(self: PDBlockHorizontalRule; indent: int = 0): string		408
-nim	toStr	src/pd2norg.html#toStr,PDBlockLineBlock,int	proc toStr(self: PDBlockLineBlock; indent: int = 0): string		411
-nim	toStr	src/pd2norg.html#toStr,PDBlockBlockQuote,int	proc toStr(self: PDBlockBlockQuote; indent: int = 0): string		415
-nim	toStr	src/pd2norg.html#toStr,PDBlockFigure,int	proc toStr(self: PDBlockFigure; indent: int = 0): string		421
-nim	toStr	src/pd2norg.html#toStr,PDBlockRawBlock,int	proc toStr(self: PDBlockRawBlock; indent: int = 0): string		430
-nim	toStr	src/pd2norg.html#toStr,PDBlockDiv,int	proc toStr(self: PDBlockDiv; indent: int = 0): string		438
-nim	calcTableColumnName	src/pd2norg.html#calcTableColumnName,int	proc calcTableColumnName(num: int): string		442
-nim	calcTableCellName	src/pd2norg.html#calcTableCellName,Coord	proc calcTableCellName(coord: Coord): string		450
-nim	parseTableAlignment	src/pd2norg.html#parseTableAlignment,PDAlignment,int,bool	proc parseTableAlignment(alignment: PDAlignment; col: int = -1; global: bool = false): string		453
-nim	bootstrapCell	src/pd2norg.html#bootstrapCell,Cell	proc bootstrapCell(self: Cell): string		468
-nim	parseTableCell	src/pd2norg.html#parseTableCell,PDCell,Coord	proc parseTableCell(self: PDCell; useCoord: Coord): (Cell, int, int)		482
-nim	setValue	src/pd2norg.html#setValue,CellManager,Coord,bool	proc setValue(self: CellManager; coord: Coord; value: bool)		486
-nim	getValue	src/pd2norg.html#getValue,CellManager,Coord	proc getValue(self: CellManager; coord: Coord): auto		493
-nim	getFirstEmpty	src/pd2norg.html#getFirstEmpty,CellManager,Coord	proc getFirstEmpty(self: CellManager; coord: Coord): auto		500
-nim	occupyCells	src/pd2norg.html#occupyCells,CellManager,Coord,int,int	proc occupyCells(self: CellManager; start: Coord; useRows, useCols: int)		505
-nim	fillTable	src/pd2norg.html#fillTable,seq[PDRow],int,int	proc fillTable(rows: seq[PDRow]; colCount: int; startRow: int = 0): seq[Cell]		513
-nim	shiftSlice	src/pd2norg.html#shiftSlice,Slice[T],T	proc shiftSlice[T](self: Slice[T]; shift: T): auto		525
-nim	parseTableBody	src/pd2norg.html#parseTableBody,PDTableBody,int,int	proc parseTableBody(self: PDTableBody; colCount: int; startRow: int): string		528
-nim	toStr	src/pd2norg.html#toStr,PDBlockTable,int	proc toStr(self: PDBlockTable; indent: int = 0): string		539
-nimgrp	tostr	src/pd2norg.html#toStr-procs-all	proc		69
+nim	joinWithNewline	src/pd2norg.html#joinWithNewline,varargs[string,]	proc joinWithNewline(strs: varargs[string, `$`]): auto		59
+nim	lstrip	src/pd2norg.html#lstrip,string,set[char]	proc lstrip(s: string; chars: set[char] = Whitespace): auto		62
+nim	rstrip	src/pd2norg.html#rstrip,string,set[char]	proc rstrip(s: string; chars: set[char] = Whitespace): auto		65
+nim	iterEnum	src/pd2norg.html#iterEnum,openArray[T]	proc iterEnum[T](arr: openArray[T]): seq[(int, T)]		68
+nim	toStr	src/pd2norg.html#toStr,PDInline	proc toStr(self: PDInline): string		72
+nim	toStr	src/pd2norg.html#toStr,PDBlock,int	proc toStr(self: PDBlock; indent: int = 0): string		73
+nim	c	src/pd2norg.html#c,int,int	proc c(row, col: int): Coord		75
+nim	`+`	src/pd2norg.html#+,Coord,Coord	proc `+`(self, o: Coord): auto		78
+nim	`==`	src/pd2norg.html#==,Coord,Coord	proc `==`(self, o: Coord): auto		81
+nim	filterJoin	src/pd2norg.html#filterJoin,openArray[string],string	proc filterJoin(self: openArray[string]; sep: string = "\n"): auto		84
+nim	attachAttr	src/pd2norg.html#attachAttr,string,PDAttr,bool	proc attachAttr(s: string; attr: PDAttr; global: bool = true): string		87
+nim	toStr	src/pd2norg.html#toStr,seq[PDBlock],int	proc toStr(self: seq[PDBlock]; indent: int = 0): seq[string]		99
+nim	toStr	src/pd2norg.html#toStr,seq[PDInline]	proc toStr(self: seq[PDInline]): string		102
+nim	toStr	src/pd2norg.html#toStr,PDTarget	proc toStr(self: PDTarget): string		107
+nim	toStr	src/pd2norg.html#toStr,PDCaption,int	proc toStr(self: PDCaption; indent: int = 0): string		110
+nim	toStr	src/pd2norg.html#toStr,PDInlineStr	proc toStr(self: PDInlineStr): string		113
+nim	toStr	src/pd2norg.html#toStr,PDInlineSpace	proc toStr(self: PDInlineSpace): string		120
+nim	linkMaybeMergeable	src/pd2norg.html#linkMaybeMergeable,string,string	proc linkMaybeMergeable(tag: string; target: string): (bool, string)		131
+nim	toStr	src/pd2norg.html#toStr,PDInlineLink	proc toStr(self: PDInlineLink): string		166
+nim	toStr	src/pd2norg.html#toStr,PDInlineCode	proc toStr(self: PDInlineCode): string		183
+nim	toStr	src/pd2norg.html#toStr,PDInlineEmph	proc toStr(self: PDInlineEmph): string		187
+nim	parseHTML	src/pd2norg.html#parseHTML,string	proc parseHTML(s: string): string		194
+nim	toStr	src/pd2norg.html#toStr,PDInlineQuoted	proc toStr(self: PDInlineQuoted): string		218
+nim	toStr	src/pd2norg.html#toStr,PDCitation	proc toStr(self: PDCitation): string		223
+nim	toStr	src/pd2norg.html#toStr,PDInlineCite	proc toStr(self: PDInlineCite): string		227
+nim	toStr	src/pd2norg.html#toStr,PDInlineSpan	proc toStr(self: PDInlineSpan): string		231
+nim	toStr	src/pd2norg.html#toStr,PDInlineMath	proc toStr(self: PDInlineMath): string		237
+nim	toStr	src/pd2norg.html#toStr,PDInlineRawInline	proc toStr(self: PDInlineRawInline): string		247
+nim	toStr	src/pd2norg.html#toStr,PDInlineNote	proc toStr(self: PDInlineNote): string		260
+nim	toStr	src/pd2norg.html#toStr,PDBlockHeader,int	proc toStr(self: PDBlockHeader; indent: int = 0): string		290
+nim	toStr	src/pd2norg.html#toStr,PDBlockBulletList,int	proc toStr(self: PDBlockBulletList; indent: int = 0): string		297
+nim	toStr	src/pd2norg.html#toStr,PDBlockOrderedList,int	proc toStr(self: PDBlockOrderedList; indent: int = 0): string		303
+nim	compileDefinition	src/pd2norg.html#compileDefinition,,int	proc compileDefinition(item: (seq[PDInline], seq[seq[PDBlock]]); indent: int = 0): string		310
+nim	toStr	src/pd2norg.html#toStr,PDBlockDefinitionList,int	proc toStr(self: PDBlockDefinitionList; indent: int = 0): string		320
+nim	mergeObsidianTags	src/pd2norg.html#mergeObsidianTags,string	proc mergeObsidianTags(strBlock: var string): seq[string]		323
+nim	detectObsidianTags	src/pd2norg.html#detectObsidianTags,string	proc detectObsidianTags(strBlock: var string): seq[string]		332
+nim	parseObsidianLink	src/pd2norg.html#parseObsidianLink,string,Path	proc parseObsidianLink(link: string; workRootDir: Path): ObsLinkItem		342
+nim	detectObsidianLinks	src/pd2norg.html#detectObsidianLinks,string	proc detectObsidianLinks(strBlock: var string): seq[string]		355
+nim	toStr	src/pd2norg.html#toStr,PDBlockPlain,int	proc toStr(self: PDBlockPlain; indent: int = 0): string		384
+nim	toStr	src/pd2norg.html#toStr,PDBlockCodeBlock,int	proc toStr(self: PDBlockCodeBlock; indent: int = 0): string		403
+nim	toStr	src/pd2norg.html#toStr,PDBlockHorizontalRule,int	proc toStr(self: PDBlockHorizontalRule; indent: int = 0): string		411
+nim	toStr	src/pd2norg.html#toStr,PDBlockLineBlock,int	proc toStr(self: PDBlockLineBlock; indent: int = 0): string		414
+nim	toStr	src/pd2norg.html#toStr,PDBlockBlockQuote,int	proc toStr(self: PDBlockBlockQuote; indent: int = 0): string		418
+nim	toStr	src/pd2norg.html#toStr,PDBlockFigure,int	proc toStr(self: PDBlockFigure; indent: int = 0): string		424
+nim	toStr	src/pd2norg.html#toStr,PDBlockRawBlock,int	proc toStr(self: PDBlockRawBlock; indent: int = 0): string		433
+nim	toStr	src/pd2norg.html#toStr,PDBlockDiv,int	proc toStr(self: PDBlockDiv; indent: int = 0): string		441
+nim	calcTableColumnName	src/pd2norg.html#calcTableColumnName,int	proc calcTableColumnName(num: int): string		445
+nim	calcTableCellName	src/pd2norg.html#calcTableCellName,Coord	proc calcTableCellName(coord: Coord): string		453
+nim	parseTableAlignment	src/pd2norg.html#parseTableAlignment,PDAlignment,int,bool	proc parseTableAlignment(alignment: PDAlignment; col: int = -1; global: bool = false): string		456
+nim	bootstrapCell	src/pd2norg.html#bootstrapCell,Cell	proc bootstrapCell(self: Cell): string		471
+nim	parseTableCell	src/pd2norg.html#parseTableCell,PDCell,Coord	proc parseTableCell(self: PDCell; useCoord: Coord): (Cell, int, int)		485
+nim	setValue	src/pd2norg.html#setValue,CellManager,Coord,bool	proc setValue(self: CellManager; coord: Coord; value: bool)		489
+nim	getValue	src/pd2norg.html#getValue,CellManager,Coord	proc getValue(self: CellManager; coord: Coord): auto		496
+nim	getFirstEmpty	src/pd2norg.html#getFirstEmpty,CellManager,Coord	proc getFirstEmpty(self: CellManager; coord: Coord): auto		503
+nim	occupyCells	src/pd2norg.html#occupyCells,CellManager,Coord,int,int	proc occupyCells(self: CellManager; start: Coord; useRows, useCols: int)		508
+nim	fillTable	src/pd2norg.html#fillTable,seq[PDRow],int,int	proc fillTable(rows: seq[PDRow]; colCount: int; startRow: int = 0): seq[Cell]		516
+nim	shiftSlice	src/pd2norg.html#shiftSlice,Slice[T],T	proc shiftSlice[T](self: Slice[T]; shift: T): auto		528
+nim	parseTableBody	src/pd2norg.html#parseTableBody,PDTableBody,int,int	proc parseTableBody(self: PDTableBody; colCount: int; startRow: int): string		531
+nim	toStr	src/pd2norg.html#toStr,PDBlockTable,int	proc toStr(self: PDBlockTable; indent: int = 0): string		542
+nimgrp	tostr	src/pd2norg.html#toStr-procs-all	proc		72
