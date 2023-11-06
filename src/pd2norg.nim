@@ -56,6 +56,9 @@ func chainReplace*(s: string, replaces: openArray[ReplacePair]): auto =
 func escapeSpaces*(s: string): auto =
   s.replace(" ", "\\ ")
 
+func joinWithNewline*(strs: varargs[string, `$`]): auto =
+  "\n" & strs.join("\n") & "\n"
+
 func lstrip*(s: string, chars: set[char] = Whitespace): auto =
   s.strip(leading = true, trailing = false, chars = chars)
 
@@ -235,7 +238,7 @@ proc toStr*(self: PDInlineMath): string =
   let (mathType, text) = self.c
   case mathType.t:
     of "DisplayMath":
-      return ["", "@math", text, "@end", ""].join("\n")
+      return joinWithNewline("@math", text, "@end")
     of "InlineMath":
       return &"${text}$"
     else:
@@ -310,9 +313,9 @@ proc compileDefinition*(item: (seq[PDInline], seq[seq[PDBlock]]), indent: int = 
     inlineContent = inlines.toStr()
     blockContent = blocks.mapIt(it.toStr(indent + 1)).mapIt(it.join("")).join("")
   if blockContent.find('\n') < 0:
-    return &"\n$ {inlineContent}\n{blockContent}\n"
+    return joinWithNewline(&"$ {inlineContent}", blockContent)
   else:
-    return ["", &"$$ {inlineContent}", blockContent, "$$"].join("\n")
+    return joinWithNewline(&"$$ {inlineContent}", blockContent, "$$")
 
 proc toStr*(self: PDBlockDefinitionList, indent: int = 0): string =
   self.c.mapIt(it.compileDefinition(indent)).join("\n")
@@ -401,16 +404,16 @@ proc toStr*(self: PDBlockCodeBlock, indent: int = 0): string =
   let (attr, code) = self.c
   let lang = if attr.classes.len > 0: attr.classes[0] else: ""
   if lang == "norg":
-    return &"\n|example\n{code.strip(chars = Newlines)}\n|end\n"
+    return joinWithNewline("|example", code.strip(chars = Newlines), "|end")
   else:
-    return &"\n@code {lang}\n{code.strip(chars = Newlines)}\n@end\n"
+    return joinWithNewline("@code " & lang, code.strip(chars = Newlines), "@end")
 
 proc toStr*(self: PDBlockHorizontalRule, indent: int = 0): string =
   "\n___"
 
 proc toStr*(self: PDBlockLineBlock, indent: int = 0): string =
   logWarn(&"LineBlock is not supported in norg format for now. Using `chunk` tag.")
-  ["|chunk", self.c.map(toStr).join("\n"), "|end"].join("\n")
+  joinWithNewline("|chunk", self.c.map(toStr).join("\n"), "|end")
 
 proc toStr*(self: PDBlockBlockQuote, indent: int = 0): string =
   defer:
@@ -543,7 +546,7 @@ proc toStr*(self: PDBlockTable, indent: int = 0): string =
   var rowCount = 0
   defer:
     if captionString.len() > 0:
-      result = &"\n|caption {captionString}\n{result.strip()}\n|end\n\n"
+      result = joinWithNewline("|caption " & captionString, result.strip(), "|end") & "\n"
   var accumulator = newSeq[string]()
   var headCounts = newSeq[int]()
   result.add("\n")
