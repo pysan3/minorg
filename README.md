@@ -301,12 +301,12 @@ $ nim -v
 ``` bash
 $ git clone https://github.com/pysan3/minorg.git
 $ cd minorg/
-$ nimble sync
-# ... Downloads dependencies
+$ nimble setup
+# ... Download dependencies and setup the environment.
 $ nimble build -d:release
-# Compiles ./minorg.nim
+# Compile ./minorg.nim (you may omit -d:release)
 $ ./minorg help
-# Run compiled binary. Passes `help` as an argument to get started.
+# Run compiled binary. Pass `help` as an argument to get started.
 ```
 
 ## Contribution
