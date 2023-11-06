@@ -9,19 +9,7 @@ import std/paths
 import std/enumerate
 
 import regex
-import nim_pandoc/pd_attr_h
-import nim_pandoc/pd_inline_h
-import nim_pandoc/pd_caption_h
-import nim_pandoc/pd_citation_h
-import nim_pandoc/pd_format_h
-import nim_pandoc/pd_list_h
-import nim_pandoc/pd_table_h
-import nim_pandoc/pd_target_h
-import nim_pandoc/pd_types_h
-import nim_pandoc/pd_block_h
-import nim_pandoc/pd_caption_h
-import nim_pandoc/pd_inline
-import nim_pandoc/pd_block
+import nim_pandoc
 
 import str_utils
 import log_utils
@@ -68,11 +56,11 @@ func chainReplace*(s: string, replaces: openArray[ReplacePair]): auto =
 func escapeSpaces*(s: string): auto =
   s.replace(" ", "\\ ")
 
-func lstrip*(s: string): auto =
-  s.strip(leading = true, trailing = false)
+func lstrip*(s: string, chars: set[char] = Whitespace): auto =
+  s.strip(leading = true, trailing = false, chars = chars)
 
-func rstrip*(s: string): auto =
-  s.strip(leading = false, trailing = true)
+func rstrip*(s: string, chars: set[char] = Whitespace): auto =
+  s.strip(leading = false, trailing = true, chars = chars)
 
 func iterEnum*[T](arr: openArray[T]): seq[(int, T)] =
   for (i, e) in enumerate(arr):
@@ -97,7 +85,7 @@ proc attachAttr*(s: string, attr: PDAttr, global: bool = true): string =
   let tagChar = if global: "#" else: "+"
   result = s
   if attr.identifier.len() > 0:
-    defer: result = &"{tagChar}id {attr.identifier}\n" & result.lstrip()
+    defer: result = &"\n{tagChar}id {attr.identifier}\n" & result.lstrip()
   if attr.classes.len() > 0:
     defer: result = tagChar & "class " & attr.classes.mapIt(it.strip().escapeSpaces()).join(" ") & "\n" & result.lstrip()
   if attr.pairs.len() > 0:
@@ -138,10 +126,6 @@ proc toStr*(self: PDInlineSpace): string =
       unreachable(&"PDInlineSpace: {self.t=}")
 
 func linkMaybeMergeable*(tag: string, target: string): (bool, string) =
-  # debugEcho &"`{tag=}`"
-  # debugEcho &"`{target=}`"
-  # defer:
-  #   debugEcho &"`{result=}`"
   if target.len() == 0:
     return (true, &"# {tag}")
   var noDashes = target.replace('-', ' ')
@@ -195,7 +179,7 @@ proc toStr*(self: PDInlineLink): string =
 
 proc toStr*(self: PDInlineCode): string =
   let (attr, text) = self.c
-  attachAttr(&"`{text}`", attr)
+  &"`{text}`"
 
 proc toStr*(self: PDInlineEmph): string =
   let symbol = symbols[self.t]
@@ -211,21 +195,22 @@ proc parseHTML*(s: string): string =
     "u": "Underline",
     "!-- null modifier --": "NullModifier",
   }.toTable()
-  var matches: RegexMatch2
-  if s.match(re2"</?([a-z!\-\s]+)>", matches) and html2symbols.hasKey(s[matches.group(0)]):
-    return symbols[html2symbols[s[matches.group(0)]]]
+  var m: RegexMatch2
+  if s.len() == 0:
+    return s
+  elif s.find(re2"^</?label>.*", m):
+    let startFrom = m.boundaries.b + 1
+    if startFrom >= s.len():
+      return ""
+    else:
+      return s.substr(startFrom).parseHTML()
+  elif s.match(re2"</?([a-z!\-\s]+)>", m) and html2symbols.hasKey(s[m.group(0)]):
+    return symbols[html2symbols[s[m.group(0)]]]
   elif s.startsWith("<!--"):
     logWarn(&"Could not parse {s}. Possibly a comment.")
     return s
-  unreachable(&"parseHTML: {s=}")
-
-proc toStr*(self: PDInlineRawInline): string =
-  let (format, text) = self.c
-  case format:
-    of "html":
-      return text.parseHTML()
-    else:
-      unreachable(&"PDInlineRawInline: {format=}, {text=}")
+  logError(&"parseHTML: {s=}")
+  s
 
 proc toStr*(self: PDInlineQuoted): string =
   let (quoteType, inlines) = self.c
@@ -244,9 +229,9 @@ proc toStr*(self: PDInlineSpan): string =
   let (attr, inlines) = self.c
   result = inlines.toStr()
   if result.len() > 0:
-    return attachAttr(&"<{result}>", attr)
+    return &"<{result}>"
 
-proc toStr*(self: PDInlineMath, indent: int = 0): string =
+proc toStr*(self: PDInlineMath): string =
   let (mathType, text) = self.c
   case mathType.t:
     of "DisplayMath":
@@ -256,6 +241,22 @@ proc toStr*(self: PDInlineMath, indent: int = 0): string =
     else:
       unreachable(&"PDBlockMath: unknown math type. {mathType.t=}")
 
+proc toStr*(self: PDInlineRawInline): string =
+  let (format, text) = self.c
+  case format:
+    of "html":
+      return text.parseHTML()
+    of "latex":
+      if text == """$\square$""":
+        logWarn("Detached modifier extension detected for heading. Pandoc looses information about the TODO status.")
+        return "( )"
+      return &"${text.replace('$', ' ').strip()}$"
+    else:
+      unreachable(&"PDInlineRawInline: {format=}, {text=}")
+
+proc toStr*(self: PDInlineNote): string =
+  self.c.toStr().join("")
+
 proc toStr*(self: PDInline): string =
   case self.t:
     of "Space", "SoftBreak", "LineBreak":
@@ -264,6 +265,8 @@ proc toStr*(self: PDInline): string =
       return cast[PDInlineStr](self).toStr()
     of "Emph", "Underline", "Strong", "Strikeout", "Superscript", "Subscript", "SmallCaps":
       return cast[PDInlineEmph](self).toStr()
+    of "Note":
+      return cast[PDInlineNote](self).toStr()
     of "Quoted":
       return cast[PDInlineQuoted](self).toStr()
     of "Cite":
@@ -376,7 +379,7 @@ proc detectObsidianLinks*(strBlock: var string): seq[string] =
   strBlock = strBlock.chainReplace(replaces)
 
 proc toStr*(self: PDBlockPlain, indent: int = 0): string =
-  result = self.c.map(toStr).join("") & " "
+  result = self.c.mapIt(it.toStr()).join("") & " "
   let isObsidian = getConfig().isObsidian
   if isObsidian:
     let linkDetected = result.detectObsidianLinks()
@@ -396,13 +399,11 @@ proc toStr*(self: PDBlockPlain, indent: int = 0): string =
 
 proc toStr*(self: PDBlockCodeBlock, indent: int = 0): string =
   let (attr, code) = self.c
-  defer: result = &"\n{result}\n"
-  defer: result = result.attachAttr(attr)
   let lang = if attr.classes.len > 0: attr.classes[0] else: ""
   if lang == "norg":
-    return ["|example", code, "|end"].join("\n")
+    return &"\n|example\n{code.strip(chars = Newlines)}\n|end\n"
   else:
-    return [&"@code {lang}", code, "@end"].join("\n")
+    return &"\n@code {lang}\n{code.strip(chars = Newlines)}\n@end\n"
 
 proc toStr*(self: PDBlockHorizontalRule, indent: int = 0): string =
   "\n___"
@@ -529,7 +530,7 @@ proc parseTableBody*(self: PDTableBody, colCount: int, startRow: int): string =
   let head = fillTable(self[2], colCount, startRow).map(bootstrapCell).join("\n")
   let body = fillTable(self[3], colCount, bodySlice.a).map(bootstrapCell).join("\n")
   if body.len() > 0:
-    result.add(&"#headColumns {bodySlice.a + 1}")
+    result.add(&"#table.head.columns {bodySlice.a + 1}")
     if bodySlice.b > bodySlice.a:
       result.add(&"-{bodySlice.b + 1}")
     result.add(&" {self[1]}\n")

@@ -11,6 +11,6 @@ bin = @["minorg"]
 # Dependencies
 
 requires "nim >= 2.0.0"
-requires "nim_pandoc >= 3.0.5"
+requires "nim_pandoc >= 4.0.0"
 requires "cligen >= 1.6.16"
 requires "regex >= 0.23.0"

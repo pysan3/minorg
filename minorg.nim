@@ -7,8 +7,7 @@ import std/strformat
 import std/tables
 import std/paths
 
-import nim_pandoc/pd_block_h
-import nim_pandoc/pd_block
+import nim_pandoc
 import src/utils
 import src/file_utils
 import src/pd2norg
