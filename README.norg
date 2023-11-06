@@ -197,15 +197,17 @@ version: 1.1.1
      @end
 
 **** Setup `nimble` and Compile
-     `nimble` is the packages manager for nim (should be installed into `$HOME/.nimble/bin` by choosenim).
+     `nimble` is the package manager for nim (should be installed into `$HOME/.nimble/bin` by choosenim).
      Setup for this repo is very easy.
      @code bash
      $ git clone https://github.com/pysan3/minorg.git
      $ cd minorg/
      $ nimble sync
      # ... Downloads dependencies
-     $ nim r ./minorg.nim help
-     # Compiles and runs ./minorg.nim. Passes `help` as an argument to the generated binary.
+     $ nimble build -d:release
+     # Compiles ./minorg.nim
+     $ ./minorg help
+     # Run compiled binary. Passes `help` as an argument to get started.
      @end
 
 ** Contribution
