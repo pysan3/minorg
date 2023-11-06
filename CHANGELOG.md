@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.3](https://github.com/pysan3/minorg/compare/v2.4.2...v2.4.3) (2023-11-06)
+
+
+### Bug Fixes
+
+* **nim_pandoc:** upgrade to nim_pandoc v4 ([ddc089c](https://github.com/pysan3/minorg/commit/ddc089ca396fbf073abb456f5ed554a66d1286b1))
+* **pd2norg:** refactor code to manage newlines ([ec63867](https://github.com/pysan3/minorg/commit/ec6386794416d1593dd1678e94643caf0dffd69b)), closes [#29](https://github.com/pysan3/minorg/issues/29)
+
 ## [2.4.2](https://github.com/pysan3/minorg/compare/v2.4.1...v2.4.2) (2023-11-04)
 
 
