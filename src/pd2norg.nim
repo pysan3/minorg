@@ -191,6 +191,12 @@ proc toStr*(self: PDInlineEmph): string =
   if result[^1] == '\n':
     return result[0 ..< ^1]
 
+proc rawEmbed*(s: string, lang: string): string =
+  if s.find('\n') < 0:
+    return &"`| {s} |`(embed:{lang})"
+  else:
+    return joinWithNewline("@embed " & lang, s.strip(), "@end")
+
 proc parseHTML*(s: string): string =
   const html2symbols = {
     "sub": "Subscript",
@@ -209,11 +215,7 @@ proc parseHTML*(s: string): string =
       return s.substr(startFrom).parseHTML()
   elif s.match(re2"</?([a-z!\-\s]+)>", m) and html2symbols.hasKey(s[m.group(0)]):
     return symbols[html2symbols[s[m.group(0)]]]
-  elif s.startsWith("<!--"):
-    logWarn(&"Could not parse {s}. Possibly a comment.")
-    return s
-  logError(&"parseHTML: {s=}")
-  s
+  rawEmbed(s, "html")
 
 proc toStr*(self: PDInlineQuoted): string =
   let (quoteType, inlines) = self.c
@@ -255,7 +257,7 @@ proc toStr*(self: PDInlineRawInline): string =
         return "( )"
       return &"${text.replace('$', ' ').strip()}$"
     else:
-      unreachable(&"PDInlineRawInline: {format=}, {text=}")
+      rawEmbed(text.strip(), format)
 
 proc toStr*(self: PDInlineNote): string =
   self.c.toStr().join("")
@@ -436,7 +438,7 @@ proc toStr*(self: PDBlockRawBlock, indent: int = 0): string =
     of "html":
       return text.parseHTML()
     else:
-      unreachable(&"PDBlockRawBlock(UNKNOWN FORMAT): {format=}, {text=}. Please create an issue.")
+      rawEmbed(text.strip() & "\n", format)
 
 proc toStr*(self: PDBlockDiv, indent: int = 0): string =
   let (attr, blocks) = self.c
