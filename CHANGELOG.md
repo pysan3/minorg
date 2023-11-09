@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.4](https://github.com/pysan3/minorg/compare/v2.4.3...v2.4.4) (2023-11-09)
+
+
+### Bug Fixes
+
+* **pd2norg:** use raw `[@embed](https://github.com/embed)` syntax for RawInline ([a706367](https://github.com/pysan3/minorg/commit/a706367bf1ef26cd53ab26ee43e0e94aeb1936c5))
+
 ## [2.4.3](https://github.com/pysan3/minorg/compare/v2.4.2...v2.4.3) (2023-11-06)
 
 
