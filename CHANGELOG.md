@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.5](https://github.com/pysan3/minorg/compare/v2.4.4...v2.4.5) (2023-11-10)
+
+
+### Bug Fixes
+
+* **pd2norg:** detect language of inline code block if exists ([#34](https://github.com/pysan3/minorg/issues/34)) ([3f1bf83](https://github.com/pysan3/minorg/commit/3f1bf83eab22b9a6e7d3c251b62f463c475a41ab)), closes [#32](https://github.com/pysan3/minorg/issues/32)
+
 ## [2.4.4](https://github.com/pysan3/minorg/compare/v2.4.3...v2.4.4) (2023-11-09)
 
 
