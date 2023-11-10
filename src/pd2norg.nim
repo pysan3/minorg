@@ -182,7 +182,8 @@ proc toStr*(self: PDInlineLink): string =
 
 proc toStr*(self: PDInlineCode): string =
   let (attr, text) = self.c
-  &"`{text}`"
+  let lang = if attr.classes.len > 0: &"(code:{attr.classes[0]})" else: ""
+  &"`{text}`{lang}"
 
 proc toStr*(self: PDInlineEmph): string =
   let symbol = symbols[self.t]
