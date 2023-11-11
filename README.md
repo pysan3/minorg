@@ -140,9 +140,8 @@ $ pandoc -f markdown -t json ./your/markdown/file.md | minorg generate > output.
 #### **Obsidian** Notes
 
 This parser also takes some amount of care of obsidian specific format.
-Please use the `--isObsidian` flag and read [Obsidian Style Tags Are Not
-Working](#obsidian-style-tags-are-not-working) section for more
-information.
+Please use the `--isObsidian` flag and read [Obsidian](#obsidian)
+section for more information.
 
 #### Recursive Directory of Markdown
 
@@ -150,21 +149,14 @@ This is a shell script which scans the folder recursively for files with
 `"*.md"` extension and applies `pandoc -> minorg` compo to those files.
 This converts `foo/bar.md` into `foo/bar.md.norg`. However I will
 suggest first trying out few files manually to check if this converter
-generates the desired output and then go for all.
+generates the desired output for you. If you are satisfied, go for all,
+if you are not, feel free to [submit a support
+request](https://github.com/pysan3/minorg/issues/new?assignees=&labels=generate&projects=&template=converter_issues.yml&title=FEATURE%3A+or+BUG%3A+).
 
 ``` bash
 command find . -type f -name '*.md' | while read f; do
   pandoc -f markdown -t json "$f" | minorg generate -o "${f}.norg"
 done
-```
-
-#### Test It's Capability Against Norg's Specification File
-
-``` bash
-$ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
-$ norganic json --input ./1.0-specifications.norg --output ./parsed.json
-$ minorg generate -i ./parsed.json -o out.norg
-$ nvim out.norg
 ```
 
 ## Known Issues
@@ -314,7 +306,7 @@ will need the nim compiler and the package manager `nimble`.
 
 If you don't have nim installed yet, I strongly suggest using
 [choosenim](https://github.com/dom96/choosenim) to install the required
-toolkit. Please read [Choosenim
+toolkit. Please read the [Choosenim
 Installation](https://github.com/dom96/choosenim#installation). Below is
 the instruction for unix systems.
 
@@ -346,7 +338,8 @@ $ ./minorg help
 
 ## Contribution
 
-Any contribution is welcome! And don't hesitate to send me an issue.
+Any contribution is welcome! And don't hesitate to [send me an
+issue](https://github.com/pysan3/minorg/issues/new/choose).
 
 #### Fix Code and Recompile
 
@@ -361,3 +354,33 @@ Run `nim r ./minorg.nim help` for more options.
 
 All files in this repository without annotation are licensed under the
 **GPL-3.0 license** as detailed in [LICENSE](LICENSE).
+
+## Other Projects
+
+- [`norg-pandoc`](https://github.com/boltlessengineer/norg-pandoc)
+
+  - `norg` -\> `pandoc` exporter written in lua.
+
+- [`norganic`](https://github.com/klafyvel/norganic) +
+  [`Norg.jl`](https://github.com/Klafyvel/Norg.jl/)
+
+  - Another `norg` -\> `pandoc` exporter written in julia.
+
+  - Parser is written in `Norg.jl` and `norganic` is its frontend to be
+    used from the command line.
+
+- [`tree-sitter-norg3`](https://github.com/nvim-neorg/tree-sitter-norg3)
+
+  - Parser of the norg format written for tree-sitter.
+
+  - Once this is mature, we should not require `minorg` anymore as this
+    parser should handle the work better.
+
+- [`Norg-Tutorial`](https://github.com/pysan3/Norg-Tutorial)
+
+  - Tutorial for the norg file format and neorg plugin.
+
+  - Read the [Export /
+    Import](https://github.com/pysan3/Norg-Tutorial/blob/main/norg_tutorial.md#export--import)
+    section for more explanation to export / import your notes to and
+    from norg files.
