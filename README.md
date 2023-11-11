@@ -3,8 +3,8 @@ title: minorg
 description:
 authors: takuto
 categories:
-created: 2023-10-30T05:11:49+0900
-updated: 2023-11-04T18:13:41+0900
+created: 2023-10-30
+updated: 2023-11-04
 version: 1.1.1
 ```
 
@@ -81,6 +81,35 @@ where subcommand syntaxes are as follows:
 
 ### Example
 
+#### Pandoc and Usage
+
+[Pandoc](https://pandoc.org/) is able to convert files from one markup
+format into another. We use this tool to parse arbitrary markup format
+into its AST represented in `json` format as defined in [Pandoc Type
+Definition](https://hackage.haskell.org/package/pandoc-types-1.23/docs/Text-Pandoc-Definition.html).
+
+Pandoc accepts two arguments `-f` (from) and `-t` (to) to specify the
+format of the file. As noted above, we want the `json` representation so
+the output must be `-t json`.
+
+``` bash
+$ pandoc -f '<file-format>' -t json '<input-file-name>' | minorg generate -o '<output-file-name>.norg'
+```
+
+The input file format depends on the file you want to convert from. Here
+is a list of some common files.
+
+- `markdown`: markdown format (`.md`), Obsidian file
+
+- `gfm`: GitHub-flavored Markdown
+
+- `html`: HTML4 / HTML5
+
+- `latex`: LaTeX document
+
+Read [this page](https://pandoc.org/index.html) for information on more
+file formats.
+
 #### Basic Usage
 
 - Use `-i`, `-o` flags (`--input`, `--output`)
@@ -108,7 +137,7 @@ $ pandoc -f markdown -t json ./your/markdown/file.md | minorg generate > output.
 
   - Also automatically creates parent directories if not exists.
 
-#### Recursive Directory of **Obsidian** Notes
+#### **Obsidian** Notes
 
 This parser also takes some amount of care of obsidian specific format.
 Please use the `--isObsidian` flag and read [Obsidian Style Tags Are Not
@@ -117,13 +146,19 @@ information.
 
 #### Recursive Directory of Markdown
 
+This is a shell script which scans the folder recursively for files with
+`"*.md"` extension and applies `pandoc -> minorg` compo to those files.
+This converts `foo/bar.md` into `foo/bar.md.norg`. However I will
+suggest first trying out few files manually to check if this converter
+generates the desired output and then go for all.
+
 ``` bash
 command find . -type f -name '*.md' | while read f; do
   pandoc -f markdown -t json "$f" | minorg generate -o "${f}.norg"
 done
 ```
 
-#### Test It's Capability Against Norg Specification File
+#### Test It's Capability Against Norg's Specification File
 
 ``` bash
 $ wget https://raw.githubusercontent.com/nvim-neorg/norg-specs/main/1.0-specification.norg
