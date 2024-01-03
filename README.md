@@ -1,13 +1,3 @@
-``` document.meta
-title: minorg
-description:
-authors: takuto
-categories:
-created: 2023-10-30
-updated: 2023-11-04
-version: 1.1.1
-```
-
 # minorg
 
 ![Minimum supported Nim
@@ -59,14 +49,6 @@ This is a multiple-dispatch command.  -h/--help/--help-syntax is available
 for top-level/all subcommands.  Usage is like:
     minorg {SUBCMD} [subcommand-opts & args]
 where subcommand syntaxes are as follows:
-
-  parse [optional-params]
-  Options:
-      --version       bool    false  print version
-      -i=, --input=   string  ""     Input file. Leave it blank to use stdin.
-      -o=, --output=  string  ""     Output file. Leave it blank to use stdout.
-      -v, --verbose   bool    false  Outputs debug info to stderr.
-      -f, --force     bool    false  Overwrite files and create parent folders if needed.
 
   generate [optional-params]
   Options:
