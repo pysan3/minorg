@@ -56,6 +56,6 @@ when isMainModule:
     "force": "Overwrite files and create parent folders if needed.",
   }.toTable()
   dispatchMulti(
-    [parse, help = help],
+    # [parse, help = help],
     [generate, help = help],
   )
