@@ -180,21 +180,26 @@ proc toStr*(self: PDInlineLink): string =
     else:
       unreachable(&"PDInlineLink: {self.t=}")
 
+proc escapeBar*(text: string): string =
+  if text.startsWith('|') or text.endsWith('|'):
+    return "|" & text & "|"
+  return text
+
 proc toStr*(self: PDInlineCode): string =
   let (attr, text) = self.c
   let lang = if attr.classes.len > 0: &"(code:{attr.classes[0]})" else: ""
-  &"`{text}`{lang}"
+  &"`{escapeBar(text)}`{lang}"
 
 proc toStr*(self: PDInlineEmph): string =
   let symbol = symbols[self.t]
-  defer: result = &"{symbol}{result}{symbol}"
+  defer: result = &"{symbol}{escapeBar(result)}{symbol}"
   result = self.c.toStr()
   if result[^1] == '\n':
     return result[0 ..< ^1]
 
 proc rawEmbed*(s: string, lang: string): string =
   if s.find('\n') < 0:
-    return &"`| {s} |`(embed:{lang})"
+    return &"`|{s}|`(embed:{lang})"
   else:
     return joinWithNewline("@embed " & lang, s.strip(), "@end")
 
