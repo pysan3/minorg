@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.6](https://github.com/pysan3/minorg/compare/v2.4.5...v2.4.6) (2024-02-24)
+
+
+### Bug Fixes
+
+* **pd2norg:** escape inline modifier content if starts with bar `|` ([4e8a22e](https://github.com/pysan3/minorg/commit/4e8a22ee7a4003e9289293b92884ccfbeedfd9f2))
+
 ## [2.4.5](https://github.com/pysan3/minorg/compare/v2.4.4...v2.4.5) (2023-11-10)
 
 
